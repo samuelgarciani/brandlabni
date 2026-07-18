@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #023047;
+  --color-navy-2: #0b3c53;
+  --color-ink: #02222f;
+  --color-orange: #fb8500;
+  --color-blue: #219ebc;
+  --color-sky: #8ecae6;
+  --color-yellow: #ffb703;
+  --color-red: #e52e31;
+  --color-paper: #fbfaf7;
+  --color-sand: #e9e6df;
+
+  --font-sans: var(--font-onest), system-ui, sans-serif;
+
+  --max-width-container: 1200px;
+
+  --animate-marq: marq 32s linear infinite;
+  --animate-floaty: floaty 7s ease-in-out infinite;
+
+  @keyframes marq {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--color-paper);
+  color: var(--color-navy);
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--color-orange);
+  color: #fff;
+}
+
+/* scroll reveal */
+.rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* hover helpers reused across buttons/cards */
+.btnp {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.btnp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6);
+}
+.btno {
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.btno:hover {
+  border-color: #023047;
+  color: #023047;
+}
+.navlink {
+  transition: color 0.2s;
+}
+.navlink:hover {
+  color: #fb8500;
+}
+.svc {
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.svc:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(2, 48, 71, 0.45);
+}
+.proj {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.proj:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 70px -35px rgba(2, 48, 71, 0.5);
+}
+.proj:hover .projimg {
+  transform: scale(1.05);
+}
+.projimg {
+  transition: transform 0.5s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #fb8500 !important;
+}
