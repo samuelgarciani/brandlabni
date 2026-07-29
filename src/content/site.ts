@@ -19,8 +19,8 @@ export const clients = [
 
 export const hero = {
   badge: "Brand Strategist · Fundador",
-  titleLines: ["Las marcas", "no venden."],
-  titleHighlight: "Significan.",
+  titleLines: ["Una marca fuerte no grita."],
+  titleHighlight: "Tiene significado.",
   body: "Soy Samuel. Ayudo a empresas y emprendedores a construir marcas con significado, claridad y dirección estratégica — para dejar de competir por precio.",
   primaryCta: { label: "Agenda una sesión", href: "#contacto" },
   secondaryCta: { label: "Conoce mi enfoque", href: "#sobre" },
