@@ -18,6 +18,9 @@
 
   --animate-marq: marq 32s linear infinite;
   --animate-floaty: floaty 7s ease-in-out infinite;
+  --animate-float-a: floatA 11s ease-in-out infinite;
+  --animate-float-b: floatB 12s ease-in-out infinite;
+  --animate-float-c: floatC 9s ease-in-out infinite;
 
   @keyframes marq {
     from {
@@ -36,6 +39,33 @@
       transform: translateY(-14px);
     }
   }
+  @keyframes floatA {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(6px, -16px) rotate(8deg);
+    }
+  }
+  @keyframes floatB {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(-8px, -12px) rotate(-6deg);
+    }
+  }
+  @keyframes floatC {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(0, -18px);
+    }
+  }
 }
 
 html {
@@ -44,6 +74,7 @@ html {
 body {
   background: var(--color-paper);
   color: var(--color-navy);
+  font-family: var(--font-onest), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
@@ -118,4 +149,70 @@ input:focus,
 textarea:focus {
   outline: none;
   border-color: #fb8500 !important;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fb8500;
+}
+
+/* registration modal (eventos) */
+.ovl {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 12, 18, 0.78);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.fld {
+  width: 100%;
+  background: #04141d;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 14.5px;
+  font-family: inherit;
+}
+.fld:focus {
+  outline: none;
+  border-color: #fb8500;
+}
+.fld::placeholder {
+  color: #6f8892;
+}
+select.fld {
+  appearance: none;
+  -webkit-appearance: none;
+}
+label.lbl {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #8ecae6;
+  margin-bottom: 6px;
+}
+.pay {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #04141d;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e6edf0;
+  transition: border-color 0.2s;
+}
+.pay:hover {
+  border-color: rgba(251, 133, 0, 0.5);
 }
