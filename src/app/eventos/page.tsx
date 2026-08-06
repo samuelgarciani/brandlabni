@@ -191,7 +191,7 @@ export default function EventosPage() {
                 </div>
                 <div className="rounded-[16px] bg-[#fb8500] p-6">
                   <div className="text-[12px] uppercase tracking-[0.14em] text-[#7a3f00] font-semibold">Inversión</div>
-                  <div className="mt-3 text-[24px] font-extrabold text-[#04141d]">USD 30</div>
+                  <div className="mt-3 text-[24px] font-extrabold text-[#04141d]">USD 25</div>
                 </div>
               </div>
               <div className="rounded-[18px] border border-white/10 bg-[#0d2b3a] p-8">
