@@ -12,7 +12,8 @@
   --color-paper: #fbfaf7;
   --color-sand: #e9e6df;
 
-  --font-sans: var(--font-onest), system-ui, sans-serif;
+  --font-onest: "Onest", system-ui, sans-serif;
+  --font-sans: var(--font-onest);
 
   --max-width-container: 1200px;
 
