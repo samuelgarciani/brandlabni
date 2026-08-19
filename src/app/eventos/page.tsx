@@ -6,15 +6,15 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { Wordmark } from "@/components/wordmark";
 
 const sponsorLogos = [
-  { src: "/brand/logos/doubletree.png", alt: "DoubleTree by Hilton" },
-  { src: "/brand/logos/holidayinn.png", alt: "Holiday Inn Express" },
-  { src: "/brand/logos/btl.png", alt: "BTL Marketing" },
-  { src: "/brand/logos/az.png", alt: "AZ Producciones" },
   { src: "/brand/logos/disruptivas.png", alt: "Disruptivas" },
-  { src: "/brand/logos/rh.png", alt: "RH Producciones" },
+  { src: "/brand/logos/az.png", alt: "AZ Producciones" },
+  { src: "/brand/logos/holidayinn.png", alt: "Holiday Inn Express Managua" },
+  { src: "/brand/logos/cna.png", alt: "CNA Salud Spa" },
+  { src: "/brand/logos/doubletree.png", alt: "DoubleTree by Hilton" },
   { src: "/brand/logos/impacthub.png", alt: "Impact Hub Managua" },
+  { src: "/brand/logos/sur.png", alt: "SUR" },
+  { src: "/brand/logos/gsq.png", alt: "Grupo Sur Química" },
   { src: "/brand/logos/elizabeth.png", alt: "Elizabeth Balloons & Flowers" },
-  { src: "/brand/logos/atabal.png", alt: "Atabal Café" },
 ];
 
 const discoverItems = [
