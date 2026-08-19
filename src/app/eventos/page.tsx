@@ -8,7 +8,7 @@ import { Wordmark } from "@/components/wordmark";
 const mainSponsorLogos = [
   { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 500, height: 446 },
   { src: "/brand/logos/tassinari.png", alt: "Tassinari Visual Communication", width: 500, height: 281 },
-  { src: "/brand/logos/excel-repuestos.png", alt: "Excel Repuestos", width: 500, height: 500 },
+  { src: "/brand/logos/excel-repuestos.png", alt: "Excel Repuestos", width: 880, height: 322 },
 ];
 
 const sponsorLogos = [
@@ -152,14 +152,14 @@ export default function EventosPage() {
               {mainSponsorLogos.map((logo) => (
                 <div
                   key={logo.alt}
-                  className="flex h-[110px] w-[190px] items-center justify-center overflow-hidden rounded-2xl border border-[#02222f]/10 shadow-[0_20px_40px_-30px_rgba(2,34,47,0.4)]"
+                  className="flex h-[150px] w-[190px] items-center justify-center overflow-hidden rounded-2xl border border-[#02222f]/10 bg-white p-6 shadow-[0_20px_40px_-30px_rgba(2,34,47,0.4)]"
                 >
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     width={logo.width}
                     height={logo.height}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 </div>
               ))}
