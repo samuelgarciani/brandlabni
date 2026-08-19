@@ -6,7 +6,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { Wordmark } from "@/components/wordmark";
 
 const mainSponsorLogos = [
-  { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 500, height: 446 },
+  { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 336, height: 224 },
   { src: "/brand/logos/tassinari.png", alt: "Tassinari Visual Communication", width: 500, height: 281 },
   { src: "/brand/logos/excel-repuestos.png", alt: "Excel Repuestos", width: 880, height: 322 },
 ];
