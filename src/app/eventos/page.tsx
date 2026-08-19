@@ -5,6 +5,12 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Wordmark } from "@/components/wordmark";
 
+const mainSponsorLogos = [
+  { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 500, height: 446 },
+  { src: "/brand/logos/tassinari.png", alt: "Tassinari Visual Communication", width: 500, height: 281 },
+  { src: "/brand/logos/excel-repuestos.png", alt: "Excel Repuestos", width: 500, height: 500 },
+];
+
 const sponsorLogos = [
   { src: "/brand/logos/disruptivas.png", alt: "Disruptivas" },
   { src: "/brand/logos/az.png", alt: "AZ Producciones" },
@@ -137,23 +143,45 @@ export default function EventosPage() {
           />
         </header>
 
-        <section className="bg-white py-[34px]">
+        <section className="bg-white py-[48px]">
           <div className="mx-auto max-w-[1100px] px-[40px] sm:px-[22px]">
-            <p className="text-center text-[12.5px] font-bold uppercase tracking-[0.16em] text-[#6b7880]">
-              Marcas que apoyan el evento
+            <p className="text-center text-[12.5px] font-bold uppercase tracking-[0.16em] text-[#fb8500]">
+              Patrocinan
             </p>
-            <div className="group relative mt-6 overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent, black 10%, black 90%, transparent)", maskImage: "linear-gradient(90deg, transparent, black 10%, black 90%, transparent)" }}>
-              <div className="flex w-max animate-marq items-center gap-[70px] py-4 [animation-duration:30s] group-hover:[animation-play-state:paused]">
-                {sponsorLogos.concat(sponsorLogos).map((logo, index) => (
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-6">
+              {mainSponsorLogos.map((logo) => (
+                <div
+                  key={logo.alt}
+                  className="flex h-[110px] w-[190px] items-center justify-center overflow-hidden rounded-2xl border border-[#02222f]/10 shadow-[0_20px_40px_-30px_rgba(2,34,47,0.4)]"
+                >
                   <Image
-                    key={`${logo.alt}-${index}`}
                     src={logo.src}
                     alt={logo.alt}
-                    width={210}
-                    height={64}
-                    className="h-[64px] w-auto max-w-[210px] object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100"
+                    width={logo.width}
+                    height={logo.height}
+                    className="h-full w-full object-cover"
                   />
-                ))}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex items-center gap-6 border-t border-[#02222f]/10 pt-8">
+              <span className="shrink-0 text-[12.5px] font-bold uppercase tracking-[0.16em] text-[#6b7880]">
+                Con el apoyo de
+              </span>
+              <div className="group relative flex-1 overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent, black 10%, black 90%, transparent)", maskImage: "linear-gradient(90deg, transparent, black 10%, black 90%, transparent)" }}>
+                <div className="flex w-max animate-marq items-center gap-[70px] py-2 [animation-duration:30s] group-hover:[animation-play-state:paused]">
+                  {sponsorLogos.concat(sponsorLogos).map((logo, index) => (
+                    <Image
+                      key={`${logo.alt}-${index}`}
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={210}
+                      height={64}
+                      className="h-[48px] w-auto max-w-[160px] object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
