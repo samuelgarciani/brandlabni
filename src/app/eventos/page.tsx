@@ -22,6 +22,7 @@ const sponsorLogos = [
   { src: "/brand/logos/sur.png", alt: "SUR" },
   { src: "/brand/logos/gsq.png", alt: "Grupo Sur Química" },
   { src: "/brand/logos/elizabeth.png", alt: "Elizabeth Balloons & Flowers" },
+  { src: "/brand/logos/rh.png", alt: "RH Producciones" },
 ];
 
 const discoverItems = [
