@@ -6,12 +6,13 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { Wordmark } from "@/components/wordmark";
 
 const mainSponsorLogos = [
-  { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 285, height: 140 },
+  { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 480, height: 200 },
   { src: "/brand/logos/tassinari.png", alt: "Tassinari Visual Communication", width: 500, height: 281 },
-  { src: "/brand/logos/excel-repuestos.png", alt: "Excel Repuestos", width: 880, height: 322 },
+  { src: "/brand/logos/excel-repuestos.png", alt: "Excel Repuestos", width: 480, height: 200 },
 ];
 
 const sponsorLogos = [
+  { src: "/brand/logos/atabal.png", alt: "Atabal Café" },
   { src: "/brand/logos/disruptivas.png", alt: "Disruptivas" },
   { src: "/brand/logos/az.png", alt: "AZ Producciones" },
   { src: "/brand/logos/holidayinn.png", alt: "Holiday Inn Express Managua" },
