@@ -123,8 +123,10 @@ export function EventosClient() {
     setWaLink(link);
 
     // A blocked popup returns null. Reporting success then would send the visitor
-    // away believing they had registered.
-    const opened = window.open(link, "_blank", "noopener");
+    // away believing they had registered. Note "noopener" would also force a null
+    // return by spec, so the opener is dropped by hand instead.
+    const opened = window.open(link, "_blank");
+    if (opened) opened.opener = null;
     setStatus(opened ? "sent" : "blocked");
     setSubmitting(false);
   };

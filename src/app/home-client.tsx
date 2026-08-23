@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type CSSProperties } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type TouchEvent as ReactTouchEvent,
+} from "react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { Icon } from "@/components/icon";
@@ -269,6 +275,37 @@ export function HomeClient() {
     return () => window.clearInterval(interval);
   }, [heroPaused]);
 
+  // Swipe is read on touchend from the start/end delta alone: nothing calls
+  // preventDefault, so a vertical drag stays a page scroll and only a gesture
+  // that is clearly sideways moves the carousel.
+  const swipeStart = useRef<{ x: number; y: number; t: number } | null>(null);
+
+  const goToSlide = (next: number) => {
+    setHeroIndex((next + heroSlides.length) % heroSlides.length);
+    // A deliberate gesture takes over from the timer, same as tapping a dot.
+    setHeroPaused(true);
+  };
+
+  const onHeroTouchStart = (event: ReactTouchEvent) => {
+    const touch = event.touches[0];
+    swipeStart.current = { x: touch.clientX, y: touch.clientY, t: Date.now() };
+  };
+
+  const onHeroTouchEnd = (event: ReactTouchEvent) => {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    if (!start) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    // Sideways by a clear margin, far enough to be intentional, and quick
+    // enough to be a flick rather than a finger resting on the photo.
+    if (Math.abs(dx) < 50) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (Date.now() - start.t > 800) return;
+    goToSlide(dx < 0 ? heroIndex + 1 : heroIndex - 1);
+  };
+
   const activeSlide = heroSlides[heroIndex];
   const activeTestimonial = testimonialItems[testimonialIndex];
 
@@ -334,7 +371,11 @@ export function HomeClient() {
           <h1 id="h-inicio" className="sr-only">Una marca fuerte no grita. Tiene significado.</h1>
           {/* Navy floor under the stack: if a jumped-to slide is still fetching
               its image, the gap reads as the brand ground, never as paper. */}
-          <div className="relative min-h-[760px] bg-navy lg:min-h-[min(82svh,880px)]">
+          <div
+            className="relative min-h-[760px] touch-pan-y bg-navy lg:min-h-[min(82svh,880px)]"
+            onTouchStart={onHeroTouchStart}
+            onTouchEnd={onHeroTouchEnd}
+          >
             {heroSlides.map((slide, idx) => (
               <div
                 key={slide.eyebrow + idx}
@@ -418,8 +459,7 @@ export function HomeClient() {
                   aria-label={`Ver slide ${idx + 1}: ${slideName(heroSlides[idx])}`}
                   aria-current={heroIndex === idx}
                   onClick={() => {
-                    setHeroIndex(idx);
-                    setHeroPaused(true);
+                    goToSlide(idx);
                   }}
                   className="flex h-11 items-center px-2"
                 >

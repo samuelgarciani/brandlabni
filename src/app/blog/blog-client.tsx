@@ -120,7 +120,10 @@ export function BlogClient() {
     const msg = `Nueva suscripción al News Letter — Brand Lab\n\nNombre: ${nombre}\nCorreo: ${correo}`;
     const link = `https://wa.me/50557400875?text=${encodeURIComponent(msg)}`;
     setWaLink(link);
-    const opened = window.open(link, "_blank", "noopener");
+    // Passing "noopener" makes window.open return null by spec, which used to be
+    // misread as a blocked popup. Open normally and drop the opener by hand.
+    const opened = window.open(link, "_blank");
+    if (opened) opened.opener = null;
     setSubStatus(opened ? "sent" : "blocked");
     setSubmitting(false);
   };
