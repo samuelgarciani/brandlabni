@@ -637,6 +637,44 @@ legend.lbl {
     padding-right: max(40px, env(safe-area-inset-right));
   }
 }
+
+/* Hero art direction. The desktop composition sits the subject beside the copy,
+   so its crop is horizontal. A phone has no such room: cover fits the full
+   height of a 16:9 frame and shows barely a third of its width, which is why
+   each slide declares the crop that keeps the subject — not the backdrop
+   pattern — inside that third. Both crops are set as custom properties by the
+   slide so this rule stays the only place that knows about the breakpoint. */
+.hero-img {
+  object-position: var(--hero-pos-sm);
+  /* Some frames leave dead pattern above the head. Scaling about the centre
+     spends that headroom on the face instead. Slides that need none omit the
+     property and fall back to 1. */
+  transform: scale(var(--hero-scale-sm, 1));
+  /* Centre suits an upright subject. A frame whose face sits mid-height needs
+     the zoom anchored lower, or the chin is driven into the headline. */
+  transform-origin: var(--hero-origin-sm, center);
+}
+@media (min-width: 64rem) {
+  .hero-img {
+    object-position: var(--hero-pos-lg);
+    transform: none;
+  }
+}
+
+/* Mobile hero scrim. Clear over the face, opaque where the copy starts. Slides
+   whose subject reaches lower shift the whole ramp down rather than flattening
+   it, so contrast under the copy never drops. */
+.hero-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(2, 48, 71, 0) 0%,
+    rgba(2, 48, 71, 0.05) calc(22% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.32) calc(33% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.8) calc(43% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.93) calc(56% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.96) 100%
+  );
+}
 .sticky-head {
   padding-top: env(safe-area-inset-top);
 }

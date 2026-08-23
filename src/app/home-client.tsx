@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { Icon } from "@/components/icon";
@@ -20,6 +20,7 @@ const heroSlides = [
     image: "/brand/hero/hero-bg.jpg",
     imageAlt: "Samuel García, estratega de marca",
     imagePosition: "right top",
+    imagePositionMobile: "90% center",
     alignment: "left",
     overlay: "linear-gradient(90deg, rgba(2, 58, 86, 0.94) 0%, rgba(2, 58, 86, 0.6) 42%, rgba(2, 58, 86, 0) 66%)",
   },
@@ -32,8 +33,10 @@ const heroSlides = [
     ctaLabel: "Agenda una sesión",
     ctaHref: "#contacto",
     image: "/brand/hero/hero-2.jpg",
+    imageScaleMobile: "1.28",
     imageAlt: "Samuel García en una sesión estratégica",
     imagePosition: "left center",
+    imagePositionMobile: "10% center",
     alignment: "right",
     overlay: "linear-gradient(270deg, rgba(2, 58, 86, 0.92) 0%, rgba(2, 58, 86, 0.55) 44%, rgba(2, 58, 86, 0) 68%)",
   },
@@ -46,8 +49,11 @@ const heroSlides = [
     ctaLabel: "Agenda una sesión",
     ctaHref: "#contacto",
     image: "/brand/hero/hero-3.jpg",
+    imageScaleMobile: "1.25",
+    imageScrimShiftMobile: "6%",
     imageAlt: "Un momento de construcción de marca con Samuel García",
     imagePosition: "right center",
+    imagePositionMobile: "88% center",
     alignment: "left",
     overlay: "linear-gradient(90deg, rgba(2, 58, 86, 0.94) 0%, rgba(2, 58, 86, 0.6) 42%, rgba(2, 58, 86, 0) 66%)",
   },
@@ -60,8 +66,11 @@ const heroSlides = [
     ctaLabel: "Explorar BlogBrand",
     ctaHref: "/blog",
     image: "/brand/hero/hero-blog.jpg",
+    imageScaleMobile: "1.15",
+    imageScaleOriginMobile: "right bottom",
     imageAlt: "Samuel García leyendo",
     imagePosition: "right center",
+    imagePositionMobile: "100% center",
     alignment: "left",
     overlay: "linear-gradient(90deg, rgba(9, 38, 60, 0.96) 0%, rgba(9, 38, 60, 0.65) 44%, rgba(9, 38, 60, 0.1) 70%)",
   },
@@ -76,6 +85,7 @@ const heroSlides = [
     image: "/brand/hero/hero-evento.jpg",
     imageAlt: "Brand Lab Live — evento en vivo",
     imagePosition: "right center",
+    imagePositionMobile: "77% center",
     alignment: "left",
     overlay: "linear-gradient(90deg, rgba(9, 38, 60, 0.92) 0%, rgba(9, 38, 60, 0.55) 40%, rgba(9, 38, 60, 0) 60%)",
   },
@@ -324,11 +334,11 @@ export function HomeClient() {
           <h1 id="h-inicio" className="sr-only">Una marca fuerte no grita. Tiene significado.</h1>
           {/* Navy floor under the stack: if a jumped-to slide is still fetching
               its image, the gap reads as the brand ground, never as paper. */}
-          <div className="relative min-h-[640px] bg-navy lg:min-h-[min(82svh,880px)]">
+          <div className="relative min-h-[760px] bg-navy lg:min-h-[min(82svh,880px)]">
             {heroSlides.map((slide, idx) => (
               <div
                 key={slide.eyebrow + idx}
-                className={`hero-slide absolute inset-0 transition-opacity duration-[1000ms] ease-in-out ${heroIndex === idx ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+                className={`hero-slide absolute inset-0 overflow-hidden transition-opacity duration-[1000ms] ease-in-out ${heroIndex === idx ? "opacity-100 z-10" : "opacity-0 z-0"}`}
                 // `inert` removes the slide from the tab order too. `aria-hidden`
                 // alone left five focusable CTAs stacked behind the visible one.
                 {...(heroIndex === idx ? {} : { inert: true })}
@@ -343,14 +353,22 @@ export function HomeClient() {
                     // must never compete with it: `preload` and `fetchPriority`
                     // are mutually exclusive by design.
                     {...(idx === 0 ? { preload: true } : { fetchPriority: "low" as const })}
-                    sizes="100vw"
-                    className="object-cover"
-                    style={{ objectPosition: slide.imagePosition }}
+                    sizes="(min-width: 64rem) 100vw, 250vw"
+                    className="hero-img object-cover"
+                    style={{
+                      "--hero-pos-sm": slide.imagePositionMobile,
+                      "--hero-pos-lg": slide.imagePosition,
+                      "--hero-scale-sm": slide.imageScaleMobile,
+                      "--hero-origin-sm": slide.imageScaleOriginMobile,
+                    } as CSSProperties}
                   />
                 ) : null}
-                <div className="absolute inset-0" style={{ background: slide.overlay }} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,48,71,0.3)_0%,rgba(2,48,71,0.44)_28%,rgba(2,48,71,0.92)_47%,rgba(2,48,71,0.96)_100%)] lg:hidden" />
-                <div className="relative z-10 mx-auto flex max-w-[1180px] min-h-[640px] items-center gutter lg:min-h-[min(82svh,880px)]">
+                <div className="absolute inset-0 hidden lg:block" style={{ background: slide.overlay }} />
+                <div
+                  className="hero-scrim absolute inset-0 lg:hidden"
+                  style={{ "--hero-scrim-shift": slide.imageScrimShiftMobile } as CSSProperties}
+                />
+                <div className="relative z-10 mx-auto flex max-w-[1180px] min-h-[760px] items-end pb-14 gutter lg:min-h-[min(82svh,880px)] lg:items-center lg:pb-0">
                   <div
                     className={`max-w-[560px] ${
                       slide.alignment === "right" ? "ml-auto text-right lg:max-w-[640px]" : "text-left lg:max-w-[820px]"
@@ -365,7 +383,7 @@ export function HomeClient() {
                         {slide.eyebrowPromo}
                       </div>
                     ) : null}
-                    <p className="rv t-display mt-7 text-white">
+                    <p className="rv t-display mt-5 text-white lg:mt-7">
                       {slide.titleLines.map((line) => (
                         <span key={line} className="block">
                           {line}
@@ -374,13 +392,13 @@ export function HomeClient() {
                       {slide.highlight ? <span className="text-orange">{slide.highlight}</span> : null}
                     </p>
                     <p
-                      className={`rv mt-6 max-w-[480px] t-lead text-on-dark-soft ${
+                      className={`rv mt-4 max-w-[480px] t-lead text-on-dark-soft lg:mt-6 ${
                         slide.alignment === "right" ? "ml-auto" : ""
                       }`}
                     >
                       {slide.body}
                     </p>
-                    <div className={`rv mt-10 flex flex-wrap gap-4 ${slide.alignment === "right" ? "justify-end" : "justify-start"}`}>
+                    <div className={`rv mt-7 flex flex-wrap gap-4 lg:mt-10 ${slide.alignment === "right" ? "justify-end" : "justify-start"}`}>
                       <a
                         href={slide.ctaHref}
                         className="btn btn-lg btn-primary-on-light"
