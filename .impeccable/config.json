@@ -1,0 +1,41 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font-size",
+        "value": "3rem",
+        "createdAt": "2026-08-23T06:41:45.779Z",
+        "reason": "decorative opening quote glyph in the testimonial card, not text on the type scale"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "0.625rem",
+        "createdAt": "2026-08-23T06:41:45.832Z",
+        "reason": "superscript dot in the BRANDLAB wordmark lockup, a brand mark rather than a type role"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(2, 58, 86, 0.94)",
+        "createdAt": "2026-08-23T06:49:29.985Z",
+        "reason": "DESIGN.md documents this exact overlay in the Carrusel de hero component spec"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(2, 58, 86, 0.92)",
+        "createdAt": "2026-08-23T06:49:30.034Z",
+        "reason": "DESIGN.md documents this exact overlay in the Carrusel de hero component spec"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/app/home-client.tsx"
+        ],
+        "createdAt": "2026-08-23T06:50:59.067Z",
+        "reason": "DESIGN.md L330 names 'El panel de borde izquierdo' as a system component: border-left 3-4px orange/blue, right corners rounded. L462 is also a blockquote rule, a typographic convention."
+      }
+    ]
+  }
+}
