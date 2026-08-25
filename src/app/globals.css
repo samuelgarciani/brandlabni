@@ -1,19 +1,53 @@
 @import "tailwindcss";
 
 @theme {
+  /* --- Floors. Every surface in the system stands on one of these. --- */
+  --color-paper: #fbfaf7;
+  --color-bone: #f4f1ea;
+  --color-mist: #eef4f6;
   --color-navy: #023047;
   --color-navy-2: #0b3c53;
   --color-ink: #02222f;
+  --color-abyss: #04141d;
+  --color-abyss-surface: #0d2b3a;
+  --color-abyss-floor: #020c12;
+
+  /* --- Reagents. --- */
   --color-orange: #fb8500;
+  /* Orange in its text role. The brand orange is a surface/reagent colour and
+     reaches only 2.4:1 as small text on the light floors. */
+  --color-orange-ink: #9e5204;
+  /* Text sitting on the orange surface. */
+  --color-on-orange: #572b02;
   --color-blue: #219ebc;
+  --color-blue-ink: #057087;
   --color-sky: #8ecae6;
   --color-yellow: #ffb703;
   --color-red: #e52e31;
-  --color-paper: #fbfaf7;
   --color-sand: #e9e6df;
 
-  --font-onest: "Onest", system-ui, sans-serif;
-  --font-sans: var(--font-onest);
+  /* --- Text steps. One step per floor: never invent a neighbouring grey. --- */
+  /* Body copy on paper, bone and mist. */
+  --color-body-ink: #42525c;
+  /* Secondary copy on the same light floors. */
+  --color-body-muted: #6b7880;
+  /* Body copy on the navy floor. */
+  --color-body-on-navy: #aebfc8;
+  /* Body copy on the abyss floors. */
+  --color-body-on-abyss: #9fb3bc;
+  /* Emphasis short of pure white on any dark floor. */
+  --color-on-dark-strong: #e6edf0;
+  /* Standing copy on any dark floor. */
+  --color-on-dark-soft: #c9d6db;
+  /* One secondary-text step for every dark floor, replacing four ad-hoc greys. */
+  --color-muted-dark: #8a9ba6;
+  /* Ghost numerals and secondary glyphs on light floors. */
+  --color-quiet: #7d919e;
+
+  /* `--font-onest` is declared by next/font on <html>; the theme only consumes
+     it, so the self-hosted family and its size-adjusted fallback stay the one
+     source of truth for the face. */
+  --font-sans: var(--font-onest), system-ui, sans-serif;
 
   --max-width-container: 1200px;
 
@@ -73,6 +107,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
+  overflow-wrap: break-word;
   background: var(--color-paper);
   color: var(--color-navy);
   font-family: var(--font-onest), system-ui, sans-serif;
@@ -80,98 +115,386 @@ body {
 }
 ::selection {
   background: var(--color-orange);
-  color: #fff;
+  color: var(--color-navy);
 }
 
-/* scroll reveal */
-.rv {
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 300;
+  transform: translateY(-160%);
+  background: #023047;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid #fb8500;
+  outline-offset: 2px;
+}
+
+/* scroll reveal — only armed once JS is present, so a failed script leaves the
+   page readable instead of blank. */
+.js .rv {
   opacity: 0;
   transform: translateY(30px);
   transition:
     opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
     transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.rv.in {
+.js .rv.in {
   opacity: 1;
   transform: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .js .rv {
+    transition-duration: 0.01ms;
+    transform: none;
+  }
+}
+
+/* Buttons. The system has one shape — the capsule — and three sizes. Compose
+   `btn` with exactly one size and one tone: `btn btn-lg btn-primary`. The
+   44px floor is the touch target, so no size may fall below it. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border-radius: 9999px;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.btn-sm {
+  padding: 0 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.btn-md {
+  padding: 13px 28px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+/* Tones. Text on orange is always dark — white would be 2.48:1. Which dark
+   depends on the floor the button stands on, not on the button. */
+.btn-primary {
+  background: var(--color-orange);
+  color: var(--color-abyss);
+}
+.btn-primary-on-light {
+  background: var(--color-orange);
+  color: var(--color-navy);
+}
+.btn-navy {
+  background: var(--color-navy);
+  color: #fff;
+}
+.btn-abyss {
+  background: var(--color-abyss);
+  color: #fff;
+}
+
+/* The system's one decorative glyph: the triangular marker that replaces the
+   bullet in every argument list, and floats as a particle over navy sections. */
+.marker {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
 /* hover helpers reused across buttons/cards */
-.btnp {
+.btnp,
+.btn {
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-}
-.btnp:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6);
 }
 .btno {
   transition:
     border-color 0.2s,
     color 0.2s;
 }
-.btno:hover {
-  border-color: #023047;
-  color: #023047;
-}
 .navlink {
   transition: color 0.2s;
-}
-.navlink:hover {
-  color: #fb8500;
 }
 .svc {
   transition:
     transform 0.25s,
     box-shadow 0.25s;
 }
-.svc:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 60px -30px rgba(2, 48, 71, 0.45);
-}
 .proj {
   transition:
     transform 0.3s,
     box-shadow 0.3s;
 }
-.proj:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 40px 70px -35px rgba(2, 48, 71, 0.5);
-}
-.proj:hover .projimg {
-  transform: scale(1.05);
-}
 .projimg {
   transition: transform 0.5s ease;
 }
 
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: #fb8500 !important;
+/* Lift and glow are pointer affordances. On touch there is no hover to leave,
+   so the state sticks to whatever was tapped last. */
+@media (hover: hover) and (pointer: fine) {
+  .btnp:hover,
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6);
+  }
+  .btno:hover {
+    border-color: #023047;
+    color: #023047;
+  }
+  .navlink:hover {
+    color: #fb8500;
+  }
+  .svc:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -30px rgba(2, 48, 71, 0.45);
+  }
+  .proj:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 40px 70px -35px rgba(2, 48, 71, 0.5);
+  }
+  .proj:hover .projimg {
+    transform: scale(1.05);
+  }
 }
 
-.eyebrow {
-  font-size: 13px;
+/* Touch gets its own acknowledgement: a press, not a lift. */
+@media (hover: none) {
+  .btnp:active,
+  .btn:active,
+  .svc:active,
+  .proj:active {
+    transform: scale(0.985);
+  }
+  .navlink:active {
+    color: #fb8500;
+  }
+}
+
+/* A global focus ring, themed from the palette rather than left to the browser.
+   Keyboard users get the ring; a mouse click does not paint one. */
+:focus-visible {
+  outline: 2px solid #fb8500;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: #fb8500;
+}
+
+/* ---------------------------------------------------------------------------
+   The type scale.
+
+   Every role carries its own size, weight, leading and tracking, so a role is
+   applied with one class and never re-tuned at the call site. Sizes are in rem:
+   a visitor who raises the browser's font size gets a page that grows with it,
+   which fixed px silently refused.
+
+   Eleven roles cover the whole site. The tiers are far enough apart that the
+   job of a line is legible before the words are — the previous ramp had six
+   steps inside 2.5px, which is noise, not hierarchy.
+   --------------------------------------------------------------------------- */
+
+/* --- Display. One manifesto per page, one display per page; headline for the
+   argument beats, subhead for the inventory. A section that opts into a louder
+   tier than its job deserves is what flattens the scroll. --- */
+.t-manifesto {
+  font-size: clamp(2.5rem, 9.6vw, 6rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.t-display {
+  font-size: clamp(2.25rem, 6.4vw, 4.75rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.042em;
+  text-wrap: balance;
+}
+.t-headline {
+  font-size: clamp(1.9375rem, 4.9vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.t-subhead {
+  font-size: clamp(1.5625rem, 3.1vw, 2.125rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+/* --- Titles. Fixed, because a card title that resized with the viewport would
+   break the alignment of the grid it sits in. --- */
+.t-title-lg {
+  font-size: 1.625rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.t-title {
+  font-size: 1.375rem;
   font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.t-title-sm {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* --- Body. Three steps, no more. `.t-lead` opens a section, `.t-body` carries
+   the argument, `.t-body-sm` lives inside cards and lists. --- */
+.t-lead {
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.t-body {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+.t-body-sm {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* --- Support. --- */
+/* Captions, footnotes, attributions, roles. */
+.t-meta {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+/* The eyebrow. One size and one tracking for the whole site: the rule that
+   opens every section cannot itself drift across four sizes. */
+.eyebrow,
+.t-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #fb8500;
+}
+/* Badges and pills, where the container is the emphasis and the type recedes. */
+.t-micro {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* registration modal (eventos) */
-.ovl {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 12, 18, 0.78);
-  backdrop-filter: blur(4px);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+/* --- Set pieces. --- */
+.t-quote {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
 }
+/* The ghost numerals of the offer list — a glyph doing layout work, not text. */
+.t-numeral {
+  font-size: clamp(2.5rem, 7vw, 5.375rem);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tabular figures for anything that has to line up in a column — agenda hours,
+   sponsorship prices, dates. Onest's proportional digits stagger otherwise. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Measure. Expressed in ch so the line count holds when the reader scales
+   the type; 66ch lands inside the 45–75 band Spanish prose reads best at. --- */
+.measure {
+  max-width: 66ch;
+}
+.measure-sm {
+  max-width: 52ch;
+}
+.measure-lg {
+  max-width: 74ch;
+}
+
+/* --- Floor compensation. Light type on a dark floor blooms: the same metrics
+   that read as composed on paper read as cramped on the abyss. Every body role
+   inside a dark surface gains a step of leading and a hair of tracking.
+
+   `.floor-dark` goes on the route root; `.floor-light` puts a light section
+   back on paper metrics when it sits inside one (the bone agenda, the orange
+   band). The pairing is why the compensation is a class and not a media rule. */
+.floor-dark .t-body {
+  line-height: 1.75;
+  letter-spacing: 0.006em;
+}
+.floor-dark .t-body-sm {
+  line-height: 1.68;
+  letter-spacing: 0.006em;
+}
+.floor-dark .t-lead {
+  line-height: 1.65;
+  letter-spacing: -0.004em;
+}
+.floor-dark .t-meta {
+  line-height: 1.55;
+  letter-spacing: 0.006em;
+}
+
+.floor-dark .floor-light .t-body {
+  line-height: 1.7;
+  letter-spacing: normal;
+}
+.floor-dark .floor-light .t-body-sm {
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+.floor-dark .floor-light .t-lead {
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+.floor-dark .floor-light .t-meta {
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+/* Form fields. Live on dark surfaces throughout the site. */
 .fld {
   width: 100%;
   background: #04141d;
@@ -179,27 +502,43 @@ textarea:focus {
   border-radius: 10px;
   padding: 12px 14px;
   color: #fff;
-  font-size: 14.5px;
+  font-size: 0.9375rem;
   font-family: inherit;
 }
-.fld:focus {
-  outline: none;
+.fld:focus-visible {
+  outline: 2px solid #fb8500;
+  outline-offset: 1px;
   border-color: #fb8500;
 }
 .fld::placeholder {
   color: #6f8892;
 }
+input.fld:invalid:not(:placeholder-shown),
+textarea.fld:invalid:not(:placeholder-shown) {
+  border-color: rgba(229, 46, 49, 0.7);
+}
 select.fld {
   appearance: none;
   -webkit-appearance: none;
+  /* The arrow the native appearance would have drawn. */
+  background-image: linear-gradient(45deg, transparent 50%, #8ecae6 50%),
+    linear-gradient(135deg, #8ecae6 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% + 1px),
+    calc(100% - 13px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 36px;
 }
-label.lbl {
+label.lbl,
+legend.lbl {
   display: block;
-  font-size: 12px;
+  font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #8ecae6;
   margin-bottom: 6px;
+  padding: 0;
 }
 .pay {
   display: flex;
@@ -210,10 +549,214 @@ label.lbl {
   border-radius: 10px;
   padding: 12px 14px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.9375rem;
   color: #e6edf0;
   transition: border-color 0.2s;
 }
-.pay:hover {
-  border-color: rgba(251, 133, 0, 0.5);
+.pay:has(input:checked) {
+  border-color: #fb8500;
+}
+.pay:focus-within {
+  outline: 2px solid #fb8500;
+  outline-offset: 1px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pay:hover {
+    border-color: rgba(251, 133, 0, 0.5);
+  }
+}
+
+/* Touch input sizing. Below 16px iOS zooms the page on focus, which drops the
+   visitor into a horizontally panned viewport mid-form; 1.0625rem clears that
+   threshold at every root size a browser ships. */
+@media (pointer: coarse) {
+  .fld {
+    min-height: 44px;
+    font-size: 1.0625rem;
+  }
+  .pay {
+    min-height: 44px;
+    font-size: 1.0625rem;
+  }
+}
+
+/* Mobile navigation drawer */
+.drawer {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-top: env(safe-area-inset-top);
+}
+.drawer::backdrop {
+  background: rgba(2, 12, 18, 0.6);
+}
+.drawer[open] {
+  animation: drawer-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.drawer-mark {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+.drawer-link:hover .drawer-mark,
+.drawer-link:focus-visible .drawer-mark,
+.drawer-link:active .drawer-mark {
+  opacity: 1;
+  transform: none;
+}
+
+/* Page gutter. Sole source of truth for horizontal rhythm, and the only place
+   that has to know about notches in landscape. */
+.gutter {
+  padding-left: max(22px, env(safe-area-inset-left));
+  padding-right: max(22px, env(safe-area-inset-right));
+}
+@media (min-width: 40rem) {
+  .gutter {
+    padding-left: max(40px, env(safe-area-inset-left));
+    padding-right: max(40px, env(safe-area-inset-right));
+  }
+}
+
+/* Hero art direction. The desktop composition sits the subject beside the copy,
+   so its crop is horizontal. A phone has no such room: cover fits the full
+   height of a 16:9 frame and shows barely a third of its width, which is why
+   each slide declares the crop that keeps the subject — not the backdrop
+   pattern — inside that third. Both crops are set as custom properties by the
+   slide so this rule stays the only place that knows about the breakpoint. */
+.hero-img {
+  object-position: var(--hero-pos-sm);
+  /* Some frames leave dead pattern above the head. Scaling about the centre
+     spends that headroom on the face instead. Slides that need none omit the
+     property and fall back to 1. */
+  transform: scale(var(--hero-scale-sm, 1));
+  /* Centre suits an upright subject. A frame whose face sits mid-height needs
+     the zoom anchored lower, or the chin is driven into the headline. */
+  transform-origin: var(--hero-origin-sm, center);
+}
+@media (min-width: 64rem) {
+  .hero-img {
+    object-position: var(--hero-pos-lg);
+    transform: none;
+  }
+}
+
+/* Mobile hero scrim. Clear over the face, opaque where the copy starts. Slides
+   whose subject reaches lower shift the whole ramp down rather than flattening
+   it, so contrast under the copy never drops. */
+.hero-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(2, 48, 71, 0) 0%,
+    rgba(2, 48, 71, 0.05) calc(22% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.32) calc(33% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.8) calc(43% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.93) calc(56% + var(--hero-scrim-shift, 0%)),
+    rgba(2, 48, 71, 0.96) 100%
+  );
+}
+.sticky-head {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Overlay dialog. Shares the anchoring rules of .ovl, which it replaces. */
+.modal {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+}
+.modal[open] {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+@media (min-height: 900px) {
+  .modal[open] {
+    align-items: center;
+  }
+}
+.modal::backdrop {
+  background: rgba(4, 12, 18, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+/* Reduced motion. Not a blanket kill: state changes still register, they just
+   stop travelling across the screen. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marq,
+  .animate-floaty,
+  .animate-float-a,
+  .animate-float-b,
+  .animate-float-c {
+    animation: none !important;
+  }
+  .drawer[open] {
+    animation: none;
+  }
+  .btnp:hover,
+  .btn:hover,
+  .svc:hover,
+  .proj:hover {
+    transform: none;
+  }
+  .proj:hover .projimg {
+    transform: none;
+  }
+  /* The hero crossfade becomes a cut. */
+  .hero-slide {
+    transition-duration: 1ms !important;
+  }
+  /* The skip link is the first thing a keyboard visitor reaches. It arrives,
+     it does not fly in from above the viewport. */
+  .skip-link {
+    transition: none;
+  }
+  /* The drawer marker keeps its fade and drops its slide. */
+  .drawer-mark {
+    transform: none;
+    transition: opacity 0.2s;
+  }
+}
+
+/* Touch still gets an acknowledgement under reduce — it just stops being a
+   squeeze. Removing the press outright would leave a tap with no answer. */
+@media (prefers-reduced-motion: reduce) and (hover: none) {
+  .btnp:active,
+  .btn:active,
+  .svc:active,
+  .proj:active {
+    transform: none;
+    opacity: 0.75;
+  }
 }

@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T00:00:00.000Z",
+  "title": "Design System: Brand Lab by Samu",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "secondary",
+        "displayName": "Navy Laboratorio",
+        "canonical": "#023047",
+        "tonalRamp": ["#010f17", "#01202f", "#023047", "#03415f", "#155f81", "#3d88a8", "#79b3cb", "#c3dde8"]
+      },
+      "navy-deep": {
+        "role": "secondary",
+        "displayName": "Navy Profundo",
+        "canonical": "#0b3c53",
+        "tonalRamp": ["#03141c", "#062632", "#0b3c53", "#0f4f6c", "#1d6d90", "#4392b2", "#7db8d0", "#c4dfea"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#02222f",
+        "tonalRamp": ["#010b10", "#01161e", "#02222f", "#033146", "#0a5070", "#2f7c9e", "#6ba9c3", "#bcd9e4"]
+      },
+      "abyss": {
+        "role": "secondary",
+        "displayName": "Abismo",
+        "canonical": "#04141d",
+        "tonalRamp": ["#020a0e", "#04141d", "#06212e", "#0a3345", "#124d65", "#357a95", "#70a8bf", "#bfd9e3"]
+      },
+      "abyss-surface": {
+        "role": "secondary",
+        "displayName": "Abismo Superficie",
+        "canonical": "#0d2b3a",
+        "tonalRamp": ["#040e13", "#081c26", "#0d2b3a", "#123b50", "#1d5c78", "#42849e", "#7cb0c6", "#c3dbe5"]
+      },
+      "abyss-floor": {
+        "role": "neutral",
+        "displayName": "Abismo Suelo",
+        "canonical": "#020c12",
+        "tonalRamp": ["#010609", "#020c12", "#03151e", "#052434", "#0b4055", "#2d6f8a", "#6ba2b8", "#bdd7e1"]
+      },
+      "orange": {
+        "role": "primary",
+        "displayName": "Naranja Reactivo",
+        "canonical": "#fb8500",
+        "tonalRamp": ["#291600", "#442500", "#653700", "#8b4b00", "#b56200", "#e07800", "#fb8500", "#ffc37a"]
+      },
+      "yellow": {
+        "role": "primary",
+        "displayName": "Amarillo Señal",
+        "canonical": "#ffb703",
+        "tonalRamp": ["#2b1e00", "#463200", "#674900", "#8d6400", "#b78100", "#e2a000", "#ffb703", "#ffd97e"]
+      },
+      "blue": {
+        "role": "tertiary",
+        "displayName": "Azul Instrumento",
+        "canonical": "#219ebc",
+        "tonalRamp": ["#04222a", "#073744", "#0c4f61", "#126a81", "#1886a3", "#219ebc", "#5cbdd4", "#aadeeb"]
+      },
+      "sky": {
+        "role": "tertiary",
+        "displayName": "Cielo",
+        "canonical": "#8ecae6",
+        "tonalRamp": ["#0a222e", "#0f374a", "#164e69", "#1f6789", "#3d87a9", "#63a7c6", "#8ecae6", "#d0eaf6"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "canonical": "#fbfaf7",
+        "tonalRamp": ["#26241f", "#3d3a33", "#565149", "#716c62", "#8f8a80", "#b0aba1", "#d4d0c7", "#fbfaf7"]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Hueso",
+        "canonical": "#f4f1ea",
+        "tonalRamp": ["#25231d", "#3b3830", "#534f45", "#6d685c", "#8b8578", "#aca698", "#d0cabc", "#f4f1ea"]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Bruma",
+        "canonical": "#eef4f6",
+        "tonalRamp": ["#1c2427", "#2f3a3e", "#455256", "#5d6c71", "#78888d", "#96a6ab", "#c0cdd1", "#eef4f6"]
+      },
+      "body-ink": {
+        "role": "neutral",
+        "displayName": "Tinta de Cuerpo",
+        "canonical": "#42525c",
+        "tonalRamp": ["#12181b", "#1f282d", "#2f3b42", "#42525c", "#5a6c77", "#7c8d97", "#a7b4bb", "#d6dde0"]
+      },
+      "body-muted": {
+        "role": "neutral",
+        "displayName": "Tinta Apagada",
+        "canonical": "#6b7880",
+        "tonalRamp": ["#171b1e", "#262d31", "#384146", "#4c575d", "#6b7880", "#8d989f", "#b2babf", "#dde1e3"]
+      },
+      "body-on-navy": {
+        "role": "neutral",
+        "displayName": "Cuerpo sobre Navy",
+        "canonical": "#aebfc8",
+        "tonalRamp": ["#181f23", "#28343a", "#3b4b53", "#50646d", "#6c8089", "#8b9fa8", "#aebfc8", "#dde5e9"]
+      },
+      "body-on-abyss": {
+        "role": "neutral",
+        "displayName": "Cuerpo sobre Abismo",
+        "canonical": "#9fb3bc",
+        "tonalRamp": ["#151d21", "#243136", "#364750", "#4b5e68", "#667b85", "#8399a3", "#9fb3bc", "#d5e0e4"]
+      },
+      "on-dark-strong": {
+        "role": "neutral",
+        "displayName": "Fuerte sobre Oscuro",
+        "canonical": "#e6edf0",
+        "tonalRamp": ["#1b2124", "#2d3639", "#414c51", "#586469", "#748084", "#95a0a4", "#bfc8cb", "#e6edf0"]
+      },
+      "on-dark-soft": {
+        "role": "neutral",
+        "displayName": "Suave sobre Oscuro",
+        "canonical": "#c9d6db",
+        "tonalRamp": ["#1a2225", "#2b373b", "#3f4d53", "#55666d", "#71848b", "#91a3aa", "#c9d6db", "#e9f0f2"]
+      },
+      "label-muted": {
+        "role": "neutral",
+        "displayName": "Label Apagado",
+        "canonical": "#5f7580",
+        "tonalRamp": ["#131a1d", "#212c31", "#324146", "#45585f", "#5f7580", "#83969f", "#aab8bf", "#d9e0e3"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular de hero, uno por página, siempre sobre fotografía con overlay de degradado. 56–66px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titular de sección, quebrado a mano con <br />. 44–46px en escritorio."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de tarjeta, de fase de servicio y de artículo. 19–28px."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Párrafo de argumento, ancho máximo 520–680px, con <strong> para la palabra que carga el peso."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "Descripciones de tarjeta, listas de beneficio y texto de apoyo."
+      },
+      "label": {
+        "displayName": "Label / Eyebrow",
+        "purpose": "El eyebrow en caja alta que abre toda sección. Naranja sobre claro, cielo o naranja sobre oscuro."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "Cita destacada, siempre con barra izquierda de 3–4px en naranja."
+      }
+    },
+    "shadows": [
+      {
+        "name": "frame-photo",
+        "value": "0 40px 80px -40px rgba(2, 48, 71, 0.5)",
+        "purpose": "Sombra firma del sistema: retratos y marcos de imagen."
+      },
+      {
+        "name": "lift-card",
+        "value": "0 30px 60px -30px rgba(2, 48, 71, 0.45)",
+        "purpose": "Tarjeta de servicio en hover, junto a translateY(-6px)."
+      },
+      {
+        "name": "lift-project",
+        "value": "0 40px 70px -35px rgba(2, 48, 71, 0.5)",
+        "purpose": "Tarjeta grande con imagen en hover."
+      },
+      {
+        "name": "rest-card",
+        "value": "0 26px 60px -44px rgba(2, 48, 71, 0.6)",
+        "purpose": "Reposo casi imperceptible de la tarjeta de testimonio sobre fondo hueso."
+      },
+      {
+        "name": "logo-shelf",
+        "value": "0 20px 40px -30px rgba(2, 34, 47, 0.4)",
+        "purpose": "Fichas de patrocinador sobre blanco en la página de eventos."
+      },
+      {
+        "name": "action-glow",
+        "value": "0 14px 30px -10px rgba(251, 133, 0, 0.6)",
+        "purpose": "La única sombra de color del sistema: hover del botón primario (.btnp)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-reveal",
+        "value": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+        "purpose": "Easing del revelado al scroll (.rv), 0.8s, desde translateY(30px) y opacity 0."
+      },
+      {
+        "name": "duration-hover",
+        "value": "0.2s",
+        "purpose": "Botones (.btnp, .btno) y enlaces de navegación (.navlink)."
+      },
+      {
+        "name": "duration-card-lift",
+        "value": "0.25s",
+        "purpose": "Levante de tarjeta de servicio (.svc); 0.3s para tarjetas de proyecto (.proj)."
+      },
+      {
+        "name": "duration-image-zoom",
+        "value": "0.5s ease",
+        "purpose": "Escala a 1.05 de la imagen dentro de una tarjeta en hover (.projimg)."
+      },
+      {
+        "name": "hero-crossfade",
+        "value": "1000ms ease-in-out",
+        "purpose": "Transición entre slides del carrusel de hero; avance automático cada 6000ms."
+      },
+      {
+        "name": "marquee",
+        "value": "marq 32s linear infinite",
+        "purpose": "Cinta de logos con translateX(-50%) sobre contenido duplicado; 30s en eventos."
+      },
+      {
+        "name": "float-particles",
+        "value": "floatA 11s / floatB 12s / floatC 9s ease-in-out infinite",
+        "purpose": "Marcadores triangulares y discos que flotan sobre las secciones navy."
+      },
+      {
+        "name": "floaty",
+        "value": "floaty 7s ease-in-out infinite",
+        "purpose": "Oscilación vertical de 14px para formas decorativas grandes."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "container-home", "value": "1180px" },
+      { "name": "container-sub", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "El CTA del sistema. Cápsula naranja que se levanta 2px con un resplandor del mismo color en hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Agenda una sesión</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #fb8500; color: #ffffff; font-family: Onest, system-ui, sans-serif; font-size: 15.5px; font-weight: 600; padding: 16px 32px; border: none; border-radius: 9999px; text-decoration: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6); } .ds-btn-primary:focus-visible { outline: 2px solid #fb8500; outline-offset: 3px; } .ds-btn-primary:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Primary Button on Dark",
+      "kind": "button",
+      "refersTo": "button-primary-on-dark",
+      "description": "El mismo CTA sobre suelo de abismo: el texto pasa a #04141d para conservar contraste sobre el naranja.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary-dark\">Reservar mi cupo</a>",
+      "css": ".ds-btn-primary-dark { display: inline-flex; align-items: center; justify-content: center; background: #fb8500; color: #04141d; font-family: Onest, system-ui, sans-serif; font-size: 15.5px; font-weight: 700; padding: 16px 32px; border: none; border-radius: 9999px; text-decoration: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; } .ds-btn-primary-dark:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6); } .ds-btn-primary-dark:focus-visible { outline: 2px solid #ffb703; outline-offset: 3px; }"
+    },
+    {
+      "name": "Navy Button",
+      "kind": "button",
+      "refersTo": "button-navy",
+      "description": "El CTA persistente del header de la home. Más compacto que el primario, mismo gesto de hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-navy\">Agenda una sesión</a>",
+      "css": ".ds-btn-navy { display: inline-flex; align-items: center; background: #023047; color: #ffffff; font-family: Onest, system-ui, sans-serif; font-size: 14px; font-weight: 600; padding: 11px 22px; border: none; border-radius: 9999px; text-decoration: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; } .ds-btn-navy:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6); } .ds-btn-navy:focus-visible { outline: 2px solid #fb8500; outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Acción secundaria sobre papel. Borde de 1.5px al 25% que se satura a navy sólido en hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-outline\">Conocer el sistema</a>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; background: transparent; color: #023047; font-family: Onest, system-ui, sans-serif; font-size: 15.5px; font-weight: 600; padding: 16px 30px; border: 1.5px solid rgba(2, 48, 71, 0.2); border-radius: 9999px; text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s; } .ds-btn-outline:hover { border-color: #023047; color: #023047; } .ds-btn-outline:focus-visible { outline: 2px solid #fb8500; outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "chip",
+      "refersTo": "eyebrow",
+      "description": "El label en caja alta que abre toda sección. Existe en variante desnuda y en variante sobre bruma.",
+      "html": "<div class=\"ds-eyebrow\">Nuestra oferta</div>\n<span class=\"ds-eyebrow-chip\">Mi historia</span>",
+      "css": ".ds-eyebrow { font-family: Onest, system-ui, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fb8500; } .ds-eyebrow-chip { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; background: #eef4f6; color: #219ebc; font-family: Onest, system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 16px; border-radius: 9999px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Etiqueta estática de tema o competencia. Bruma sobre papel; contorno de cielo sobre oscuro.",
+      "html": "<span class=\"ds-chip\">Marca Personal</span>\n<span class=\"ds-chip-dark\">Reputación</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; background: #eef4f6; color: #023047; font-family: Onest, system-ui, sans-serif; font-size: 13.5px; font-weight: 600; padding: 9px 15px; border-radius: 9999px; } .ds-chip-dark { display: inline-flex; align-items: center; background: transparent; color: #e6edf0; font-family: Onest, system-ui, sans-serif; font-size: 15px; font-weight: 600; padding: 12px 20px; border: 1px solid rgba(142, 202, 230, 0.3); border-radius: 9999px; }"
+    },
+    {
+      "name": "Dark Card",
+      "kind": "card",
+      "refersTo": "card-dark",
+      "description": "La tarjeta de contenido sobre suelo de abismo: número naranja, título blanco, cuerpo apagado, borde hairline.",
+      "html": "<div class=\"ds-card-dark\">\n  <span class=\"ds-card-dark__n\">01</span>\n  <h3 class=\"ds-card-dark__title\">El Iceberg del Branding</h3>\n  <p class=\"ds-card-dark__body\">Lo que el mercado ve es la punta. La estrategia vive debajo de la línea de agua.</p>\n</div>",
+      "css": ".ds-card-dark { display: flex; flex-direction: column; gap: 14px; background: #0d2b3a; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 30px 28px; font-family: Onest, system-ui, sans-serif; } .ds-card-dark__n { font-size: 20px; font-weight: 800; color: #fb8500; } .ds-card-dark__title { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; color: #ffffff; } .ds-card-dark__body { margin: 0; font-size: 15px; line-height: 1.6; color: #9fb3bc; }"
+    },
+    {
+      "name": "Light Card",
+      "kind": "card",
+      "refersTo": "card-light",
+      "description": "Tarjeta sobre papel o hueso: blanco, borde hairline navy al 10% y levante de 6px en hover.",
+      "html": "<div class=\"ds-card-light\">\n  <div class=\"ds-card-light__label\">Taller 01</div>\n  <h3 class=\"ds-card-light__title\">Yo Represento la Marca</h3>\n  <p class=\"ds-card-light__body\">Formación práctica que convierte a las personas en embajadoras de la marca.</p>\n</div>",
+      "css": ".ds-card-light { background: #ffffff; border: 1px solid rgba(2, 34, 47, 0.1); border-radius: 22px; padding: 36px 32px; font-family: Onest, system-ui, sans-serif; box-shadow: 0 26px 60px -44px rgba(2, 48, 71, 0.6); transition: transform 0.25s, box-shadow 0.25s; } .ds-card-light:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(2, 48, 71, 0.45); } .ds-card-light__label { font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fb8500; } .ds-card-light__title { margin: 12px 0 0; font-size: 27px; font-weight: 800; letter-spacing: -0.02em; color: #023047; } .ds-card-light__body { margin: 22px 0 0; font-size: 15.5px; line-height: 1.65; color: #42525c; }"
+    },
+    {
+      "name": "Dark Input Field",
+      "kind": "input",
+      "refersTo": "input-dark",
+      "description": "El campo del sistema (.fld). Vive sobre fondo oscuro; el borde se enciende en naranja al enfocar.",
+      "html": "<div class=\"ds-field\">\n  <label class=\"ds-field__label\" for=\"ds-correo\">Correo</label>\n  <input class=\"ds-field__input\" id=\"ds-correo\" type=\"email\" placeholder=\"tucorreo@empresa.com\" />\n</div>",
+      "css": ".ds-field { font-family: Onest, system-ui, sans-serif; } .ds-field__label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: #8ecae6; margin-bottom: 6px; } .ds-field__input { width: 100%; background: #04141d; border: 1.5px solid rgba(255, 255, 255, 0.14); border-radius: 10px; padding: 12px 14px; color: #ffffff; font-size: 14.5px; font-family: inherit; transition: border-color 0.2s; } .ds-field__input::placeholder { color: #6f8892; } .ds-field__input:focus { outline: none; border-color: #fb8500; }"
+    },
+    {
+      "name": "Sticky Navigation",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Header pegajoso con desenfoque de fondo, wordmark de color partido y un único CTA en cápsula.",
+      "html": "<nav class=\"ds-nav\">\n  <a class=\"ds-nav__brand\" href=\"#\">\n    <span class=\"ds-wordmark\">BRAND<span class=\"ds-wordmark__accent\">LAB</span><span class=\"ds-wordmark__dot\">.</span></span>\n  </a>\n  <div class=\"ds-nav__links\">\n    <a class=\"ds-nav__link\" href=\"#\">Historia</a>\n    <a class=\"ds-nav__link\" href=\"#\">Oferta</a>\n    <a class=\"ds-nav__link\" href=\"#\">Blog Brand</a>\n  </div>\n  <a class=\"ds-nav__cta\" href=\"#\">Agenda una sesión</a>\n</nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 32px; background: rgba(251, 250, 247, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(2, 34, 47, 0.1); padding: 16px 40px; font-family: Onest, system-ui, sans-serif; } .ds-nav__brand { text-decoration: none; } .ds-wordmark { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: #023047; } .ds-wordmark__accent { color: #fb8500; } .ds-wordmark__dot { font-size: 10px; vertical-align: super; color: #8a97a0; } .ds-nav__links { display: flex; align-items: center; gap: 32px; } .ds-nav__link { font-size: 14.5px; font-weight: 500; color: #3a4a54; text-decoration: none; transition: color 0.2s; } .ds-nav__link:hover { color: #fb8500; } .ds-nav__link:focus-visible { outline: 2px solid #fb8500; outline-offset: 4px; } .ds-nav__cta { background: #023047; color: #ffffff; font-size: 14px; font-weight: 600; padding: 11px 22px; border-radius: 9999px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; } .ds-nav__cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(251, 133, 0, 0.6); }"
+    },
+    {
+      "name": "Arrow-Marker List",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "La lista de argumento del sistema: marcador triangular con clip-path en lugar de viñeta, filas separadas por hairline.",
+      "html": "<div class=\"ds-arrowlist\">\n  <div class=\"ds-arrowlist__row\">\n    <span class=\"ds-arrowlist__mark\" style=\"background:#fb8500\"></span>\n    <div><div class=\"ds-arrowlist__title\">No transmite el valor real</div><p class=\"ds-arrowlist__body\">Lo que ofreces vale más de lo que tu marca comunica.</p></div>\n  </div>\n  <div class=\"ds-arrowlist__row\">\n    <span class=\"ds-arrowlist__mark\" style=\"background:#219ebc\"></span>\n    <div><div class=\"ds-arrowlist__title\">La competencia se percibe mejor</div><p class=\"ds-arrowlist__body\">Otros con menos producto capturan más atención.</p></div>\n  </div>\n</div>",
+      "css": ".ds-arrowlist { display: flex; flex-direction: column; font-family: Onest, system-ui, sans-serif; } .ds-arrowlist__row { display: flex; gap: 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding: 22px 0; } .ds-arrowlist__row:last-child { border-bottom: none; } .ds-arrowlist__mark { display: block; width: 14px; height: 14px; margin-top: 6px; flex-shrink: 0; clip-path: polygon(0 0, 100% 50%, 0 100%); } .ds-arrowlist__title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #ffffff; } .ds-arrowlist__body { margin: 5px 0 0; font-size: 15px; line-height: 1.55; color: #9db0ba; }"
+    },
+    {
+      "name": "Left-Bar Panel",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "El bloque de concepto o cita: barra izquierda de 3–4px en naranja o azul, esquinas derechas redondeadas.",
+      "html": "<div class=\"ds-leftbar\">\n  <div class=\"ds-leftbar__label\">El concepto</div>\n  <div class=\"ds-leftbar__title\">El Emprendedor Invisible</div>\n  <p class=\"ds-leftbar__body\">Trabajas duro y tu producto es bueno — pero el mercado no lo percibe. El problema pocas veces es el precio: es la percepción.</p>\n</div>",
+      "css": ".ds-leftbar { background: #0b3c53; border-left: 4px solid #fb8500; border-radius: 0 12px 12px 0; padding: 28px; font-family: Onest, system-ui, sans-serif; } .ds-leftbar__label { font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #8ecae6; } .ds-leftbar__title { margin-top: 12px; font-size: 30px; font-weight: 800; color: #fb8500; } .ds-leftbar__body { margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: #aebfc8; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Laboratorio del Estratega",
+    "overview": "El sistema se comporta como un laboratorio: un ambiente controlado, profundo y silencioso —el navy #023047 y su versión más honda #04141d— dentro del cual el naranja #fb8500 funciona como reactivo. Nunca decora: aparece exactamente donde ocurre algo (la acción, la cifra, el concepto que carga el argumento). Esa economía es la que hace que el sitio se lea premium sin levantar la voz, y es la traducción visual literal de \"We don't sell, we mean!\".\n\nLa tipografía es el instrumento de autoridad. Onest en peso 800 con tracking negativo agresivo (-0.03em a -0.04em) y line-height por debajo de 1.05 produce titulares que se leen como afirmaciones, no como encabezados. Debajo, el cuerpo se relaja a 17px con line-height 1.7 y respiración generosa: la marca argumenta en párrafos largos, y el sistema está construido para que esos párrafos se lean completos. La densidad es baja y deliberada — 104px de aire vertical entre secciones, contenedor de 1180px, medidas de línea limitadas entre 480 y 720px.\n\nLa calidez viene de tres lugares y solo de tres: la fotografía real de Samuel en marcos de 26px con sombra larga, el papel cálido #fbfaf7/#f4f1ea que evita el blanco clínico, y el isotipo al 5% de opacidad flotando como marca de agua en las superficies oscuras. El resto es estructura: números de fase, marcadores triangulares, listas divididas por líneas de 1px. Precisión técnica con una mano humana encima.",
+    "keyCharacteristics": [
+      "Dos suelos exclusivos: papel cálido #fbfaf7 para la casa, abismo #04141d para evento, blog y patrocinio.",
+      "Titulares extrabold de 46–66px con tracking negativo; nunca tracking por defecto.",
+      "El naranja como reactivo escaso, no como color de relleno.",
+      "Sombras largas, bajas y con spread negativo — nunca un borde duro de elevación.",
+      "Marcadores triangulares (clip-path de flecha) como único glifo decorativo del sistema.",
+      "Revelado al scroll uniforme: 30px de subida, 0.8s, cubic-bezier(0.2, 0.7, 0.2, 1)."
+    ],
+    "rules": [
+      {
+        "name": "La Regla de los Dos Suelos",
+        "body": "Una superficie es de papel (#fbfaf7) o es de abismo (#04141d) — nunca las dos. La home vive en papel; evento, blog y patrocinio viven en abismo. Cambiar de suelo dentro de una misma página es cambiar de sitio.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Señal Única",
+        "body": "El naranja marca una sola cosa por bloque visual. Si en un mismo campo de visión hay dos elementos naranjas compitiendo, uno de los dos está mal: bájalo a azul instrumento o a cielo.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Blanco Prohibido",
+        "body": "#ffffff es color de tarjeta y de texto, nunca color de fondo de página. El suelo claro siempre es cálido.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Eyebrow",
+        "body": "Toda sección abre con un label en caja alta antes del titular. Sin él, la sección no está terminada: el eyebrow es lo que le dice al lector dónde está dentro del argumento.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Tracking Negativo",
+        "body": "Cualquier tipo por encima de 22px lleva tracking negativo. Un titular con tracking por defecto se lee flojo y rompe la voz del sistema al instante.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Quiebre a Mano",
+        "body": "Los titulares de dos líneas se quiebran con <br /> en el punto que el argumento pide. Dejar que el navegador decida dónde parte la frase es ceder la retórica al ancho de la ventana.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Aire Constante",
+        "body": "104px de respiración vertical entre secciones, sin excepción por densidad de contenido. Comprimir una sección porque \"tiene poco\" rompe el pulso de toda la página.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla de la Medida Corta",
+        "body": "Ningún párrafo pasa de 680px de ancho, y el cuerpo de hero no pasa de 480px. La autoridad se pierde cuando la línea obliga a buscar el renglón siguiente.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla del Spread Negativo",
+        "body": "Toda sombra lleva spread negativo y desplazamiento vertical de 14px o más. Una sombra corta y cerrada delata el sistema entero como plantilla.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla de la Capa Tonal",
+        "body": "Sobre fondo oscuro no se usan sombras para separar: se usa el siguiente tono del abismo más un borde blanco al 8–12%.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla de la Punta",
+        "body": "La viñeta del sistema es el triángulo con clip-path, no un disco ni un check. El check (✓) queda reservado a listas de beneficio transaccional — entradas, tiers de patrocinio.",
+        "section": "shapes"
+      },
+      {
+        "name": "La Regla de la Cápsula",
+        "body": "Si se puede hacer clic y no es una tarjeta, es una píldora. Un botón con esquinas de 8px no pertenece a este sistema.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do abrir cada sección con el eyebrow en caja alta (12–13px, peso 700, letter-spacing 0.14em) antes del titular.",
+      "Do usar el naranja #fb8500 para una sola señal por bloque visual: la acción, el número o el concepto — nunca los tres a la vez.",
+      "Do quebrar los titulares a mano con <br /> en el punto que pide el argumento.",
+      "Do poner tracking negativo (-0.02em a -0.04em) en todo tipo por encima de 22px.",
+      "Do dar a cada tarjeta un borde hairline (#02222f al 10% sobre claro, #ffffff al 8–12% sobre oscuro) además de su fondo.",
+      "Do usar el marcador triangular (clip-path: polygon(0 0, 100% 50%, 0 100%)) como viñeta de las listas de argumento.",
+      "Do mantener las sombras largas y con spread negativo: desplazamiento vertical de 20px o más, blur de 40px o más.",
+      "Do marcar la clase .rv en todo bloque de contenido nuevo para que entre con el revelado del sistema.",
+      "Do aplicar grayscale y opacidad reducida a los logos de terceros, devolviéndoles color solo en hover."
+    ],
+    "donts": [
+      "Don't usar #ffffff como fondo de página. El suelo claro es #fbfaf7; el blanco es color de tarjeta.",
+      "Don't mezclar el suelo de papel y el suelo de abismo dentro de una misma superficie.",
+      "Don't dar esquinas cuadradas o de 8px a un elemento accionable: los botones de este sistema son cápsulas.",
+      "Don't escribir párrafos largos en #023047 puro sobre papel — el cuerpo es #42525c.",
+      "Don't introducir una segunda familia tipográfica. La jerarquía se resuelve con peso, tamaño y tracking dentro de Onest.",
+      "Don't usar #ffb703 como acento general; está reservado a urgencia comercial.",
+      "Don't sustituir la sombra por un borde de contorno duro para elevar una tarjeta sobre fondo oscuro: se usa el siguiente tono del abismo.",
+      "Don't dejar el isotipo de marca de agua por encima del 5% de opacidad ni permitir que capture eventos de puntero."
+    ]
+  }
+}
