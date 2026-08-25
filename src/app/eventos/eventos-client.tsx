@@ -150,12 +150,12 @@ export function EventosClient() {
         <section aria-labelledby="h-evento-hero" className="relative bg-navy-2">
           <h1 id="h-evento-hero" className="sr-only">Brand Lab Live 2026 — Las marcas no venden, significan</h1>
           <Image
-            src="/brand/evento-banner-v3.png"
+            src="/brand/evento-banner-bac.png"
             alt=""
-            width={3840}
-            height={1422}
+            width={1920}
+            height={1080}
             sizes="100vw"
-            className="h-auto w-full"
+            className="mx-auto block h-auto w-full"
             preload
           />
         </section>
