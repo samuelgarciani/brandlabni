@@ -135,12 +135,12 @@ export default function EventosPage() {
       <main>
         <header className="relative bg-[#0d3a56]">
           <Image
-            src="/brand/evento-banner-v3.png"
-            alt="Conferencia — Las marcas no venden, significan"
-            width={3840}
-            height={1422}
+            src="/brand/evento-banner-bac.png"
+            alt="BAC y Brand Lab presentan: Las marcas no venden, significan — Conferencia"
+            width={1920}
+            height={1080}
             sizes="100vw"
-            className="h-auto w-full"
+            className="mx-auto block h-auto w-full"
             priority
           />
         </header>
