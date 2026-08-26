@@ -147,15 +147,14 @@ export function EventosClient() {
       />
 
       <main id="contenido">
-        <section aria-labelledby="h-evento-hero" className="relative bg-navy-2">
+        <section aria-labelledby="h-evento-hero" className="relative overflow-hidden bg-navy-2" style={{ aspectRatio: "1920 / 900" }}>
           <h1 id="h-evento-hero" className="sr-only">Brand Lab Live 2026 — Las marcas no venden, significan</h1>
           <Image
             src="/brand/evento-banner-bac.png"
             alt=""
-            width={1920}
-            height={1080}
+            fill
             sizes="100vw"
-            className="mx-auto block h-auto w-full"
+            className="object-cover object-center"
             preload
           />
         </section>
