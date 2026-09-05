@@ -9,6 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 const presentingSponsor = { src: "/brand/logos/bac.png", alt: "BAC", width: 1456, height: 390 };
+const invitingSponsor = { src: "/brand/logos/fuentepura.png", alt: "Fuente Pura", width: 880, height: 798 };
 
 const mainSponsorLogos = [
   { src: "/brand/logos/excel-talleres.png", alt: "Excel Talleres", width: 480, height: 200 },
@@ -165,37 +166,56 @@ export function EventosClient() {
           <div className="mx-auto max-w-[1100px] gutter">
             <h2 id="h-patrocinan" className="sr-only">Patrocinadores</h2>
 
-            <p className="text-center t-label text-orange-ink">Presenta</p>
-            <div className="mt-6 flex justify-center">
-              <div className="flex h-[190px] w-[460px] max-w-full items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-white p-9 shadow-[0_28px_54px_-28px_rgba(2,34,47,0.5)]">
-                <Image
-                  src={presentingSponsor.src}
-                  alt={presentingSponsor.alt}
-                  width={presentingSponsor.width}
-                  height={presentingSponsor.height}
-                  className="h-full w-full object-contain"
-                  priority
-                />
-              </div>
-            </div>
-
-            <div className="mt-10 border-t border-ink/10 pt-10">
-              <p className="text-center t-label text-body-muted">Patrocinan</p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-6">
-                {mainSponsorLogos.map((logo) => (
-                  <div
-                    key={logo.alt}
-                    className="flex h-[150px] w-[190px] items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_20px_40px_-30px_rgba(2,34,47,0.4)]"
-                  >
+            <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:divide-x sm:divide-ink/10">
+              <div className="flex flex-col items-center gap-6 sm:px-6">
+                <p className="t-label text-orange-ink">Presenta</p>
+                <div className="flex min-h-[130px] flex-1 items-center justify-center">
+                  <div className="flex h-[130px] w-[300px] max-w-full items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-white p-8 shadow-[0_28px_54px_-28px_rgba(2,34,47,0.5)]">
                     <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      width={logo.width}
-                      height={logo.height}
+                      src={presentingSponsor.src}
+                      alt={presentingSponsor.alt}
+                      width={presentingSponsor.width}
+                      height={presentingSponsor.height}
+                      className="h-full w-full object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-6 sm:px-6">
+                <p className="t-label text-body-muted">Invita</p>
+                <div className="flex min-h-[130px] flex-1 items-center justify-center">
+                  <div className="flex h-[110px] w-[150px] items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-white p-4 shadow-[0_20px_40px_-30px_rgba(2,34,47,0.4)]">
+                    <Image
+                      src={invitingSponsor.src}
+                      alt={invitingSponsor.alt}
+                      width={invitingSponsor.width}
+                      height={invitingSponsor.height}
                       className="h-full w-full object-contain"
                     />
                   </div>
-                ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-6 sm:px-6">
+                <p className="t-label text-body-muted">Patrocinan</p>
+                <div className="flex min-h-[130px] flex-1 flex-wrap items-center justify-center gap-3">
+                  {mainSponsorLogos.map((logo) => (
+                    <div
+                      key={logo.alt}
+                      className="flex h-[74px] w-[96px] items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-white p-3 shadow-[0_16px_30px_-24px_rgba(2,34,47,0.4)]"
+                    >
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={logo.width}
+                        height={logo.height}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
