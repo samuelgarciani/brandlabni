@@ -40,13 +40,74 @@ const discoverItems = [
   "Marcas que permanecen en el tiempo",
 ];
 
-const agendaItems = [
-  { time: "9:00 a.m.", act: "Registro de asistentes" },
-  { time: "9:30 a.m.", act: "Bienvenida" },
-  { time: "9:40 a.m.", act: "Conferencia \u201cLas marcas no venden, significan\u201d" },
-  { time: "10:40 a.m.", act: "Panel de discusión: Branding, Consumidor y Reputación" },
-  { time: "11:20 a.m.", act: "Reflexión final y cierre" },
-  { time: "11:30 a.m.", act: "Coffee Break & Networking" },
+type AgendaItem = {
+  time: string;
+  kicker?: string;
+  title: string;
+  body: string;
+  sponsor?: { src: string; alt: string; width: number; height: number; note: string };
+  speaker?: { name: string; role: string };
+  panelists?: { name: string; role: string; note: string }[];
+};
+
+const agendaItems: AgendaItem[] = [
+  {
+    time: "8:30 a.m. – 9:20 a.m.",
+    title: "Registro y acreditación de asistentes",
+    body: "Recepción de los participantes, entrega de credenciales y kit de bienvenida. Un espacio para comenzar a conectar con empresarios, emprendedores y profesionales antes del inicio de la conferencia.",
+  },
+  {
+    time: "9:20 a.m. – 9:30 a.m.",
+    title: "Palabras de bienvenida",
+    body: "Inicio oficial de Brand Lab Live, presentación del propósito del evento y apertura de una conversación sobre el verdadero valor estratégico de las marcas en el crecimiento de las organizaciones.",
+  },
+  {
+    time: "9:30 a.m. – 9:45 a.m.",
+    kicker: "Apertura Especial",
+    title: "BAC | Presente en cada momento",
+    body: "Un espacio de apertura a cargo de BAC, marca presentadora del evento, donde compartirá cómo una marca construye relaciones de confianza acompañando a las personas en los momentos más importantes de su vida.",
+    sponsor: { src: "/brand/logos/bac.png", alt: "BAC", width: 1456, height: 390, note: "Marca presentadora del evento" },
+  },
+  {
+    time: "9:45 a.m. – 10:30 a.m.",
+    kicker: "Conferencia",
+    title: "Las marcas no venden, significan",
+    body: "Una conferencia que invita a replantear la forma en que entendemos el branding. Descubriremos cómo construir marcas con significado desde la estrategia, el propósito y la coherencia para generar diferenciación, confianza y crecimiento sostenible.",
+    speaker: { name: "Samuel García", role: "Fundador de Brand Lab | Branding y Estrategia de Marca" },
+  },
+  {
+    time: "10:30 a.m. – 11:10 a.m.",
+    kicker: "Conversatorio Estratégico",
+    title: "Branding, Consumidor/canales y Reputación",
+    body: "Un espacio de conversación que complementará los principales conceptos abordados durante la conferencia, integrando tres perspectivas fundamentales para comprender cómo se construyen marcas relevantes y sostenibles.",
+    panelists: [
+      {
+        name: "María José Amador",
+        role: "Jefa de Comunicación – BAC Nicaragua",
+        note: "Compartirá la visión del branding como un activo estratégico para las organizaciones, la construcción de valor y el papel de la estrategia en la generación de diferenciación y preferencia.",
+      },
+      {
+        name: "Sara Avilés",
+        role: "Especialista en Marketing Digital",
+        note: "Abordará cómo evolucionan los consumidores, la importancia de los diferentes puntos de contacto y cómo las empresas deben construir experiencias consistentes en todos sus canales para fortalecer su marca.",
+      },
+      {
+        name: "Gilda Tinoco",
+        role: "Gerente Regional de Comunicación Corporativa – Claro Centroamérica",
+        note: "Compartirá su experiencia sobre comunicación estratégica, reputación corporativa y la construcción de confianza como uno de los activos más valiosos para cualquier organización.",
+      },
+    ],
+  },
+  {
+    time: "11:10 a.m. – 11:20 a.m.",
+    title: "Reflexión final, agradecimientos y sorteos",
+    body: "Cierre oficial del evento con las principales conclusiones de la jornada, reconocimiento a patrocinadores y aliados estratégicos, seguido del sorteo de obsequios preparados por las marcas participantes.",
+  },
+  {
+    time: "11:20 a.m. – 12:00 m.",
+    title: "Coffee Break & Networking",
+    body: "Un espacio para continuar la conversación, fortalecer relaciones y generar nuevas conexiones entre empresarios, emprendedores, profesionales, panelistas y marcas aliadas.",
+  },
 ];
 
 const takeaways = [
@@ -84,6 +145,7 @@ export function EventosClient() {
   const [status, setStatus] = useState<"idle" | "sent" | "blocked">("idle");
   const [submitting, setSubmitting] = useState(false);
   const [waLink, setWaLink] = useState("");
+  const [openAgenda, setOpenAgenda] = useState<number | null>(3);
 
   const showModal = () => {
     setModalOpen(true);
@@ -345,16 +407,88 @@ export function EventosClient() {
               <h2 id="h-agenda" className="mt-4 t-headline text-navy">
                 Una mañana para transformar la forma en que entiendes las marcas
               </h2>
+              <p className="mt-4 t-body-sm text-body-muted">
+                Da clic en cada actividad para ver el detalle.
+              </p>
             </div>
-            <div className="rv mt-11 divide-y divide-navy/15 border-t border-navy/15">
-              {agendaItems.map((item) => (
-                <div key={item.time} className="grid grid-cols-[84px_1fr] items-center gap-4 px-2 py-[22px] sm:grid-cols-[150px_1fr] sm:gap-6">
-                  <span className="t-title-sm tnum font-extrabold text-orange-ink">{item.time}</span>
-                  <span className="min-w-0 t-title-sm font-semibold text-navy">{item.act}</span>
-                </div>
-              ))}
+
+            <div className="rv relative mt-11 rounded-[22px] border border-navy/10 bg-white shadow-[0_30px_60px_-42px_rgba(2,48,71,0.35)]">
+              <div aria-hidden className="absolute left-[27px] top-8 bottom-8 w-px bg-navy/10 sm:left-[35px]" />
+              {agendaItems.map((item, index) => {
+                const isOpen = openAgenda === index;
+                const panelId = `agenda-panel-${index}`;
+                return (
+                  <div key={item.time} className="relative border-b border-navy/10 last:border-b-0">
+                    <button
+                      type="button"
+                      onClick={() => setOpenAgenda(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      className="flex w-full items-start gap-3 py-5 pl-[52px] pr-5 text-left transition-colors hover:bg-mist/50 sm:gap-6 sm:pl-[68px] sm:pr-7"
+                    >
+                      <span
+                        aria-hidden
+                        className={`absolute left-[27px] top-[26px] h-[11px] w-[11px] -translate-x-1/2 rounded-full border-2 transition-colors sm:left-[35px] ${
+                          isOpen ? "border-orange bg-orange" : "border-navy/25 bg-white"
+                        }`}
+                      />
+                      <span className="w-[104px] shrink-0 pt-[3px] tnum t-meta font-bold text-blue-ink sm:w-[168px] sm:t-body-sm">
+                        {item.time}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        {item.kicker ? (
+                          <span className="block t-micro text-orange-ink">{item.kicker}</span>
+                        ) : null}
+                        <span className="block t-title-sm text-navy">{item.title}</span>
+                      </span>
+                      <Icon
+                        name="chevron-down"
+                        size={18}
+                        className={`mt-[5px] shrink-0 text-navy/35 transition-transform duration-200 ${isOpen ? "rotate-180 text-orange-ink" : ""}`}
+                      />
+                    </button>
+                    <div id={panelId} hidden={!isOpen} className="pb-6 pl-[52px] pr-5 sm:pl-[68px] sm:pr-7">
+                        <p className="measure t-body-sm text-body-ink">{item.body}</p>
+
+                        {item.sponsor ? (
+                          <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-navy/10 bg-mist/60 px-4 py-3">
+                            <Image
+                              src={item.sponsor.src}
+                              alt={item.sponsor.alt}
+                              width={item.sponsor.width}
+                              height={item.sponsor.height}
+                              className="h-6 w-auto"
+                            />
+                            <span className="t-meta text-body-muted">{item.sponsor.note}</span>
+                          </div>
+                        ) : null}
+
+                        {item.speaker ? (
+                          <div className="mt-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-navy/15 bg-mist/60 px-4 py-2">
+                            <span className="t-body-sm font-bold text-navy">{item.speaker.name}</span>
+                            <span aria-hidden className="h-1 w-1 rounded-full bg-navy/30" />
+                            <span className="t-meta text-body-muted">{item.speaker.role}</span>
+                          </div>
+                        ) : null}
+
+                        {item.panelists ? (
+                          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                            {item.panelists.map((panelist) => (
+                              <div key={panelist.name} className="rounded-2xl border border-navy/10 bg-mist/40 p-5">
+                                <div className="t-title-sm text-navy">{panelist.name}</div>
+                                <div className="mt-1 t-meta text-blue-ink">{panelist.role}</div>
+                                <p className="mt-3 t-body-sm text-body-muted">{panelist.note}</p>
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className="rv mt-[34px]">
+
+            <div className="rv mt-10">
               <button
                 type="button"
                 onClick={openModal}

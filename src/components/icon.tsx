@@ -13,6 +13,7 @@ const paths = {
   "arrow-right": "M2.5 8h11M9 3.5L13.5 8 9 12.5",
   "arrow-left": "M13.5 8h-11M7 3.5L2.5 8 7 12.5",
   check: "M2.5 8.5L6.25 12.5 13.5 4",
+  "chevron-down": "M3.5 6l4.5 4.5L12.5 6",
 } as const;
 
 export type IconName = keyof typeof paths;
