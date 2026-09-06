@@ -581,21 +581,37 @@ export function EventosClient() {
               {panelPeople.map((person) => (
                 <div
                   key={person.name}
-                  className="flex flex-col items-center rounded-[18px] border border-white/[0.08] bg-abyss-surface px-6 py-8 text-center"
+                  className={`overflow-hidden rounded-[20px] border bg-abyss-surface ${
+                    person.tag === "Modera" ? "border-orange/40" : "border-white/[0.08]"
+                  }`}
                 >
-                  <div className="relative h-[84px] w-[84px] shrink-0 overflow-hidden rounded-full border-2 border-white/10">
-                    <Image src={person.photo} alt={person.name} fill sizes="84px" className="object-cover" />
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={person.photo}
+                      alt={person.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 260px"
+                      className="object-cover"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-abyss via-abyss/75 to-transparent"
+                    />
+                    <span
+                      className={`absolute left-4 top-4 t-micro rounded-full px-3 py-1 ${
+                        person.tag === "Modera" ? "bg-orange text-abyss" : "bg-abyss/70 text-on-dark-strong backdrop-blur-sm"
+                      }`}
+                    >
+                      {person.tag}
+                    </span>
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <h3 className="t-title-sm text-white">{person.name}</h3>
+                      <p className="mt-1 t-meta text-sky">{person.role}</p>
+                    </div>
                   </div>
-                  <span
-                    className={`mt-4 t-micro rounded-full px-3 py-1 ${
-                      person.tag === "Modera" ? "bg-orange text-abyss" : "border border-sky/30 text-sky"
-                    }`}
-                  >
-                    {person.tag}
-                  </span>
-                  <h3 className="mt-3 t-title-sm text-white">{person.name}</h3>
-                  <p className="mt-1 t-meta text-sky">{person.role}</p>
-                  <p className="mt-3 t-body-sm text-body-on-abyss">{person.bio}</p>
+                  <div className="p-5">
+                    <p className="t-body-sm text-body-on-abyss">{person.bio}</p>
+                  </div>
                 </div>
               ))}
             </div>
