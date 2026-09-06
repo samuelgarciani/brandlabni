@@ -118,10 +118,43 @@ const takeaways = [
   "Tomar decisiones con una visión de largo plazo",
 ];
 
-const panelCards = [
-  { n: "01", title: "Branding y Estrategia" },
-  { n: "02", title: "Comportamiento del Consumidor" },
-  { n: "03", title: "Comunicación y Reputación" },
+type PanelPerson = {
+  photo: string;
+  name: string;
+  role: string;
+  bio: string;
+  tag: string;
+};
+
+const panelPeople: PanelPerson[] = [
+  {
+    photo: "/brand/panel/samuel.jpg",
+    name: "Samuel García",
+    role: "Fundador de Brand Lab | Branding y Estrategia de Marca",
+    bio: "Consultor en branding y estrategia de marca con más de diez años de experiencia. Fundador de Brand Lab, una iniciativa dedicada a impulsar la construcción de marcas con propósito, diferenciación y significado para generar valor sostenible en las organizaciones.",
+    tag: "Modera",
+  },
+  {
+    photo: "/brand/panel/maria-jose.jpg",
+    name: "María José Amador",
+    role: "Jefa de Comunicación | BAC Nicaragua",
+    bio: "Profesional en comunicación corporativa con experiencia en gestión de marca, reputación y comunicación estratégica. Actualmente lidera el área de Comunicación de BAC Nicaragua, impulsando iniciativas que fortalecen la relación entre la marca y sus clientes.",
+    tag: "Panelista",
+  },
+  {
+    photo: "/brand/panel/sara-aviles.jpg",
+    name: "Sara Avilés",
+    role: "Especialista en Marketing Digital",
+    bio: "Especialista en marketing digital y estrategias multicanal, con experiencia en comportamiento del consumidor, comercio electrónico y transformación digital. Docente universitaria y fundadora de Meraki Creative Nicaragua.",
+    tag: "Panelista",
+  },
+  {
+    photo: "/brand/panel/gilda-tinoco.jpg",
+    name: "Gilda Tinoco",
+    role: "Gerente Regional de Comunicación y Sostenibilidad | Claro Centroamérica",
+    bio: "Profesional con amplia trayectoria en comunicación estratégica, reputación corporativa y sostenibilidad. Actualmente lidera la estrategia regional de comunicación y sostenibilidad de Claro Centroamérica, fortaleciendo el posicionamiento y la confianza de la marca en la región.",
+    tag: "Panelista",
+  },
 ];
 
 const audienceItems = [
@@ -540,15 +573,29 @@ export function EventosClient() {
               <h2 id="h-panel" className="mt-4 t-headline text-white">
                 Tres perspectivas. Una misma conversación.
               </h2>
-              <p className="mt-[18px] max-w-[560px] t-body text-body-on-navy">
-                Como parte de la experiencia participarás en un panel con especialistas que conectan la estrategia con la realidad empresarial.
+              <p className="mt-[18px] max-w-[560px] t-body text-body-on-abyss">
+                Especialistas que conectan la estrategia de marca con la realidad empresarial, moderados por Samuel García.
               </p>
             </div>
-            <div className="rv mt-11 grid gap-[18px] md:grid-cols-3">
-              {panelCards.map((card) => (
-                <div key={card.title} className="rounded-[18px] border border-white/[0.08] bg-abyss-surface px-7 py-8">
-                  <span className="t-title-sm font-extrabold text-orange">{card.n}</span>
-                  <h3 className="mt-3 t-title text-white">{card.title}</h3>
+            <div className="rv mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {panelPeople.map((person) => (
+                <div
+                  key={person.name}
+                  className="flex flex-col items-center rounded-[18px] border border-white/[0.08] bg-abyss-surface px-6 py-8 text-center"
+                >
+                  <div className="relative h-[84px] w-[84px] shrink-0 overflow-hidden rounded-full border-2 border-white/10">
+                    <Image src={person.photo} alt={person.name} fill sizes="84px" className="object-cover" />
+                  </div>
+                  <span
+                    className={`mt-4 t-micro rounded-full px-3 py-1 ${
+                      person.tag === "Modera" ? "bg-orange text-abyss" : "border border-sky/30 text-sky"
+                    }`}
+                  >
+                    {person.tag}
+                  </span>
+                  <h3 className="mt-3 t-title-sm text-white">{person.name}</h3>
+                  <p className="mt-1 t-meta text-sky">{person.role}</p>
+                  <p className="mt-3 t-body-sm text-body-on-abyss">{person.bio}</p>
                 </div>
               ))}
             </div>
