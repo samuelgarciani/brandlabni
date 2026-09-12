@@ -585,7 +585,7 @@ export function EventosClient() {
                     person.tag === "Modera" ? "border-orange/40" : "border-white/[0.08]"
                   }`}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-white">
                     <Image
                       src={person.photo}
                       alt={person.name}
@@ -593,24 +593,18 @@ export function EventosClient() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 260px"
                       className="object-cover"
                     />
-                    <div
-                      aria-hidden
-                      className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-abyss via-abyss/75 to-transparent"
-                    />
                     <span
                       className={`absolute left-4 top-4 t-micro rounded-full px-3 py-1 ${
-                        person.tag === "Modera" ? "bg-orange text-abyss" : "bg-abyss/70 text-on-dark-strong backdrop-blur-sm"
+                        person.tag === "Modera" ? "bg-orange text-abyss" : "bg-abyss/80 text-on-dark-strong backdrop-blur-sm"
                       }`}
                     >
                       {person.tag}
                     </span>
-                    <div className="absolute inset-x-0 bottom-0 p-5">
-                      <h3 className="t-title-sm text-white">{person.name}</h3>
-                      <p className="mt-1 t-meta text-sky">{person.role}</p>
-                    </div>
                   </div>
                   <div className="p-5">
-                    <p className="t-body-sm text-body-on-abyss">{person.bio}</p>
+                    <h3 className="t-title-sm text-white">{person.name}</h3>
+                    <p className="mt-1 t-meta text-sky">{person.role}</p>
+                    <p className="mt-3 t-body-sm text-body-on-abyss">{person.bio}</p>
                   </div>
                 </div>
               ))}
