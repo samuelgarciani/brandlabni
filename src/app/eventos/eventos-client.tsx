@@ -505,15 +505,23 @@ export function EventosClient() {
                         ) : null}
 
                         {item.panelists ? (
-                          <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                            {item.panelists.map((panelist) => (
-                              <div key={panelist.name} className="rounded-2xl border border-navy/10 bg-mist/40 p-5">
-                                <div className="t-title-sm text-navy">{panelist.name}</div>
-                                <div className="mt-1 t-meta text-blue-ink">{panelist.role}</div>
-                                <p className="mt-3 t-body-sm text-body-muted">{panelist.note}</p>
-                              </div>
-                            ))}
-                          </div>
+                          <>
+                            <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                              {item.panelists.map((panelist) => (
+                                <div key={panelist.name} className="rounded-2xl border border-navy/10 bg-mist/40 p-5">
+                                  <div className="t-title-sm text-navy">{panelist.name}</div>
+                                  <div className="mt-1 t-meta text-blue-ink">{panelist.role}</div>
+                                  <p className="mt-3 t-body-sm text-body-muted">{panelist.note}</p>
+                                </div>
+                              ))}
+                            </div>
+                            <a
+                              href="#panel"
+                              className="mt-5 inline-flex items-center gap-2 rounded-full border border-navy/20 px-4 py-2 t-body-sm font-semibold text-blue-ink transition-colors hover:border-navy/40 hover:bg-white"
+                            >
+                              Conocer más sobre los panelistas <Icon name="arrow-right" size={14} />
+                            </a>
+                          </>
                         ) : null}
                     </div>
                   </div>
@@ -564,7 +572,7 @@ export function EventosClient() {
           </div>
         </section>
 
-        <section aria-labelledby="h-panel" className="bg-abyss text-white">
+        <section id="panel" aria-labelledby="h-panel" className="scroll-mt-[70px] bg-abyss text-white">
           <div className="mx-auto max-w-[1100px] gutter py-24">
             <div className="rv max-w-[680px]">
               <div className="t-label text-orange">
