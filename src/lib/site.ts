@@ -44,7 +44,7 @@ export const exploreLinks: SiteLink[] = [
   { label: "Oferta", href: "/#oferta" },
   { label: "Talks", href: "/#talks" },
   { label: "Blog Brand", href: "/blog" },
-  { label: "Eventos", href: "/eventos" },
+  { label: "Galería de Eventos", href: "/eventos" },
   { label: "Patrocinio", href: "/patrocinio" },
 ];
 

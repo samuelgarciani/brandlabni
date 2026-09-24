@@ -97,7 +97,7 @@ const articles = [
 const navLinks = [
   { label: "Blogspot", href: "#blogspot" },
   { label: "News Letter", href: "#newsletter" },
-  { label: "Eventos", href: "/eventos" },
+  { label: "Galería de Eventos", href: "/eventos" },
   { label: "Volver al sitio", href: "/", back: true },
 ];
 

@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Icon } from "@/components/icon";
+import { Modal } from "@/components/modal";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { contact } from "@/lib/site";
 
 const presentingSponsor = { src: "/brand/logos/bac.png", alt: "BAC", width: 1456, height: 390 };
 const invitingSponsor = { src: "/brand/logos/fuentepura.png", alt: "Fuente Pura", width: 880, height: 798 };
@@ -30,6 +32,12 @@ const sponsorLogos = [
   { src: "/brand/logos/rh.png", alt: "RH Producciones" },
 ];
 
+const recapPhotos = [
+  { src: "/brand/evento-galeria/foto-45.jpg", alt: "Samuel García presentando en el escenario de Brand Lab Live" },
+  { src: "/brand/evento-galeria/foto-65.jpg", alt: "Conversatorio estratégico con las panelistas de Brand Lab Live" },
+  { src: "/brand/evento-galeria/foto-70.jpg", alt: "Samuel García junto a las tres panelistas del conversatorio" },
+];
+
 const recapParagraphs = [
   "¿Qué hace que una marca sea elegida, recordada y recomendada por las personas?",
   "Con el propósito de abrir esta conversación nació Brand Lab Live, un espacio creado para empresarios, emprendedores, profesionales y estudiantes que buscan comprender el branding desde una perspectiva estratégica y no únicamente como una herramienta de comunicación.",
@@ -39,6 +47,21 @@ const recapParagraphs = [
   "Como parte del evento, se desarrolló un Conversatorio Estratégico con la participación de María José Amador, Jefa de Comunicación de BAC Nicaragua; Gilda Tinoco, Gerente Regional de Comunicación y Sostenibilidad de Claro Centroamérica; y Sara Avilés, especialista en marketing digital. Desde sus diferentes perspectivas compartieron experiencias y recomendaciones para fortalecer las marcas en un entorno empresarial en constante transformación.",
   "La conferencia fue impartida por Samuel García, fundador de Brand Lab, consultor en branding y estrategia de marca con más de una década de experiencia acompañando a empresas y emprendedores en procesos de posicionamiento, diferenciación y construcción de valor.",
   "Con esta iniciativa, Brand Lab busca impulsar una nueva forma de entender el branding en Nicaragua, promoviendo una visión donde la estrategia, el propósito y la experiencia del cliente sean los pilares para construir empresas más sólidas, competitivas y sostenibles.",
+];
+
+const galleryPhotos = [
+  { src: "/brand/evento-galeria/foto-9.jpg", alt: "Bienvenida e inicio de Brand Lab Live" },
+  { src: "/brand/evento-galeria/foto-20.jpg", alt: "Retrato frente al backdrop de Las marcas no venden, significan" },
+  { src: "/brand/evento-galeria/foto-34.jpg", alt: "Asistentes durante la conferencia" },
+  { src: "/brand/evento-galeria/foto-41.jpg", alt: "Samuel García en el escenario principal" },
+  { src: "/brand/evento-galeria/foto-45.jpg", alt: "Samuel García presentando la conferencia" },
+  { src: "/brand/evento-galeria/foto-49.jpg", alt: "La evolución del branding, en pantalla" },
+  { src: "/brand/evento-galeria/foto-61.jpg", alt: "Conversatorio estratégico en el escenario" },
+  { src: "/brand/evento-galeria/foto-65.jpg", alt: "Gilda Tinoco durante el conversatorio" },
+  { src: "/brand/evento-galeria/foto-70.jpg", alt: "Samuel García junto a las panelistas" },
+  { src: "/brand/evento-galeria/foto-78.jpg", alt: "Celebración al cierre del evento" },
+  { src: "/brand/evento-galeria/foto-88.jpg", alt: "Equipo Brand Lab al cierre de la jornada" },
+  { src: "/brand/evento-galeria/foto-92.jpg", alt: "Asistentes frente al backdrop del evento" },
 ];
 
 const pressLinks = [
@@ -57,76 +80,6 @@ const pressLinks = [
   {
     label: "Facebook — Publicación del evento",
     href: "https://www.facebook.com/story.php?story_fbid=1757360785459583&id=100035570362007&rdid=8ji1hcmloqZOijDA#",
-  },
-];
-
-type AgendaItem = {
-  time: string;
-  kicker?: string;
-  title: string;
-  body: string;
-  sponsor?: { src: string; alt: string; width: number; height: number; note: string };
-  speaker?: { name: string; role: string };
-  panelists?: { name: string; role: string; note: string }[];
-};
-
-const agendaItems: AgendaItem[] = [
-  {
-    time: "8:30 a.m. – 9:20 a.m.",
-    title: "Registro y acreditación de asistentes",
-    body: "Recepción de los participantes, entrega de credenciales y kit de bienvenida. Un espacio para comenzar a conectar con empresarios, emprendedores y profesionales antes del inicio de la conferencia.",
-  },
-  {
-    time: "9:20 a.m. – 9:30 a.m.",
-    title: "Palabras de bienvenida",
-    body: "Inicio oficial de Brand Lab Live, presentación del propósito del evento y apertura de una conversación sobre el verdadero valor estratégico de las marcas en el crecimiento de las organizaciones.",
-  },
-  {
-    time: "9:30 a.m. – 9:45 a.m.",
-    kicker: "Apertura Especial",
-    title: "BAC | Presente en cada momento",
-    body: "Un espacio de apertura a cargo de BAC, marca presentadora del evento, donde compartió cómo una marca construye relaciones de confianza acompañando a las personas en los momentos más importantes de su vida.",
-    sponsor: { src: "/brand/logos/bac.png", alt: "BAC", width: 1456, height: 390, note: "Marca presentadora del evento" },
-  },
-  {
-    time: "9:45 a.m. – 10:30 a.m.",
-    kicker: "Conferencia",
-    title: "Las marcas no venden, significan",
-    body: "Una conferencia que invitó a replantear la forma en que entendemos el branding. Recorrimos cómo construir marcas con significado desde la estrategia, el propósito y la coherencia para generar diferenciación, confianza y crecimiento sostenible.",
-    speaker: { name: "Samuel García", role: "Fundador de Brand Lab | Branding y Estrategia de Marca" },
-  },
-  {
-    time: "10:30 a.m. – 11:10 a.m.",
-    kicker: "Conversatorio Estratégico",
-    title: "Branding, Consumidor/canales y Reputación",
-    body: "Un espacio de conversación que complementó los principales conceptos abordados durante la conferencia, integrando tres perspectivas fundamentales para comprender cómo se construyen marcas relevantes y sostenibles.",
-    panelists: [
-      {
-        name: "María José Amador",
-        role: "Jefa de Comunicación – BAC Nicaragua",
-        note: "Compartió la visión del branding como un activo estratégico para las organizaciones, la construcción de valor y el papel de la estrategia en la generación de diferenciación y preferencia.",
-      },
-      {
-        name: "Sara Avilés",
-        role: "Especialista en Marketing Digital",
-        note: "Abordó cómo evolucionan los consumidores, la importancia de los diferentes puntos de contacto y cómo las empresas deben construir experiencias consistentes en todos sus canales para fortalecer su marca.",
-      },
-      {
-        name: "Gilda Tinoco",
-        role: "Gerente Regional de Comunicación Corporativa – Claro Centroamérica",
-        note: "Compartió su experiencia sobre comunicación estratégica, reputación corporativa y la construcción de confianza como uno de los activos más valiosos para cualquier organización.",
-      },
-    ],
-  },
-  {
-    time: "11:10 a.m. – 11:20 a.m.",
-    title: "Reflexión final, agradecimientos y sorteos",
-    body: "Cierre oficial del evento con las principales conclusiones de la jornada, reconocimiento a patrocinadores y aliados estratégicos, seguido del sorteo de obsequios preparados por las marcas participantes.",
-  },
-  {
-    time: "11:20 a.m. – 12:00 m.",
-    title: "Coffee Break & Networking",
-    body: "Un espacio para continuar la conversación, fortalecer relaciones y generar nuevas conexiones entre empresarios, emprendedores, profesionales, panelistas y marcas aliadas.",
   },
 ];
 
@@ -171,7 +124,6 @@ const panelPeople: PanelPerson[] = [
 
 const navLinks = [
   { label: "Lo que fue", href: "#resumen" },
-  { label: "Agenda", href: "#agenda" },
   { label: "Galería", href: "#galeria" },
   { label: "Panel", href: "#panel" },
   { label: "Blog Brand", href: "/blog" },
@@ -179,7 +131,10 @@ const navLinks = [
 ];
 
 export function EventosClient() {
-  const [openAgenda, setOpenAgenda] = useState<number | null>(3);
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  const showPrev = () => setLightbox((i) => (i === null ? null : (i - 1 + galleryPhotos.length) % galleryPhotos.length));
+  const showNext = () => setLightbox((i) => (i === null ? null : (i + 1) % galleryPhotos.length));
 
   return (
     <div className="floor-dark overflow-x-hidden bg-abyss text-on-dark-soft">
@@ -192,15 +147,66 @@ export function EventosClient() {
       <SiteHeader homeHref="/" links={navLinks} maxWidth={1180} />
 
       <main id="contenido">
-        <section aria-labelledby="h-evento-hero" className="relative overflow-hidden bg-navy-2" style={{ aspectRatio: "1920 / 900" }}>
-          <h1 id="h-evento-hero" className="sr-only">Brand Lab Live 2026 — Las marcas no venden, significan</h1>
+        <section aria-labelledby="h-evento-hero" className="relative overflow-hidden bg-navy-2" style={{ aspectRatio: "1920 / 711" }}>
+          <h1 id="h-evento-hero" className="sr-only">Galería de eventos — Brand Lab Live</h1>
           <Image
-            src="/brand/evento-banner-bac.png"
+            src="/brand/evento-banner-galeria.png"
             alt=""
             fill
             sizes="100vw"
             className="object-cover object-center"
             preload
+          />
+        </section>
+
+        <section aria-labelledby="h-bienvenida" className="bg-navy text-white">
+          <div className="mx-auto max-w-[1100px] gutter py-24 lg:grid lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-14">
+            <div className="rv">
+              <div className="t-label text-orange">
+                Bienvenido a la galería
+              </div>
+              <h2 id="h-bienvenida" className="mt-4 t-headline text-white">
+                Gracias por llegar hasta aquí
+              </h2>
+              <p className="mt-[18px] measure t-body text-body-on-navy">
+                Este espacio nació para que puedas revivir los diferentes eventos que hemos venido realizando: las conversaciones, los rostros y los momentos que le dan vida a Brand Lab.
+              </p>
+              <p className="mt-4 t-body text-body-on-navy">
+                Si quieres ser parte de los próximos, síguenos en nuestras redes sociales — ahí anunciamos cada nueva edición antes que en ningún otro lugar.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-md btn-primary">
+                  Síguenos en Instagram <Icon name="arrow-right" />
+                </a>
+                <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-md btn-navy">
+                  Síguenos en Facebook
+                </a>
+              </div>
+              <p className="mt-10 text-orange" style={{ fontStyle: "italic", fontWeight: 600, fontSize: "1.75rem" }}>
+                Samuel García
+              </p>
+              <p className="-mt-1 t-meta text-body-muted">Fundador de Brand Lab</p>
+            </div>
+            <div className="rv mt-12 flex justify-center lg:mt-0">
+              <Image
+                src="/brand/tv-descubriras.png"
+                alt="Samuel García, fundador de Brand Lab"
+                width={840}
+                height={840}
+                className="h-auto w-full max-w-[380px] drop-shadow-[0_30px_50px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-conferencia-banner" className="relative overflow-hidden bg-navy-2" style={{ aspectRatio: "1920 / 711" }}>
+          <h2 id="h-conferencia-banner" className="sr-only">Las marcas no venden, significan — La Conferencia</h2>
+          <Image
+            src="/brand/evento-banner-conferencia.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
           />
         </section>
 
@@ -284,51 +290,94 @@ export function EventosClient() {
         </section>
 
         <section aria-labelledby="h-resumen" id="resumen" className="scroll-mt-[70px] bg-navy text-white">
-          <div className="mx-auto max-w-[1100px] gutter py-[60px] sm:py-24">
+          <div className="mx-auto max-w-[1100px] gutter py-24">
             <div className="rv max-w-[720px]">
               <div className="t-label text-orange">
-                Lo que fue el evento
+                Nota informativa
               </div>
               <h2 id="h-resumen" className="mt-4 t-headline text-white">
-                La primera edición de Brand Lab Live ya sucedió
+                Así se llevó a cabo Brand Lab
               </h2>
             </div>
 
-            <div className="rv mt-10 grid gap-[34px] lg:grid-cols-[1fr_.9fr] lg:items-start">
-              <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-3">
-                <div className="rounded-[16px] border border-white/10 bg-abyss-surface p-6">
-                  <div className="t-label text-sky font-semibold">Fecha</div>
-                  <div className="mt-3 t-body font-bold text-white">19 de septiembre de 2026</div>
-                </div>
-                <div className="rounded-[16px] border border-white/10 bg-abyss-surface p-6">
-                  <div className="t-label text-sky font-semibold">Hora</div>
-                  <div className="mt-3 t-body tnum font-bold text-white">9:00 a.m. – 11:30 a.m.</div>
-                </div>
-                <div className="rounded-[16px] border border-white/10 bg-abyss-surface p-6">
-                  <div className="t-label text-sky font-semibold">Lugar</div>
-                  <div className="mt-3 t-body font-bold text-white">DoubleTree by Hilton Managua</div>
-                </div>
+            <div className="rv mt-10 grid grid-cols-1 gap-[14px] sm:grid-cols-3">
+              <div className="rounded-[16px] border border-white/10 bg-abyss-surface p-6">
+                <div className="t-label text-sky font-semibold">Fecha</div>
+                <div className="mt-3 t-body font-bold text-white">19 de septiembre de 2026</div>
+              </div>
+              <div className="rounded-[16px] border border-white/10 bg-abyss-surface p-6">
+                <div className="t-label text-sky font-semibold">Hora</div>
+                <div className="mt-3 t-body tnum font-bold text-white">9:00 a.m. – 11:30 a.m.</div>
+              </div>
+              <div className="rounded-[16px] border border-white/10 bg-abyss-surface p-6">
+                <div className="t-label text-sky font-semibold">Lugar</div>
+                <div className="mt-3 t-body font-bold text-white">DoubleTree by Hilton Managua</div>
               </div>
             </div>
 
-            <div className="rv mt-12 max-w-[760px]">
-              <p className="t-quote text-orange">
-                “Brand Lab propone cambiar la conversación: el problema de las empresas no es el marketing, es la falta de estrategia de marca.”
-              </p>
+            <div className="rv mt-14 grid gap-x-12 gap-y-8 lg:grid-cols-2">
+              <div className="lg:col-span-2 max-w-[760px]">
+                <p className="t-quote text-orange">
+                  “Brand Lab propone cambiar la conversación: el problema de las empresas no es el marketing, es la falta de estrategia de marca.”
+                </p>
+              </div>
 
-              <div className="mt-9 space-y-5 measure t-body text-body-on-navy">
-                {recapParagraphs.map((paragraph) => (
+              <div className="space-y-5 measure t-body text-body-on-navy">
+                {recapParagraphs.slice(0, 4).map((paragraph) => (
                   <p key={paragraph.slice(0, 40)}>{paragraph}</p>
                 ))}
               </div>
 
-              <p className="t-quote mt-9 text-white">
-                “Hoy las empresas hablan mucho de vender más, pero muy poco de construir marcas que permanezcan en el tiempo. Brand Lab nace para cambiar esa conversación y recordar que las marcas más valiosas no son necesariamente las que más venden, sino aquellas que logran ocupar un lugar en la vida de las personas”, expresó García.
-              </p>
+              <div className="flex flex-col gap-6">
+                <div className="overflow-hidden rounded-[18px]">
+                  <Image
+                    src={recapPhotos[0].src}
+                    alt={recapPhotos[0].alt}
+                    width={1600}
+                    height={1066}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+                <div className="space-y-5 measure t-body text-body-on-navy">
+                  {recapParagraphs.slice(4, 6).map((paragraph) => (
+                    <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
 
-              <p className="mt-9 t-body text-body-on-navy">
-                Porque, al final, las marcas no venden. Significan.
-              </p>
+              <div className="flex flex-col gap-6 lg:order-1">
+                <div className="overflow-hidden rounded-[18px]">
+                  <Image
+                    src={recapPhotos[1].src}
+                    alt={recapPhotos[1].alt}
+                    width={1600}
+                    height={1066}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="space-y-5 measure t-body text-body-on-navy lg:order-2">
+                <p>{recapParagraphs[6]}</p>
+                <p className="t-quote text-white">
+                  “Hoy las empresas hablan mucho de vender más, pero muy poco de construir marcas que permanezcan en el tiempo. Brand Lab nace para cambiar esa conversación y recordar que las marcas más valiosas no son necesariamente las que más venden, sino aquellas que logran ocupar un lugar en la vida de las personas”, expresó García.
+                </p>
+              </div>
+
+              <div className="lg:col-span-2 max-w-[760px]">
+                <p className="measure t-body text-body-on-navy">{recapParagraphs[7]}</p>
+                <div className="mt-8 overflow-hidden rounded-[18px]">
+                  <Image
+                    src={recapPhotos[2].src}
+                    alt={recapPhotos[2].alt}
+                    width={1600}
+                    height={1066}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+                <p className="mt-8 t-body text-body-on-navy">
+                  Porque, al final, las marcas no venden. Significan.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -364,142 +413,55 @@ export function EventosClient() {
               <h2 id="h-galeria" className="mt-4 t-headline text-navy">
                 Fotografías seleccionadas del evento
               </h2>
+              <p className="mt-4 t-body-sm text-body-muted">
+                Toca una fotografía para verla en grande.
+              </p>
             </div>
-            <div className="rv mt-11 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              {Array.from({ length: 8 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="flex aspect-[4/5] items-center justify-center rounded-2xl border border-navy/10 bg-white/70"
+            <div className="rv mt-11 flex gap-4 overflow-x-auto pb-4" style={{ scrollSnapType: "x mandatory" }}>
+              {galleryPhotos.map((photo, index) => (
+                <button
+                  key={photo.src}
+                  type="button"
+                  onClick={() => setLightbox(index)}
+                  className="group relative aspect-[4/5] w-[220px] shrink-0 overflow-hidden rounded-2xl border border-navy/10 bg-white sm:w-[260px]"
+                  style={{ scrollSnapAlign: "start" }}
+                  aria-label={`Ver fotografía: ${photo.alt}`}
                 >
-                  <span className="t-meta text-body-muted">Foto próximamente</span>
-                </div>
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="260px"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </button>
               ))}
             </div>
           </div>
         </section>
 
-        <section aria-labelledby="h-agenda" id="agenda" className="bg-abyss text-white">
+        <section id="panel" aria-labelledby="h-panel" className="bg-abyss text-white">
           <div className="mx-auto max-w-[1100px] gutter py-24">
             <div className="rv max-w-[680px]">
               <div className="t-label text-orange">
-                Agenda del evento
-              </div>
-              <h2 id="h-agenda" className="mt-4 t-headline text-white">
-                Así se vivió la mañana de Brand Lab Live
-              </h2>
-              <p className="mt-4 t-body-sm text-body-on-abyss">
-                Da clic en cada actividad para ver el detalle.
-              </p>
-            </div>
-
-            <div className="rv relative mt-11 rounded-[22px] border border-white/[0.08] bg-abyss-surface shadow-[0_30px_60px_-42px_rgba(2,48,71,0.5)]">
-              <div aria-hidden className="absolute left-[27px] top-8 bottom-8 w-px bg-white/10 sm:left-[35px]" />
-              {agendaItems.map((item, index) => {
-                const isOpen = openAgenda === index;
-                const panelId = `agenda-panel-${index}`;
-                return (
-                  <div key={item.time} className="relative border-b border-white/[0.08] last:border-b-0">
-                    <button
-                      type="button"
-                      onClick={() => setOpenAgenda(isOpen ? null : index)}
-                      aria-expanded={isOpen}
-                      aria-controls={panelId}
-                      className="flex w-full items-start gap-3 py-5 pl-[52px] pr-5 text-left transition-colors hover:bg-white/[0.03] sm:gap-6 sm:pl-[68px] sm:pr-7"
-                    >
-                      <span
-                        aria-hidden
-                        className={`absolute left-[27px] top-[26px] h-[11px] w-[11px] -translate-x-1/2 rounded-full border-2 transition-colors sm:left-[35px] ${
-                          isOpen ? "border-orange bg-orange" : "border-white/25 bg-abyss"
-                        }`}
-                      />
-                      <span className="w-[104px] shrink-0 pt-[3px] tnum t-meta font-bold text-sky sm:w-[168px] sm:t-body-sm">
-                        {item.time}
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        {item.kicker ? (
-                          <span className="block t-micro text-orange">{item.kicker}</span>
-                        ) : null}
-                        <span className="block t-title-sm text-white">{item.title}</span>
-                      </span>
-                      <Icon
-                        name="chevron-down"
-                        size={18}
-                        className={`mt-[5px] shrink-0 text-white/35 transition-transform duration-200 ${isOpen ? "rotate-180 text-orange" : ""}`}
-                      />
-                    </button>
-                    <div id={panelId} hidden={!isOpen} className="pb-6 pl-[52px] pr-5 sm:pl-[68px] sm:pr-7">
-                        <p className="measure t-body-sm text-body-on-abyss">{item.body}</p>
-
-                        {item.sponsor ? (
-                          <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-white/[0.08] bg-abyss px-4 py-3">
-                            <Image
-                              src={item.sponsor.src}
-                              alt={item.sponsor.alt}
-                              width={item.sponsor.width}
-                              height={item.sponsor.height}
-                              className="h-6 w-auto"
-                            />
-                            <span className="t-meta text-body-muted">{item.sponsor.note}</span>
-                          </div>
-                        ) : null}
-
-                        {item.speaker ? (
-                          <div className="mt-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/[0.12] bg-abyss px-4 py-2">
-                            <span className="t-body-sm font-bold text-white">{item.speaker.name}</span>
-                            <span aria-hidden className="h-1 w-1 rounded-full bg-white/30" />
-                            <span className="t-meta text-body-muted">{item.speaker.role}</span>
-                          </div>
-                        ) : null}
-
-                        {item.panelists ? (
-                          <>
-                            <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                              {item.panelists.map((panelist) => (
-                                <div key={panelist.name} className="rounded-2xl border border-white/[0.08] bg-abyss p-5">
-                                  <div className="t-title-sm text-white">{panelist.name}</div>
-                                  <div className="mt-1 t-meta text-sky">{panelist.role}</div>
-                                  <p className="mt-3 t-body-sm text-body-muted">{panelist.note}</p>
-                                </div>
-                              ))}
-                            </div>
-                            <a
-                              href="#panel"
-                              className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 t-body-sm font-semibold text-sky transition-colors hover:border-white/40 hover:bg-white/5"
-                            >
-                              Conocer más sobre los panelistas <Icon name="arrow-right" size={14} />
-                            </a>
-                          </>
-                        ) : null}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="panel" aria-labelledby="h-panel" className="floor-light scroll-mt-[70px] bg-bone text-navy">
-          <div className="mx-auto max-w-[1100px] gutter py-24">
-            <div className="rv max-w-[680px]">
-              <div className="t-label text-orange-ink">
                 Panel de discusión
               </div>
-              <h2 id="h-panel" className="mt-4 t-headline text-navy">
+              <h2 id="h-panel" className="mt-4 t-headline text-white">
                 Tres perspectivas. Una misma conversación.
               </h2>
-              <p className="mt-[18px] max-w-[560px] t-body text-body-muted">
-                Especialistas que conectaron la estrategia de marca con la realidad empresarial, moderados por Samuel García.
+              <p className="mt-[18px] max-w-[560px] t-body text-body-on-abyss">
+                Especialistas que conectaron la estrategia de marca con la realidad empresarial, moderados por Samuel García. Esta es la gente detrás de la conversación.
               </p>
             </div>
             <div className="rv mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {panelPeople.map((person) => (
                 <div
                   key={person.name}
-                  className={`overflow-hidden rounded-[20px] border bg-white ${
-                    person.tag === "Modera" ? "border-orange/50" : "border-navy/10"
+                  className={`overflow-hidden rounded-[20px] border bg-abyss-surface ${
+                    person.tag === "Modera" ? "border-orange/40" : "border-white/[0.08]"
                   }`}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-mist">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-white">
                     <Image
                       src={person.photo}
                       alt={person.name}
@@ -509,16 +471,16 @@ export function EventosClient() {
                     />
                     <span
                       className={`absolute left-4 top-4 t-micro rounded-full px-3 py-1 ${
-                        person.tag === "Modera" ? "bg-orange text-abyss" : "bg-navy/80 text-white backdrop-blur-sm"
+                        person.tag === "Modera" ? "bg-orange text-abyss" : "bg-abyss/80 text-on-dark-strong backdrop-blur-sm"
                       }`}
                     >
                       {person.tag}
                     </span>
                   </div>
                   <div className="p-5">
-                    <h3 className="t-title-sm text-navy">{person.name}</h3>
-                    <p className="mt-1 t-meta text-blue-ink">{person.role}</p>
-                    <p className="mt-3 t-body-sm text-body-muted">{person.bio}</p>
+                    <h3 className="t-title-sm text-white">{person.name}</h3>
+                    <p className="mt-1 t-meta text-sky">{person.role}</p>
+                    <p className="mt-3 t-body-sm text-body-on-abyss">{person.bio}</p>
                   </div>
                 </div>
               ))}
@@ -526,16 +488,16 @@ export function EventosClient() {
           </div>
         </section>
 
-        <section aria-labelledby="h-medios" className="bg-navy text-white">
+        <section aria-labelledby="h-medios" className="floor-light bg-bone text-navy">
           <div className="mx-auto max-w-[1100px] gutter py-24">
             <div className="rv max-w-[680px]">
-              <div className="t-label text-orange">
+              <div className="t-label text-orange-ink">
                 Punto noticioso
               </div>
-              <h2 id="h-medios" className="mt-4 t-headline text-white">
+              <h2 id="h-medios" className="mt-4 t-headline text-navy">
                 En los medios
               </h2>
-              <p className="mt-4 t-body text-body-on-navy">
+              <p className="mt-4 t-body text-body-muted">
                 Así se comentó la primera edición de Brand Lab Live en medios y redes.
               </p>
             </div>
@@ -546,68 +508,40 @@ export function EventosClient() {
                   href={item.href.startsWith("http") ? item.href : `https://${item.href}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-4 rounded-[16px] border border-white/10 bg-abyss-surface px-6 py-5 transition-colors hover:border-white/25 hover:bg-abyss"
+                  className="flex items-center justify-between gap-4 rounded-[16px] border border-navy/10 bg-white px-6 py-5 transition-colors hover:border-navy/25 hover:shadow-[0_20px_40px_-30px_rgba(2,34,47,0.4)]"
                 >
-                  <span className="t-body-sm font-semibold text-white">{item.label}</span>
-                  <Icon name="arrow-right" size={16} className="shrink-0 text-orange" />
+                  <span className="t-body-sm font-semibold text-navy">{item.label}</span>
+                  <Icon name="arrow-right" size={16} className="shrink-0 text-orange-ink" />
                 </a>
               ))}
             </div>
           </div>
         </section>
 
-        <section aria-labelledby="h-aliadas" className="bg-abyss text-white">
-          <div className="mx-auto max-w-[1100px] gutter py-24 lg:grid lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-14">
-            <div className="rv">
-              <div className="t-label text-orange">
-                Marcas aliadas
-              </div>
-              <h2 id="h-aliadas" className="mt-4 t-headline text-white">
-                Impulsando juntos una nueva conversación sobre branding
-              </h2>
-              <p className="mt-5 t-body text-body-on-navy">
-                Brand Lab Live reúne a empresarios, emprendedores y profesionales interesados en fortalecer la forma en que construyen sus negocios.
-              </p>
-              <p className="mt-4 t-body text-body-on-navy">
-                Al convertirse en marca aliada, tu organización se vincula con una iniciativa que promueve el <strong className="text-white">pensamiento estratégico, la innovación y el desarrollo empresarial</strong>.
-              </p>
-              <a
-                href="/patrocinio"
-                className="btn btn-md btn-primary mt-[26px]"
-              >
-                Conoce los niveles de patrocinio <Icon name="arrow-right" />
-              </a>
-            </div>
-            <div className="rv mt-10 flex justify-center lg:mt-0">
-              <Image
-                src="/brand/marcas-aliadas.png"
-                alt="Samuel García — ¿La gente seguiría reconociéndote?"
-                width={840}
-                height={840}
-                className="h-auto w-full max-w-[420px] drop-shadow-[0_30px_50px_rgba(0,0,0,0.5)]"
-              />
-            </div>
+        <section aria-labelledby="h-cierre" className="relative overflow-hidden bg-abyss text-center text-white">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute -left-24 -top-24 h-[360px] w-[360px] rounded-full bg-orange/20 blur-3xl" />
+            <div className="absolute -right-24 -bottom-24 h-[360px] w-[360px] rounded-full bg-sky/20 blur-3xl" />
           </div>
-        </section>
-
-        <section aria-labelledby="h-cierre" className="floor-light bg-orange text-abyss text-center">
-          <div className="mx-auto max-w-[1100px] gutter py-24">
+          <div className="relative mx-auto max-w-[1100px] gutter py-24">
             <div className="rv">
-              <div className="t-label text-on-orange">
-                Brand Lab Live 2026
+              <div className="t-label text-sky">
+                Brand Lab Live
               </div>
-              <h2 id="h-cierre" className="mt-4 t-headline">
-                Las marcas no venden. Significan.
+              <h2 id="h-cierre" className="mt-4 t-display text-white">
+                Nos vemos en <span className="text-orange">2027</span>
               </h2>
-              <p className="mt-5 max-w-[620px] t-lead text-on-orange mx-auto">
-                Gracias a quienes hicieron posible la primera edición de Brand Lab Live. Sigue la conversación sobre branding estratégico en el blog.
+              <p className="mt-5 max-w-[560px] t-lead text-body-on-abyss mx-auto">
+                Prepárate para la segunda edición. Síguenos en redes para ser el primero en enterarte.
               </p>
-              <a
-                href="/blog"
-                className="btn btn-lg btn-abyss mt-[30px]"
-              >
-                Leer el blog de Brand Lab <Icon name="arrow-right" />
-              </a>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-lg btn-primary">
+                  Instagram <Icon name="arrow-right" />
+                </a>
+                <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-lg btn-navy">
+                  Facebook
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -622,6 +556,46 @@ export function EventosClient() {
           </a>
         }
       />
+
+      <Modal
+        open={lightbox !== null}
+        onClose={() => setLightbox(null)}
+        label="Fotografía del evento"
+        panelClassName="w-full max-w-[900px]"
+      >
+        {lightbox !== null ? (
+          <div className="relative">
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[16px] bg-abyss">
+              <Image
+                src={galleryPhotos[lightbox].src}
+                alt={galleryPhotos[lightbox].alt}
+                fill
+                sizes="900px"
+                className="object-contain"
+              />
+            </div>
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <button
+                type="button"
+                onClick={showPrev}
+                aria-label="Fotografía anterior"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white"
+              >
+                <Icon name="arrow-left" size={18} />
+              </button>
+              <p className="t-body-sm text-body-on-abyss">{galleryPhotos[lightbox].alt}</p>
+              <button
+                type="button"
+                onClick={showNext}
+                aria-label="Fotografía siguiente"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white"
+              >
+                <Icon name="arrow-right" size={18} />
+              </button>
+            </div>
+          </div>
+        ) : null}
+      </Modal>
     </div>
   );
 }

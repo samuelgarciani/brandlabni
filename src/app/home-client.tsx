@@ -237,7 +237,7 @@ const navLinks = [
   { label: "Oferta", href: "#oferta" },
   { label: "Testimonios", href: "#testimonios" },
   { label: "Blog Brand", href: "/blog" },
-  { label: "Eventos", href: "/eventos" },
+  { label: "Galería de Eventos", href: "/eventos" },
   { label: "Contáctanos", href: "#contacto" },
 ];
 
@@ -1039,7 +1039,7 @@ export function HomeClient() {
           { label: "Oferta", href: "#oferta" },
           { label: "Talks", href: "#talks" },
           { label: "Blog Brand", href: "/blog" },
-          { label: "Eventos", href: "/eventos" },
+          { label: "Galería de Eventos", href: "/eventos" },
           { label: "Patrocinio", href: "/patrocinio" },
         ]}
         trailing={<span>Centroamérica</span>}
