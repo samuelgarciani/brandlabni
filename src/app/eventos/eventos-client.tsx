@@ -33,18 +33,58 @@ const sponsorLogos = [
 ];
 
 const galleryPhotos = [
-  { src: "/brand/evento-galeria/foto-9.jpg", alt: "Bienvenida e inicio de Brand Lab Live" },
-  { src: "/brand/evento-galeria/foto-20.jpg", alt: "Retrato frente al backdrop de Las marcas no venden, significan" },
-  { src: "/brand/evento-galeria/foto-34.jpg", alt: "Asistentes durante la conferencia" },
-  { src: "/brand/evento-galeria/foto-41.jpg", alt: "Samuel García en el escenario principal" },
-  { src: "/brand/evento-galeria/foto-45.jpg", alt: "Samuel García presentando la conferencia" },
-  { src: "/brand/evento-galeria/foto-49.jpg", alt: "La evolución del branding, en pantalla" },
-  { src: "/brand/evento-galeria/foto-61.jpg", alt: "Conversatorio estratégico en el escenario" },
-  { src: "/brand/evento-galeria/foto-63.jpg", alt: "Sara Avilés y Gilda Tinoco durante el conversatorio" },
-  { src: "/brand/evento-galeria/foto-70.jpg", alt: "Samuel García junto a las panelistas" },
-  { src: "/brand/evento-galeria/foto-78.jpg", alt: "Celebración al cierre del evento" },
-  { src: "/brand/evento-galeria/foto-88.jpg", alt: "Equipo Brand Lab al cierre de la jornada" },
-  { src: "/brand/evento-galeria/foto-92.jpg", alt: "Asistentes frente al backdrop del evento" },
+  { src: "/brand/evento-galeria/seleccion-00.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-03.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-05.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-07.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-08.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-09.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-12.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-13.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-16.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-18.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-22.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-25.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-28.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-29.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-30.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-34.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-36.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-39.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-42.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-46.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-49.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-52.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-53.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-54.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-55.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-56.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-57.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-59.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-60.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-62.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-63.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-66.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-69.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-71.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-76.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-77.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-78.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-79.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-80.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-81.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-82.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-83.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-85.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-86.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-87.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-88.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-89.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-91.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-92.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-93.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-95.jpg", alt: "Fotografía del evento Brand Lab Live" },
+  { src: "/brand/evento-galeria/seleccion-96.jpg", alt: "Fotografía del evento Brand Lab Live" },
 ];
 
 const pressLinks = [
@@ -300,7 +340,7 @@ export function EventosClient() {
             <div className="rv mt-16 grid gap-x-12 gap-y-8 lg:grid-cols-[.85fr_1fr] lg:items-center">
               <div className="overflow-hidden rounded-[20px] lg:order-1">
                 <Image
-                  src="/brand/evento-galeria/foto-63.jpg"
+                  src="/brand/evento-galeria/seleccion-63.jpg"
                   alt="Sara Avilés y Gilda Tinoco durante el conversatorio estratégico"
                   width={1600}
                   height={1066}
@@ -347,28 +387,6 @@ export function EventosClient() {
               <p className="mt-8 t-body text-body-on-navy">
                 Porque, al final, las marcas no venden. Significan.
               </p>
-            </div>
-          </div>
-        </section>
-
-        <section aria-labelledby="h-video" className="relative overflow-hidden bg-abyss">
-          <div className="pointer-events-none absolute -top-[60px] -right-[80px] h-[400px] w-[400px] bg-[url('/brand/isotipo-white.png')] bg-contain bg-no-repeat opacity-5" />
-          <div className="relative mx-auto max-w-[1100px] gutter py-24">
-            <div className="rv max-w-[640px]">
-              <div className="t-label text-orange">
-                Video resumen
-              </div>
-              <h2 id="h-video" className="mt-4 t-headline text-white">
-                Revive los mejores momentos de la jornada
-              </h2>
-            </div>
-            <div className="rv mt-10 aspect-video w-full overflow-hidden rounded-[22px] border border-white/[0.08] bg-abyss-surface">
-              <div className="flex h-full w-full flex-col items-center justify-center gap-4 text-center">
-                <span className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-orange text-abyss">
-                  <Icon name="arrow-right" size={22} />
-                </span>
-                <p className="t-body-sm text-body-on-abyss">Video resumen — próximamente</p>
-              </div>
             </div>
           </div>
         </section>
