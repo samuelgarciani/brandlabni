@@ -54,7 +54,6 @@ const galleryPhotos = [
   { src: "/brand/evento-galeria/seleccion-42.jpg", alt: "Fotografía del evento Brand Lab Live" },
   { src: "/brand/evento-galeria/seleccion-46.jpg", alt: "Fotografía del evento Brand Lab Live" },
   { src: "/brand/evento-galeria/seleccion-49.jpg", alt: "Fotografía del evento Brand Lab Live" },
-  { src: "/brand/evento-galeria/seleccion-52.jpg", alt: "Fotografía del evento Brand Lab Live" },
   { src: "/brand/evento-galeria/seleccion-53.jpg", alt: "Fotografía del evento Brand Lab Live" },
   { src: "/brand/evento-galeria/seleccion-54.jpg", alt: "Fotografía del evento Brand Lab Live" },
   { src: "/brand/evento-galeria/seleccion-55.jpg", alt: "Fotografía del evento Brand Lab Live" },
@@ -398,7 +397,7 @@ export function EventosClient() {
                 Galería
               </div>
               <h2 id="h-galeria" className="mt-4 t-headline text-navy">
-                Fotografías seleccionadas del evento
+                Galería de fotos
               </h2>
               <p className="mt-4 t-body-sm text-body-muted">
                 Toca una fotografía para verla en grande.
