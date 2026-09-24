@@ -4,7 +4,7 @@ import { siteName, siteUrl } from "@/lib/site";
 
 const title = "Brand Lab Live 2026 — Las marcas no venden, significan";
 const description =
-  "Conferencia de branding estratégico. 19 de septiembre de 2026, 9:00 a 11:30 a.m., DoubleTree by Hilton Managua. Conferencia, panel de discusión, coffee break y networking.";
+  "Así fue la primera edición de Brand Lab Live: la conferencia, el panel de discusión, la galería de fotos y la cobertura en medios.";
 
 export const metadata: Metadata = {
   title: `${title} | ${siteName}`,

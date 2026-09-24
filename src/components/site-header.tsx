@@ -26,7 +26,7 @@ type SiteHeaderProps = {
   /** Where the wordmark points. The home page points at its own hero anchor. */
   homeHref: string;
   links: SiteLink[];
-  cta: HeaderCta;
+  cta?: HeaderCta;
   /** Content measure of the route below, so the header aligns with it. */
   maxWidth?: number;
 };
@@ -103,12 +103,14 @@ export function SiteHeader({
         </nav>
 
         <div className="flex items-center gap-1.5">
-          <a href={cta.href} onClick={cta.onClick} className={t.cta}>
-            {cta.label}
-          </a>
+          {cta ? (
+            <a href={cta.href} onClick={cta.onClick} className={t.cta}>
+              {cta.label}
+            </a>
+          ) : null}
           <MobileNav
             links={links}
-            cta={{ label: cta.label, href: cta.onSelect ? undefined : cta.href, onSelect: cta.onSelect }}
+            cta={cta ? { label: cta.label, href: cta.onSelect ? undefined : cta.href, onSelect: cta.onSelect } : undefined}
           />
         </div>
       </div>

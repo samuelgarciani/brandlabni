@@ -10,7 +10,7 @@ export type MobileNavLink = { label: string; href: string; back?: boolean };
 type MobileNavProps = {
   links: MobileNavLink[];
   /** Primary action, mirrored from the header CTA of the page. */
-  cta: { label: string; href?: string; onSelect?: () => void };
+  cta?: { label: string; href?: string; onSelect?: () => void };
 };
 
 /**
@@ -39,7 +39,7 @@ export function MobileNav({ links, cta }: MobileNavProps) {
 
   const activate = () => {
     close();
-    cta.onSelect?.();
+    cta?.onSelect?.();
   };
 
   return (
@@ -110,23 +110,25 @@ export function MobileNav({ links, cta }: MobileNavProps) {
           </nav>
 
           <div className="relative mt-10 px-[22px] pb-[max(26px,env(safe-area-inset-bottom))]">
-            {cta.href ? (
-              <a
-                href={cta.href}
-                onClick={activate}
-                className="flex w-full items-center justify-center rounded-full bg-orange px-8 py-4 t-body-sm font-bold text-abyss"
-              >
-                {cta.label}
-              </a>
-            ) : (
-              <button
-                type="button"
-                onClick={activate}
-                className="flex w-full items-center justify-center rounded-full bg-orange px-8 py-4 t-body-sm font-bold text-abyss"
-              >
-                {cta.label}
-              </button>
-            )}
+            {cta ? (
+              cta.href ? (
+                <a
+                  href={cta.href}
+                  onClick={activate}
+                  className="flex w-full items-center justify-center rounded-full bg-orange px-8 py-4 t-body-sm font-bold text-abyss"
+                >
+                  {cta.label}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={activate}
+                  className="flex w-full items-center justify-center rounded-full bg-orange px-8 py-4 t-body-sm font-bold text-abyss"
+                >
+                  {cta.label}
+                </button>
+              )
+            ) : null}
             <a
               href="https://wa.me/50557400875"
               target="_blank"
