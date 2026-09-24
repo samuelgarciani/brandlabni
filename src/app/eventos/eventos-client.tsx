@@ -32,23 +32,6 @@ const sponsorLogos = [
   { src: "/brand/logos/rh.png", alt: "RH Producciones" },
 ];
 
-const recapPhotos = [
-  { src: "/brand/evento-galeria/foto-45.jpg", alt: "Samuel García presentando en el escenario de Brand Lab Live" },
-  { src: "/brand/evento-galeria/foto-65.jpg", alt: "Conversatorio estratégico con las panelistas de Brand Lab Live" },
-  { src: "/brand/evento-galeria/foto-70.jpg", alt: "Samuel García junto a las tres panelistas del conversatorio" },
-];
-
-const recapParagraphs = [
-  "¿Qué hace que una marca sea elegida, recordada y recomendada por las personas?",
-  "Con el propósito de abrir esta conversación nació Brand Lab Live, un espacio creado para empresarios, emprendedores, profesionales y estudiantes que buscan comprender el branding desde una perspectiva estratégica y no únicamente como una herramienta de comunicación.",
-  "En su primera edición, Brand Lab presentó la conferencia “Las marcas no venden, significan”, una propuesta que invitó a reflexionar sobre el verdadero papel de las marcas en el crecimiento de las organizaciones y cómo estas pueden convertirse en uno de los activos más valiosos de un negocio cuando son construidas desde el propósito, la coherencia y una propuesta de valor diferenciada.",
-  "Durante la conferencia se abordaron temas como el origen del branding y su evolución como disciplina estratégica; la diferencia entre branding y marketing; el papel de la marca en la generación de confianza, preferencia y valor; la construcción de marcas con significado; y los desafíos que enfrentan hoy las organizaciones para conectar con consumidores cada vez más informados, exigentes e hiperconectados.",
-  "La jornada también buscó desmitificar algunas de las ideas más comunes alrededor del branding, recordando que una marca no es únicamente un logotipo, un nombre o una campaña publicitaria, sino el conjunto de percepciones, experiencias y relaciones que una empresa construye con sus clientes a lo largo del tiempo.",
-  "Como parte del evento, se desarrolló un Conversatorio Estratégico con la participación de María José Amador, Jefa de Comunicación de BAC Nicaragua; Gilda Tinoco, Gerente Regional de Comunicación y Sostenibilidad de Claro Centroamérica; y Sara Avilés, especialista en marketing digital. Desde sus diferentes perspectivas compartieron experiencias y recomendaciones para fortalecer las marcas en un entorno empresarial en constante transformación.",
-  "La conferencia fue impartida por Samuel García, fundador de Brand Lab, consultor en branding y estrategia de marca con más de una década de experiencia acompañando a empresas y emprendedores en procesos de posicionamiento, diferenciación y construcción de valor.",
-  "Con esta iniciativa, Brand Lab busca impulsar una nueva forma de entender el branding en Nicaragua, promoviendo una visión donde la estrategia, el propósito y la experiencia del cliente sean los pilares para construir empresas más sólidas, competitivas y sostenibles.",
-];
-
 const galleryPhotos = [
   { src: "/brand/evento-galeria/foto-9.jpg", alt: "Bienvenida e inicio de Brand Lab Live" },
   { src: "/brand/evento-galeria/foto-20.jpg", alt: "Retrato frente al backdrop de Las marcas no venden, significan" },
@@ -57,7 +40,7 @@ const galleryPhotos = [
   { src: "/brand/evento-galeria/foto-45.jpg", alt: "Samuel García presentando la conferencia" },
   { src: "/brand/evento-galeria/foto-49.jpg", alt: "La evolución del branding, en pantalla" },
   { src: "/brand/evento-galeria/foto-61.jpg", alt: "Conversatorio estratégico en el escenario" },
-  { src: "/brand/evento-galeria/foto-65.jpg", alt: "Gilda Tinoco durante el conversatorio" },
+  { src: "/brand/evento-galeria/foto-63.jpg", alt: "Sara Avilés y Gilda Tinoco durante el conversatorio" },
   { src: "/brand/evento-galeria/foto-70.jpg", alt: "Samuel García junto a las panelistas" },
   { src: "/brand/evento-galeria/foto-78.jpg", alt: "Celebración al cierre del evento" },
   { src: "/brand/evento-galeria/foto-88.jpg", alt: "Equipo Brand Lab al cierre de la jornada" },
@@ -83,49 +66,9 @@ const pressLinks = [
   },
 ];
 
-type PanelPerson = {
-  photo: string;
-  name: string;
-  role: string;
-  bio: string;
-  tag: string;
-};
-
-const panelPeople: PanelPerson[] = [
-  {
-    photo: "/brand/panel/samuel.jpg",
-    name: "Samuel García",
-    role: "Fundador de Brand Lab | Branding y Estrategia de Marca",
-    bio: "Consultor en branding y estrategia de marca con más de diez años de experiencia. Fundador de Brand Lab, una iniciativa dedicada a impulsar la construcción de marcas con propósito, diferenciación y significado para generar valor sostenible en las organizaciones.",
-    tag: "Modera",
-  },
-  {
-    photo: "/brand/panel/maria-jose.jpg",
-    name: "María José Amador",
-    role: "Jefa de Comunicación | BAC Nicaragua",
-    bio: "Profesional en comunicación corporativa con experiencia en gestión de marca, reputación y comunicación estratégica. Actualmente lidera el área de Comunicación de BAC Nicaragua, impulsando iniciativas que fortalecen la relación entre la marca y sus clientes.",
-    tag: "Panelista",
-  },
-  {
-    photo: "/brand/panel/sara-aviles.jpg",
-    name: "Sara Avilés",
-    role: "Especialista en Marketing Digital",
-    bio: "Especialista en marketing digital y estrategias multicanal, con experiencia en comportamiento del consumidor, comercio electrónico y transformación digital. Docente universitaria y fundadora de Meraki Creative Nicaragua.",
-    tag: "Panelista",
-  },
-  {
-    photo: "/brand/panel/gilda-tinoco.jpg",
-    name: "Gilda Tinoco",
-    role: "Gerente Regional de Comunicación y Sostenibilidad | Claro Centroamérica",
-    bio: "Profesional con amplia trayectoria en comunicación estratégica, reputación corporativa y sostenibilidad. Actualmente lidera la estrategia regional de comunicación y sostenibilidad de Claro Centroamérica, fortaleciendo el posicionamiento y la confianza de la marca en la región.",
-    tag: "Panelista",
-  },
-];
-
 const navLinks = [
   { label: "Lo que fue", href: "#resumen" },
   { label: "Galería", href: "#galeria" },
-  { label: "Panel", href: "#panel" },
   { label: "Blog Brand", href: "/blog" },
   { label: "Volver al sitio", href: "/", back: true },
 ];
@@ -315,69 +258,95 @@ export function EventosClient() {
               </div>
             </div>
 
-            <div className="rv mt-14 grid gap-x-12 gap-y-8 lg:grid-cols-2">
-              <div className="lg:col-span-2 max-w-[760px]">
-                <p className="t-quote text-orange">
-                  “Brand Lab propone cambiar la conversación: el problema de las empresas no es el marketing, es la falta de estrategia de marca.”
+            <div className="rv mt-14 max-w-[760px]">
+              <p className="t-quote text-orange">
+                “Brand Lab propone cambiar la conversación: el problema de las empresas no es el marketing, es la falta de estrategia de marca.”
+              </p>
+              <p className="mt-8 measure t-body text-body-on-navy">
+                ¿Qué hace que una marca sea elegida, recordada y recomendada por las personas? Con el propósito de abrir esta conversación nació <strong className="text-white font-semibold">Brand Lab Live</strong>, un espacio creado para empresarios, emprendedores, profesionales y estudiantes que buscan comprender el branding desde una perspectiva estratégica y no únicamente como una herramienta de comunicación.
+              </p>
+            </div>
+
+            <div className="rv mt-11 overflow-hidden rounded-[20px]">
+              <Image
+                src="/brand/evento-galeria/foto-41.jpg"
+                alt="Vista general del escenario durante la conferencia de Brand Lab Live"
+                width={1600}
+                height={1066}
+                className="h-auto w-full object-cover"
+              />
+            </div>
+
+            <div className="rv mt-16 grid gap-x-12 gap-y-8 lg:grid-cols-[1fr_.85fr] lg:items-center">
+              <div className="space-y-5 measure t-body text-body-on-navy">
+                <p>
+                  En su primera edición, <strong className="text-white font-semibold">Brand Lab</strong> presentó la conferencia “Las marcas no venden, significan”, una propuesta que invitó a reflexionar sobre el verdadero papel de las marcas en el crecimiento de las organizaciones y cómo estas pueden convertirse en uno de los activos más valiosos de un negocio cuando son construidas desde el propósito, la coherencia y una propuesta de valor diferenciada.
+                </p>
+                <p>
+                  Durante la conferencia se abordaron temas como el origen del branding y su evolución como disciplina estratégica; la diferencia entre branding y marketing; el papel de la marca en la generación de confianza, preferencia y valor; y los desafíos que enfrentan hoy las organizaciones para conectar con consumidores cada vez más informados, exigentes e hiperconectados.
                 </p>
               </div>
-
-              <div className="space-y-5 measure t-body text-body-on-navy">
-                {recapParagraphs.slice(0, 4).map((paragraph) => (
-                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-                ))}
+              <div className="overflow-hidden rounded-[20px]">
+                <Image
+                  src="/brand/evento-galeria/foto-45.jpg"
+                  alt="Samuel García presentando la conferencia Las marcas no venden, significan"
+                  width={1600}
+                  height={1066}
+                  className="h-auto w-full object-cover"
+                />
               </div>
+            </div>
 
-              <div className="flex flex-col gap-6">
-                <div className="overflow-hidden rounded-[18px]">
-                  <Image
-                    src={recapPhotos[0].src}
-                    alt={recapPhotos[0].alt}
-                    width={1600}
-                    height={1066}
-                    className="h-auto w-full object-cover"
-                  />
-                </div>
-                <div className="space-y-5 measure t-body text-body-on-navy">
-                  {recapParagraphs.slice(4, 6).map((paragraph) => (
-                    <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-6 lg:order-1">
-                <div className="overflow-hidden rounded-[18px]">
-                  <Image
-                    src={recapPhotos[1].src}
-                    alt={recapPhotos[1].alt}
-                    width={1600}
-                    height={1066}
-                    className="h-auto w-full object-cover"
-                  />
-                </div>
+            <div className="rv mt-16 grid gap-x-12 gap-y-8 lg:grid-cols-[.85fr_1fr] lg:items-center">
+              <div className="overflow-hidden rounded-[20px] lg:order-1">
+                <Image
+                  src="/brand/evento-galeria/foto-63.jpg"
+                  alt="Sara Avilés y Gilda Tinoco durante el conversatorio estratégico"
+                  width={1600}
+                  height={1066}
+                  className="h-auto w-full object-cover"
+                />
               </div>
               <div className="space-y-5 measure t-body text-body-on-navy lg:order-2">
-                <p>{recapParagraphs[6]}</p>
-                <p className="t-quote text-white">
-                  “Hoy las empresas hablan mucho de vender más, pero muy poco de construir marcas que permanezcan en el tiempo. Brand Lab nace para cambiar esa conversación y recordar que las marcas más valiosas no son necesariamente las que más venden, sino aquellas que logran ocupar un lugar en la vida de las personas”, expresó García.
+                <p>
+                  La jornada también buscó desmitificar algunas de las ideas más comunes alrededor del branding, recordando que una marca no es únicamente un logotipo, un nombre o una campaña publicitaria, sino el conjunto de percepciones, experiencias y relaciones que una empresa construye con sus clientes a lo largo del tiempo.
+                </p>
+                <p>
+                  Como parte del evento, se desarrolló un Conversatorio Estratégico con la participación de{" "}
+                  <strong className="text-white font-semibold">María José Amador</strong>, Jefa de Comunicación de BAC Nicaragua;{" "}
+                  <strong className="text-white font-semibold">Gilda Tinoco</strong>, Gerente Regional de Comunicación y Sostenibilidad de Claro Centroamérica; y{" "}
+                  <strong className="text-white font-semibold">Sara Avilés</strong>, especialista en marketing digital.
                 </p>
               </div>
+            </div>
 
-              <div className="lg:col-span-2 max-w-[760px]">
-                <p className="measure t-body text-body-on-navy">{recapParagraphs[7]}</p>
-                <div className="mt-8 overflow-hidden rounded-[18px]">
-                  <Image
-                    src={recapPhotos[2].src}
-                    alt={recapPhotos[2].alt}
-                    width={1600}
-                    height={1066}
-                    className="h-auto w-full object-cover"
-                  />
-                </div>
-                <p className="mt-8 t-body text-body-on-navy">
-                  Porque, al final, las marcas no venden. Significan.
+            <div className="rv mt-16 grid gap-x-12 gap-y-8 lg:grid-cols-[1fr_.85fr] lg:items-center">
+              <div className="space-y-5 measure t-body text-body-on-navy">
+                <p>
+                  La conferencia fue impartida por <strong className="text-white font-semibold">Samuel García</strong>, fundador de Brand Lab, consultor en branding y estrategia de marca con más de una década de experiencia acompañando a empresas y emprendedores en procesos de posicionamiento, diferenciación y construcción de valor.
+                </p>
+                <p className="t-quote text-white">
+                  “Hoy las empresas hablan mucho de vender más, pero muy poco de construir marcas que permanezcan en el tiempo. Brand Lab nace para cambiar esa conversación y recordar que las marcas más valiosas no son necesariamente las que más venden, sino aquellas que logran ocupar un lugar en la vida de las personas”, expresó <strong className="text-white font-semibold">García</strong>.
                 </p>
               </div>
+              <div className="overflow-hidden rounded-[20px]">
+                <Image
+                  src="/brand/evento-galeria/foto-70.jpg"
+                  alt="Samuel García junto a María José Amador, Sara Avilés y Gilda Tinoco"
+                  width={1600}
+                  height={1066}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="rv mt-16 max-w-[760px]">
+              <p className="measure t-body text-body-on-navy">
+                Con esta iniciativa, <strong className="text-white font-semibold">Brand Lab</strong> busca impulsar una nueva forma de entender el branding en Nicaragua, promoviendo una visión donde la estrategia, el propósito y la experiencia del cliente sean los pilares para construir empresas más sólidas, competitivas y sostenibles.
+              </p>
+              <p className="mt-8 t-body text-body-on-navy">
+                Porque, al final, las marcas no venden. Significan.
+              </p>
             </div>
           </div>
         </section>
@@ -435,54 +404,6 @@ export function EventosClient() {
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="panel" aria-labelledby="h-panel" className="bg-abyss text-white">
-          <div className="mx-auto max-w-[1100px] gutter py-24">
-            <div className="rv max-w-[680px]">
-              <div className="t-label text-orange">
-                Panel de discusión
-              </div>
-              <h2 id="h-panel" className="mt-4 t-headline text-white">
-                Tres perspectivas. Una misma conversación.
-              </h2>
-              <p className="mt-[18px] max-w-[560px] t-body text-body-on-abyss">
-                Especialistas que conectaron la estrategia de marca con la realidad empresarial, moderados por Samuel García. Esta es la gente detrás de la conversación.
-              </p>
-            </div>
-            <div className="rv mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {panelPeople.map((person) => (
-                <div
-                  key={person.name}
-                  className={`overflow-hidden rounded-[20px] border bg-abyss-surface ${
-                    person.tag === "Modera" ? "border-orange/40" : "border-white/[0.08]"
-                  }`}
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-white">
-                    <Image
-                      src={person.photo}
-                      alt={person.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 260px"
-                      className="object-cover"
-                    />
-                    <span
-                      className={`absolute left-4 top-4 t-micro rounded-full px-3 py-1 ${
-                        person.tag === "Modera" ? "bg-orange text-abyss" : "bg-abyss/80 text-on-dark-strong backdrop-blur-sm"
-                      }`}
-                    >
-                      {person.tag}
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="t-title-sm text-white">{person.name}</h3>
-                    <p className="mt-1 t-meta text-sky">{person.role}</p>
-                    <p className="mt-3 t-body-sm text-body-on-abyss">{person.bio}</p>
-                  </div>
-                </div>
               ))}
             </div>
           </div>
