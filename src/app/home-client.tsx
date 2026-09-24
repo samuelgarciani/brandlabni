@@ -80,21 +80,6 @@ const heroSlides = [
     alignment: "left",
     overlay: "linear-gradient(90deg, rgba(9, 38, 60, 0.96) 0%, rgba(9, 38, 60, 0.65) 44%, rgba(9, 38, 60, 0.1) 70%)",
   },
-  {
-    eyebrow: "Conferencia",
-    eyebrowPromo: "Save the date · Septiembre 2026",
-    titleLines: ["Brand Lab", "Live"],
-    highlight: null,
-    body: "Las marcas no venden, significan.",
-    ctaLabel: "Descubre el evento",
-    ctaHref: "/eventos",
-    image: "/brand/hero/hero-evento.jpg",
-    imageAlt: "Brand Lab Live — evento en vivo",
-    imagePosition: "right center",
-    imagePositionMobile: "77% center",
-    alignment: "left",
-    overlay: "linear-gradient(90deg, rgba(9, 38, 60, 0.92) 0%, rgba(9, 38, 60, 0.55) 40%, rgba(9, 38, 60, 0) 60%)",
-  },
 ];
 
 const offerItems = [
@@ -247,13 +232,12 @@ const slideName = (slide: (typeof heroSlides)[number]) =>
 export function HomeClient() {
   const reducedMotion = useReducedMotion();
   const [heroIndex, setHeroIndex] = useState(0);
-  // The five slides are all stacked in the viewport, so mounting all five
-  // <Image>s means five full-bleed downloads racing the LCP one. Only the
-  // slides already seen — plus the next one, mounted a full 6s turn before it
-  // is needed — carry an image. The first paint pays for one.
+  // All slides are stacked in the viewport, so mounting every <Image> at once
+  // means several full-bleed downloads racing the LCP one. Only the slides
+  // already seen — plus the next one, mounted a full 6s turn before it is
+  // needed — carry an image. The first paint pays for one.
   const [mountedSlides, setMountedSlides] = useState(1);
   const [heroPaused, setHeroPaused] = useState(false);
-  const [bannerOpen, setBannerOpen] = useState(true);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   // Reduced motion pauses the carousel instead of silently disabling it, so the
@@ -325,47 +309,6 @@ export function HomeClient() {
       />
 
 
-      {bannerOpen ? (
-        <aside
-          aria-label="Anuncio: próximo evento"
-          className="relative overflow-hidden bg-navy text-white"
-        >
-          <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent,transparent_22px,rgba(142,202,230,0.06)_22px,rgba(142,202,230,0.06)_23px)]" />
-          <div className="relative mx-auto flex max-w-[1180px] flex-col items-start gap-4 gutter py-5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-6">
-            <div className="rv flex flex-1 flex-wrap items-center gap-[22px]">
-              <div>
-                <div className="mb-1.5 flex flex-wrap items-center gap-3">
-                  <span className="t-label text-sky">
-                    Próximo evento
-                  </span>
-                  <span className="rounded-full bg-yellow px-2.5 py-1 t-micro text-navy">
-                    Cupos limitados
-                  </span>
-                </div>
-                <p className="t-title-sm font-extrabold">Brand Lab Live · Las marcas no venden, significan</p>
-                <p className="mt-1 max-w-[640px] text-sm text-body-on-navy">19 de septiembre · DoubleTree by Hilton Managua · 9:00 a.m.</p>
-              </div>
-            </div>
-            <div className="flex w-full items-center justify-between gap-4 sm:w-auto sm:justify-start">
-              <a
-                href="/eventos"
-                className="btn btn-md btn-primary-on-light"
-              >
-                Ver el evento
-              </a>
-              <button
-                type="button"
-                onClick={() => setBannerOpen(false)}
-                aria-label="Cerrar anuncio"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
-              >
-                <Icon name="close" size={16} />
-              </button>
-            </div>
-          </div>
-        </aside>
-      ) : null}
-
       <main id="contenido" className="overflow-hidden">
         <section aria-labelledby="h-inicio" id="inicio" className="relative scroll-mt-[90px]">
           <h1 id="h-inicio" className="sr-only">Una marca fuerte no grita. Tiene significado.</h1>
@@ -419,11 +362,6 @@ export function HomeClient() {
                       <span className="inline-flex h-2 w-2 rounded-full bg-orange" />
                       {slide.eyebrow}
                     </div>
-                    {slide.eyebrowPromo ? (
-                      <div className="mt-4 inline-flex rounded-full border border-yellow/50 bg-navy-2/80 px-4 py-2 text-sm font-semibold text-on-dark-strong">
-                        {slide.eyebrowPromo}
-                      </div>
-                    ) : null}
                     <p className="rv t-display mt-5 text-white lg:mt-7">
                       {slide.titleLines.map((line) => (
                         <span key={line} className="block">
