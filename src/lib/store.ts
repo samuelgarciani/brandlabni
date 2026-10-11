@@ -17,15 +17,23 @@ const memoryLists = new Map<string, string[]>();
 export async function getCount(key: string): Promise<number> {
   if (hasKv) {
     const value = await kv.get<number>(key);
-    return value ?? 0;
+    return Math.max(0, value ?? 0);
   }
-  return memoryNumbers.get(key) ?? 0;
+  return Math.max(0, memoryNumbers.get(key) ?? 0);
 }
 
 export async function incrCount(key: string, delta: 1 | -1): Promise<number> {
   if (hasKv) {
     const value = await kv.incrby(key, delta);
-    return Math.max(0, value);
+    if (value < 0) {
+      // A like/unlike race (or an unlike with no matching like, e.g. from a
+      // stale tab) can push the stored value below zero. Floor it in KV
+      // itself, not just in the returned value, so the next plain GET
+      // doesn't read the negative number back out.
+      await kv.set(key, 0);
+      return 0;
+    }
+    return value;
   }
   const next = Math.max(0, (memoryNumbers.get(key) ?? 0) + delta);
   memoryNumbers.set(key, next);
