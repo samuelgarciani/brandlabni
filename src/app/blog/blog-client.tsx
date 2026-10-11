@@ -166,39 +166,71 @@ export function BlogClient() {
               </p>
             </div>
 
-            <div className="rv mt-14 flex flex-col">
-              {articles.map((article, index) => (
-                <button
-                  key={article.title}
-                  type="button"
-                  onClick={() => openArticle(index)}
-                  className="group flex w-full items-start gap-6 border-t border-white/[0.08] py-9 text-left first:border-t-0 sm:gap-8"
-                >
-                  <div className="relative hidden h-[96px] w-[132px] shrink-0 overflow-hidden rounded-[14px] bg-abyss-surface sm:block">
-                    <Image
-                      src={article.img}
-                      alt={article.title}
-                      fill
-                      sizes="132px"
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
+            <div className="rv mt-14">
+              <button
+                type="button"
+                onClick={() => openArticle(0)}
+                className="group block w-full overflow-hidden rounded-[22px] border border-white/[0.08] bg-abyss-surface text-left"
+              >
+                <div className="relative overflow-hidden bg-abyss" style={{ aspectRatio: "1920/711" }}>
+                  <Image
+                    src={articles[0].img}
+                    alt={articles[0].title}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 900px"
+                    className="object-cover transition duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="px-6 pt-7 pb-8 sm:px-10 sm:pt-9 sm:pb-10">
+                  <div className="flex flex-wrap items-center gap-3 t-meta text-muted-dark">
+                    <span className="tnum">{articles[0].date}</span>
+                    <span aria-hidden className="h-1 w-1 rounded-full bg-white/20" />
+                    <span className="text-sky">{articles[0].cat}</span>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-3 t-meta text-muted-dark">
-                      <span className="tnum">{article.date}</span>
-                      <span aria-hidden className="h-1 w-1 rounded-full bg-white/20" />
-                      <span className="text-sky">{article.cat}</span>
-                    </div>
-                    <h3 className="mt-2 t-title font-extrabold text-white transition-colors group-hover:text-orange">
-                      {article.title}
-                    </h3>
-                    <p className="mt-2 t-body-sm text-body-on-abyss">{article.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 t-meta font-bold text-orange">
-                      Leer completo <Icon name="arrow-right" size={14} />
-                    </span>
-                  </div>
-                </button>
-              ))}
+                  <h3 className="mt-3 t-title-lg font-extrabold text-white transition-colors group-hover:text-orange">
+                    {articles[0].title}
+                  </h3>
+                  <p className="mt-3 max-w-[620px] t-body text-body-on-abyss">{articles[0].excerpt}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 t-body-sm font-bold text-orange">
+                    Leer completo <Icon name="arrow-right" size={14} />
+                  </span>
+                </div>
+              </button>
+
+              <div className="mt-4 flex flex-col divide-y divide-white/[0.08] border-t border-white/[0.08]">
+                {articles.slice(1).map((article, i) => {
+                  const index = i + 1;
+                  return (
+                    <button
+                      key={article.title}
+                      type="button"
+                      onClick={() => openArticle(index)}
+                      className="group flex w-full items-start gap-5 py-7 text-left sm:gap-7"
+                    >
+                      <div className="relative h-[84px] w-[112px] shrink-0 overflow-hidden rounded-[12px] bg-abyss-surface sm:h-[100px] sm:w-[140px]">
+                        <Image
+                          src={article.img}
+                          alt={article.title}
+                          fill
+                          sizes="140px"
+                          className="object-cover transition duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-3 t-meta text-muted-dark">
+                          <span className="tnum">{article.date}</span>
+                          <span aria-hidden className="h-1 w-1 rounded-full bg-white/20" />
+                          <span className="text-sky">{article.cat}</span>
+                        </div>
+                        <h3 className="mt-2 t-title font-extrabold text-white transition-colors group-hover:text-orange">
+                          {article.title}
+                        </h3>
+                        <p className="mt-2 t-body-sm text-body-on-abyss">{article.excerpt}</p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
