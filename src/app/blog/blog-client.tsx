@@ -96,37 +96,15 @@ const articles = [
 
 const navLinks = [
   { label: "Blogspot", href: "#blogspot" },
-  { label: "News Letter", href: "#newsletter" },
   { label: "Galería de Eventos", href: "/eventos" },
   { label: "Volver al sitio", href: "/", back: true },
 ];
 
 export function BlogClient() {
-  const [subStatus, setSubStatus] = useState<"idle" | "sent" | "blocked">("idle");
-  const [submitting, setSubmitting] = useState(false);
-  const [waLink, setWaLink] = useState("");
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const openArticle = (index: number) => setOpenIdx(index);
   const closeArticle = () => setOpenIdx(null);
-
-  const onSubscribe = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (submitting) return;
-    setSubmitting(true);
-    const form = new FormData(event.currentTarget);
-    const nombre = form.get("nombre")?.toString() ?? "";
-    const correo = form.get("correo")?.toString() ?? "";
-    const msg = `Nueva suscripción al News Letter — Brand Lab\n\nNombre: ${nombre}\nCorreo: ${correo}`;
-    const link = `https://wa.me/50557400875?text=${encodeURIComponent(msg)}`;
-    setWaLink(link);
-    // Passing "noopener" makes window.open return null by spec, which used to be
-    // misread as a blocked popup. Open normally and drop the opener by hand.
-    const opened = window.open(link, "_blank");
-    if (opened) opened.opener = null;
-    setSubStatus(opened ? "sent" : "blocked");
-    setSubmitting(false);
-  };
 
   return (
     <div className="floor-dark overflow-x-hidden bg-abyss text-on-dark-soft">
@@ -138,7 +116,6 @@ export function BlogClient() {
       <SiteHeader
         homeHref="/"
         links={navLinks}
-        cta={{ label: "Suscribirme", href: "#newsletter" }}
         maxWidth={1100}
       />
 
@@ -160,7 +137,7 @@ export function BlogClient() {
                 Ideas que enseñan a construir marca
               </h1>
               <p className="rv mt-[22px] max-w-[520px] t-lead text-body-ink">
-                Artículos de marca, vivencias reales y educación para construir marcas con propósito y humanas. Análisis del mundo del branding y una carta semanal directa a tu correo.
+                Artículos de marca, vivencias reales y educación para construir marcas con propósito y humanas. Análisis del mundo del branding, directo desde el blog.
               </p>
               <div className="rv mt-[30px] flex flex-wrap gap-[14px]">
                 <a
@@ -168,12 +145,6 @@ export function BlogClient() {
                   className="btn btn-lg btn-primary-on-light"
                 >
                   Leer el Blogspot
-                </a>
-                <a
-                  href="#newsletter"
-                  className="btno inline-flex rounded-full border-[1.5px] border-navy/25 bg-transparent px-[30px] py-4 t-body font-semibold text-navy"
-                >
-                  Suscribirme al News Letter
                 </a>
               </div>
             </div>
@@ -195,7 +166,7 @@ export function BlogClient() {
               </p>
             </div>
             <div className="rv mt-12 grid gap-[26px] md:grid-cols-2">
-              {articles.slice(0, 4).map((article, index) => (
+              {articles.map((article, index) => (
                 <div key={article.title} className="art flex flex-col overflow-hidden rounded-[20px] border border-white/[0.08] bg-abyss-surface">
                   <div className="relative overflow-hidden bg-abyss" style={{ aspectRatio: "1920/711" }}>
                     <Image
@@ -227,101 +198,6 @@ export function BlogClient() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section aria-labelledby="h-newsletter" id="newsletter" className="scroll-mt-[70px] bg-navy">
-          <div className="mx-auto max-w-[1100px] gutter py-[92px] lg:grid lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-14">
-            <div className="rv">
-              <div className="t-label text-orange">
-                News Letter
-              </div>
-              <h2 id="h-newsletter" className="mt-4 t-headline text-white">
-                Una carta de marca, cada semana en tu correo
-              </h2>
-              <p className="mt-[18px] max-w-[560px] t-body text-body-on-navy">
-                Cada semana comparto una vivencia real, una lección de branding y una idea para construir tu marca con propósito. Sin relleno, sin spam — solo pensamiento estratégico y humano, directo a tu bandeja.
-              </p>
-              <div className="rv mt-[26px] rounded-2xl border border-white/[0.08] bg-abyss px-[26px] py-6">
-                <div className="mb-2 t-label text-sky">Edición reciente</div>
-                <h3 className="t-title font-extrabold text-white">El banco me dijo que me quería, y no me pudo ayudar cuando más lo necesité</h3>
-                <p className="mt-[10px] t-body-sm text-body-on-abyss">
-                  Una marca fuerte no compite por precio, compite por significado. El branding no es un departamento — es el alma de la empresa completa.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => openArticle(4)}
-                  className="navlink mt-2 inline-flex min-h-[44px] items-center t-meta font-bold text-orange"
-                >
-                  Leer completo <Icon name="arrow-right" size={14} />
-                </button>
-              </div>
-            </div>
-            <div className="rv mt-10 rounded-[22px] border border-white/10 bg-abyss-surface px-[34px] py-9 lg:mt-0">
-              {subStatus === "blocked" ? (
-                <div className="py-5 text-center">
-                  <div className="mx-auto mb-4 flex h-[58px] w-[58px] items-center justify-center rounded-full border-2 border-yellow t-title-lg text-yellow">
-                    !
-                  </div>
-                  <h3 className="t-title font-extrabold text-white">Tu navegador bloqueó WhatsApp</h3>
-                  <p className="mt-[10px] t-body-sm text-body-on-navy">
-                    Tus datos están listos, pero la ventana no se abrió. Toca el botón para enviarlos.
-                  </p>
-                  <a
-                    href={waLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-md btn-primary mt-6"
-                  >
-                    Abrir WhatsApp con mis datos
-                  </a>
-                </div>
-              ) : subStatus === "sent" ? (
-                <div className="text-center py-5">
-                  <div className="mx-auto mb-4 flex h-[58px] w-[58px] items-center justify-center rounded-full bg-orange text-abyss">
-                    <Icon name="check" size={25} />
-                  </div>
-                  <h3 className="t-title font-extrabold text-white">¡Casi listo!</h3>
-                  <p className="mt-[10px] t-body-sm text-body-on-navy">
-                    Abrimos WhatsApp con tus datos. Envía el mensaje y quedas suscrito a la próxima edición.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <div className="mb-1.5 t-label text-orange">
-                    Suscríbete gratis
-                  </div>
-                  <h3 className="t-title-lg text-white">Recíbelo cada semana</h3>
-                  <p className="mt-1 t-meta text-body-on-abyss">
-                    Déjanos tu nombre y correo, y confirmamos tu suscripción por WhatsApp.
-                  </p>
-                  <form onSubmit={onSubscribe} className="mt-[22px] flex flex-col gap-[14px]">
-                    <div>
-                      <label className="lbl" htmlFor="news-nombre">
-                        Nombre <span className="text-orange">*</span>
-                      </label>
-                      <input className="fld w-full" id="news-nombre" name="nombre" required autoComplete="name" maxLength={120} placeholder="Tu nombre" />
-                    </div>
-                    <div>
-                      <label className="lbl" htmlFor="news-correo">
-                        Correo electrónico <span className="text-orange">*</span>
-                      </label>
-                      <input className="fld w-full" id="news-correo" type="email" name="correo" required autoComplete="email" maxLength={160} placeholder="tucorreo@empresa.com" />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="btn btn-lg btn-primary w-full"
-                    >
-                      {submitting ? "Abriendo WhatsApp…" : "Suscribirme por WhatsApp"}
-                    </button>
-                    <p className="text-center t-meta text-muted-dark">
-                      Sin spam. Puedes darte de baja cuando quieras.
-                    </p>
-                  </form>
-                </>
-              )}
             </div>
           </div>
         </section>
