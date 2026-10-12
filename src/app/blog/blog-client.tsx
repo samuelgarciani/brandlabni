@@ -68,7 +68,7 @@ export function BlogClient() {
             className="object-cover object-right-center"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(233,236,239,.98)_0%,rgba(233,236,239,.86)_40%,rgba(233,236,239,.2)_66%,rgba(233,236,239,0)_80%)]" />
-          <div className="relative z-10 mx-auto flex min-h-[520px] max-w-[1100px] flex-col justify-center gutter py-[70px]">
+          <div className="relative z-10 mx-auto flex min-h-[420px] max-w-[1100px] flex-col justify-center gutter py-[50px] sm:min-h-[520px] sm:py-[70px]">
             <div className="max-w-[600px]">
               <div className="rv t-label text-orange-ink">Blog Brand</div>
               <h1 id="h-blog-hero" className="rv mt-4 t-display text-navy">
