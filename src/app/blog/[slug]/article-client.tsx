@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Comment } from "@/app/api/comments/[slug]/route";
-import { getAdjacentArticles, type Article } from "@/app/blog/articles";
+import { articles, type Article } from "@/app/blog/articles";
 import { Icon } from "@/components/icon";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ShareIcon } from "@/components/share-icon";
@@ -30,7 +30,7 @@ function relativeDate(ts: number) {
 }
 
 export function ArticleClient({ article }: { article: Article }) {
-  const { prev, next } = getAdjacentArticles(article.slug);
+  const moreArticles = articles.filter((item) => item.slug !== article.slug).slice(0, 3);
   const url = `${siteUrl}/blog/${article.slug}`;
 
   const [likeCount, setLikeCount] = useState<number | null>(null);
@@ -162,56 +162,45 @@ export function ArticleClient({ article }: { article: Article }) {
             Volver al blog
           </a>
 
-          <div className="text-center">
-            <div className="mt-6 t-label text-orange-ink">{article.cat}</div>
-            <h1 className="mt-3 t-display text-navy">{article.title}</h1>
+          <div className="mt-6 t-label text-orange-ink">{article.cat}</div>
+          <h1 className="mt-3 t-display text-navy">{article.title}</h1>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Image
-                src="/brand/panel/samuel.jpg"
-                alt="Samuel García"
-                width={40}
-                height={40}
-                className="h-10 w-10 rounded-full object-cover"
-              />
-              <div className="t-body-sm text-body-muted">
-                por <span className="font-bold text-navy">Samuel García</span>
-                <span className="mx-2">·</span>
-                <span className="tnum">{article.date}</span>
-                <span className="mx-2">·</span>
-                <span>{article.readMinutes} min de lectura</span>
-              </div>
-            </div>
-
-            <div className="mt-7 flex flex-col items-center gap-3">
-              <span className="t-meta font-semibold text-body-muted">Si te gusta, compártelo:</span>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
-                  <ShareIcon platform="facebook" />
-                </a>
-                <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
-                  <ShareIcon platform="linkedin" />
-                </a>
-                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
-                  <ShareIcon platform="whatsapp" />
-                </a>
-                <button type="button" onClick={shareInstagram} aria-label="Compartir en Instagram">
-                  <ShareIcon platform="instagram" />
-                </button>
-                <button
-                  type="button"
-                  onClick={copyLink}
-                  aria-label="Copiar enlace"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-body-ink"
-                >
-                  <Icon name="link" size={16} />
-                </button>
-              </div>
-              {copied ? <span className="t-meta text-orange-ink">¡Copiado!</span> : null}
-            </div>
+          <div className="mt-4 flex flex-wrap items-center gap-2 t-body-sm text-body-muted">
+            <span>
+              Por <span className="font-bold text-navy">Samuel García</span>
+            </span>
+            <span aria-hidden>·</span>
+            <span className="tnum">{article.date}</span>
+            <span aria-hidden>·</span>
+            <span>{article.readMinutes} min de lectura</span>
           </div>
 
-          <div className="relative mt-8 overflow-hidden rounded-[18px] bg-mist" style={{ aspectRatio: "4/3" }}>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <span className="t-meta font-semibold text-body-muted">Compártelo:</span>
+            <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
+              <ShareIcon platform="facebook" size={34} />
+            </a>
+            <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
+              <ShareIcon platform="linkedin" size={34} />
+            </a>
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
+              <ShareIcon platform="whatsapp" size={34} />
+            </a>
+            <button type="button" onClick={shareInstagram} aria-label="Compartir en Instagram">
+              <ShareIcon platform="instagram" size={34} />
+            </button>
+            <button
+              type="button"
+              onClick={copyLink}
+              aria-label="Copiar enlace"
+              className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-ink/15 text-body-ink"
+            >
+              <Icon name="link" size={15} />
+            </button>
+            {copied ? <span className="t-meta text-orange-ink">¡Copiado!</span> : null}
+          </div>
+
+          <div className="relative mt-7 overflow-hidden rounded-[14px] bg-mist" style={{ aspectRatio: "16/9" }}>
             <Image
               src={article.img}
               alt={article.title}
@@ -223,10 +212,21 @@ export function ArticleClient({ article }: { article: Article }) {
             />
           </div>
 
-          <div className="mt-9 flex flex-col gap-5 t-body text-body-ink">
-            {article.body.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-            ))}
+          <p className="mt-7 t-lead text-navy">{article.excerpt}</p>
+
+          <div className="mt-6 flex flex-col gap-5 t-body text-body-ink">
+            {article.body.map((paragraph) =>
+              paragraph.length < 110 ? (
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="border-l-[3px] border-orange py-1 pl-5 t-title-sm font-semibold italic text-navy"
+                >
+                  {paragraph}
+                </p>
+              ) : (
+                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+              )
+            )}
           </div>
 
           <div className="mt-9 flex items-center gap-4">
@@ -287,32 +287,26 @@ export function ArticleClient({ article }: { article: Article }) {
             </div>
           </div>
 
-          {(prev || next) && (
-            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {prev ? (
-                <a
-                  href={`/blog/${prev.slug}`}
-                  className="rounded-[14px] border border-ink/10 bg-white p-5 transition-colors hover:border-orange/40"
-                >
-                  <div className="t-meta text-body-muted">← Más antiguo</div>
-                  <div className="mt-1 t-body-sm font-bold text-navy">{prev.title}</div>
-                </a>
-              ) : (
-                <span />
-              )}
-              {next ? (
-                <a
-                  href={`/blog/${next.slug}`}
-                  className="rounded-[14px] border border-ink/10 bg-white p-5 text-right transition-colors hover:border-orange/40"
-                >
-                  <div className="t-meta text-body-muted">Más reciente →</div>
-                  <div className="mt-1 t-body-sm font-bold text-navy">{next.title}</div>
-                </a>
-              ) : (
-                <span />
-              )}
+          {moreArticles.length > 0 ? (
+            <div className="mt-14 border-t border-ink/10 pt-8">
+              <h2 className="t-title-sm text-navy">Más artículos</h2>
+              <div className="mt-5 flex flex-col gap-5">
+                {moreArticles.map((item) => (
+                  <a
+                    key={item.slug}
+                    href={`/blog/${item.slug}`}
+                    className="group block rounded-[14px] border border-ink/10 bg-white p-5 transition-colors hover:border-orange/40"
+                  >
+                    <div className="t-meta tnum text-body-muted">{item.date}</div>
+                    <div className="mt-1 t-body-sm font-bold text-navy transition-colors group-hover:text-orange-ink">
+                      {item.title}
+                    </div>
+                    <p className="mt-1 t-body-sm text-body-muted">{item.excerpt}</p>
+                  </a>
+                ))}
+              </div>
             </div>
-          )}
+          ) : null}
 
           <div className="mt-14">
             <h2 className="t-title-sm text-navy">
