@@ -103,12 +103,12 @@ export function BlogClient() {
               </p>
             </div>
 
-            <div className="rv mt-12 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {articles.map((article) => (
                 <a
                   key={article.slug}
                   href={`/blog/${article.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-[18px] border border-ink/10 bg-white shadow-[0_18px_40px_-30px_rgba(2,34,47,0.35)] transition-shadow hover:shadow-[0_24px_50px_-26px_rgba(2,34,47,0.45)]"
+                  className="rv group flex flex-col overflow-hidden rounded-[18px] border border-ink/10 bg-white shadow-[0_18px_40px_-30px_rgba(2,34,47,0.35)] transition-shadow hover:shadow-[0_24px_50px_-26px_rgba(2,34,47,0.45)]"
                 >
                   <div className="relative overflow-hidden bg-mist" style={{ aspectRatio: "4/3" }}>
                     <Image
