@@ -136,6 +136,7 @@ export function EventosClient() {
             alt=""
             fill
             sizes="100vw"
+            quality={90}
             className="object-cover object-center"
             preload
           />
@@ -188,6 +189,7 @@ export function EventosClient() {
             alt=""
             fill
             sizes="100vw"
+            quality={90}
             className="object-cover object-center"
           />
         </section>
@@ -312,6 +314,7 @@ export function EventosClient() {
                 alt="Vista general del escenario durante la conferencia de Brand Lab Live"
                 width={1600}
                 height={1066}
+                quality={90}
                 className="h-auto w-full object-cover"
               />
             </div>
@@ -331,6 +334,7 @@ export function EventosClient() {
                   alt="Samuel García presentando la conferencia Las marcas no venden, significan"
                   width={1600}
                   height={1066}
+                  quality={90}
                   className="h-auto w-full object-cover"
                 />
               </div>
@@ -343,6 +347,7 @@ export function EventosClient() {
                   alt="Sara Avilés y Gilda Tinoco durante el conversatorio estratégico"
                   width={1600}
                   height={1066}
+                  quality={90}
                   className="h-auto w-full object-cover"
                 />
               </div>
@@ -374,6 +379,7 @@ export function EventosClient() {
                   alt="Samuel García junto a María José Amador, Sara Avilés y Gilda Tinoco"
                   width={1600}
                   height={1066}
+                  quality={90}
                   className="h-auto w-full object-cover"
                 />
               </div>
@@ -509,6 +515,7 @@ export function EventosClient() {
                 alt={galleryPhotos[lightbox].alt}
                 fill
                 sizes="900px"
+                quality={92}
                 className="object-contain"
               />
             </div>

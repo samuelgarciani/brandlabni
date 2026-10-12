@@ -55,6 +55,7 @@ export function BlogClient() {
             alt="Samuel García"
             fill
             sizes="100vw"
+            quality={90}
             preload
             className="object-cover object-right-center"
           />
@@ -87,10 +88,10 @@ export function BlogClient() {
                 Blogspot
               </div>
               <h2 id="h-blogspot" className="mt-4 t-headline text-navy">
-                Lo que voy aprendiendo de marca, semana a semana
+                Historias de marca que vale la pena contar
               </h2>
               <p className="mt-4 measure t-body text-body-muted">
-                Notas y vivencias reales que comparto cada semana — de la entrada más reciente a la más antigua.
+                Cada semana comparto una vivencia real — la mía, o la de una marca nacional o internacional — para entender, juntos, qué hace que una marca se gane un lugar en la vida de las personas. No es una clase. Es una invitación a leer, a reconocerte en la historia, y a mirar tu propia marca distinto.
               </p>
             </div>
 
@@ -107,6 +108,7 @@ export function BlogClient() {
                       alt={article.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                      quality={90}
                       className="object-cover transition duration-300 group-hover:scale-105"
                     />
                   </div>
