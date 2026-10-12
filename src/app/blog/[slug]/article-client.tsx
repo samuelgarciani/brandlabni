@@ -153,39 +153,39 @@ export function ArticleClient({ article }: { article: Article }) {
       <a href="#contenido" className="skip-link">
         Saltar al contenido
       </a>
-      <SiteHeader tone="paper" homeHref="/" links={navLinks} maxWidth={1040} />
+      <SiteHeader tone="paper" homeHref="/" links={navLinks} maxWidth={780} />
 
       <main id="contenido">
-        <article className="mx-auto max-w-[1040px] gutter py-[52px] sm:py-[72px]">
+        <article className="mx-auto max-w-[720px] gutter py-[52px] sm:py-[72px]">
           <a href="/blog" className="navlink inline-flex items-center gap-2 t-meta font-semibold text-orange-ink">
             <Icon name="arrow-left" size={14} />
             Volver al blog
           </a>
 
-          <div className="lg:grid lg:grid-cols-[1fr_170px] lg:items-start lg:gap-14">
-            <div className="max-w-[760px]">
-              <div className="mt-6 t-label text-orange-ink">{article.cat}</div>
-              <h1 className="mt-3 t-display text-navy">{article.title}</h1>
+          <div className="text-center">
+            <div className="mt-6 t-label text-orange-ink">{article.cat}</div>
+            <h1 className="mt-3 t-display text-navy">{article.title}</h1>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <Image
-                  src="/brand/panel/samuel.jpg"
-                  alt="Samuel García"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 rounded-full object-cover"
-                />
-                <div className="t-body-sm text-body-muted">
-                  <span className="font-bold text-navy">Samuel García</span>
-                  <span className="mx-2">·</span>
-                  <span className="tnum">{article.date}</span>
-                  <span className="mx-2">·</span>
-                  <span>{article.readMinutes} min de lectura</span>
-                </div>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Image
+                src="/brand/panel/samuel.jpg"
+                alt="Samuel García"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full object-cover"
+              />
+              <div className="t-body-sm text-body-muted">
+                por <span className="font-bold text-navy">Samuel García</span>
+                <span className="mx-2">·</span>
+                <span className="tnum">{article.date}</span>
+                <span className="mx-2">·</span>
+                <span>{article.readMinutes} min de lectura</span>
               </div>
+            </div>
 
-              <div className="mt-7 flex flex-wrap items-center gap-4 border-y border-ink/10 py-4 lg:hidden">
-                <span className="t-meta font-semibold text-body-muted">Compártelo:</span>
+            <div className="mt-7 flex flex-col items-center gap-3">
+              <span className="t-meta font-semibold text-body-muted">Si te gusta, compártelo:</span>
+              <div className="flex flex-wrap items-center justify-center gap-4">
                 <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
                   <ShareIcon platform="facebook" />
                 </a>
@@ -201,32 +201,35 @@ export function ArticleClient({ article }: { article: Article }) {
                 <button
                   type="button"
                   onClick={copyLink}
-                  className="ml-auto inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 t-meta font-semibold text-body-ink"
+                  aria-label="Copiar enlace"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-body-ink"
                 >
-                  <Icon name="link" size={14} />
-                  {copied ? "¡Copiado!" : "Copiar enlace"}
+                  <Icon name="link" size={16} />
                 </button>
               </div>
+              {copied ? <span className="t-meta text-orange-ink">¡Copiado!</span> : null}
+            </div>
+          </div>
 
-              <div className="relative mt-8 overflow-hidden rounded-[18px] bg-mist" style={{ aspectRatio: "4/3" }}>
-                <Image
-                  src={article.img}
-                  alt={article.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 760px"
-                  quality={92}
-                  className="object-cover"
-                  priority
-                />
-              </div>
+          <div className="relative mt-8 overflow-hidden rounded-[18px] bg-mist" style={{ aspectRatio: "4/3" }}>
+            <Image
+              src={article.img}
+              alt={article.title}
+              fill
+              sizes="(max-width: 720px) 100vw, 720px"
+              quality={92}
+              className="object-cover"
+              priority
+            />
+          </div>
 
-              <div className="mt-9 flex flex-col gap-5 t-body text-body-ink">
-                {article.body.map((paragraph) => (
-                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-                ))}
-              </div>
+          <div className="mt-9 flex flex-col gap-5 t-body text-body-ink">
+            {article.body.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
 
-              <div className="mt-9 flex items-center gap-4">
+          <div className="mt-9 flex items-center gap-4">
             <button
               type="button"
               onClick={toggleLike}
@@ -364,38 +367,11 @@ export function ArticleClient({ article }: { article: Article }) {
               )}
             </div>
           </div>
-            </div>
-
-            <aside className="hidden lg:sticky lg:top-24 lg:flex lg:flex-col lg:items-center lg:gap-5 lg:self-start">
-              <span className="t-meta font-semibold text-body-muted">Compártelo</span>
-              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
-                <ShareIcon platform="facebook" />
-              </a>
-              <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
-                <ShareIcon platform="linkedin" />
-              </a>
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
-                <ShareIcon platform="whatsapp" />
-              </a>
-              <button type="button" onClick={shareInstagram} aria-label="Compartir en Instagram">
-                <ShareIcon platform="instagram" />
-              </button>
-              <button
-                type="button"
-                onClick={copyLink}
-                aria-label="Copiar enlace"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-body-ink"
-              >
-                <Icon name="link" size={16} />
-              </button>
-              {copied ? <span className="t-meta text-orange-ink">¡Copiado!</span> : null}
-            </aside>
-          </div>
         </article>
       </main>
 
       <SiteFooter
-        maxWidth={1040}
+        maxWidth={780}
         trailing={
           <a className="navlink inline-flex min-h-[44px] items-center gap-2" href="/">
             <Icon name="arrow-left" size={14} />

@@ -117,13 +117,16 @@ export function BlogClient() {
                       <Image
                         src="/brand/panel/samuel.jpg"
                         alt=""
-                        width={26}
-                        height={26}
-                        className="h-[26px] w-[26px] rounded-full object-cover"
+                        width={30}
+                        height={30}
+                        className="h-[30px] w-[30px] rounded-full object-cover"
                       />
-                      <span className="t-meta tnum text-body-muted">
-                        {article.date} · {article.readMinutes} min
-                      </span>
+                      <div className="leading-tight">
+                        <div className="t-meta font-bold text-navy">Samuel García</div>
+                        <div className="t-meta tnum text-body-muted">
+                          {article.date} · {article.readMinutes} min
+                        </div>
+                      </div>
                     </div>
                     <h3 className="mt-3 t-title-sm font-extrabold text-navy transition-colors group-hover:text-orange-ink">
                       {article.title}
