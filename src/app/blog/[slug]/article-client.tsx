@@ -153,219 +153,227 @@ export function ArticleClient({ article }: { article: Article }) {
       <a href="#contenido" className="skip-link">
         Saltar al contenido
       </a>
-      <SiteHeader tone="paper" homeHref="/" links={navLinks} maxWidth={780} />
+      <SiteHeader tone="paper" homeHref="/" links={navLinks} maxWidth={1100} />
 
       <main id="contenido">
-        <article className="mx-auto max-w-[720px] gutter py-[52px] sm:py-[72px]">
+        <article className="mx-auto max-w-[1100px] gutter py-[52px] sm:py-[72px]">
           <a href="/blog" className="navlink inline-flex items-center gap-2 t-meta font-semibold text-orange-ink">
             <Icon name="arrow-left" size={14} />
             Volver al blog
           </a>
 
-          <div className="mt-6 t-label text-orange-ink">{article.cat}</div>
-          <h1 className="mt-3 t-display text-navy">{article.title}</h1>
+          <h1 className="mt-6 t-display text-navy">{article.title}</h1>
+          <div aria-hidden className="mt-4 h-[3px] w-12 rounded-full bg-orange" />
 
           <div className="mt-4 flex flex-wrap items-center gap-2 t-body-sm text-body-muted">
-            <span>
-              Por <span className="font-bold text-navy">Samuel García</span>
-            </span>
-            <span aria-hidden>·</span>
+            <span className="font-semibold text-navy">Blog Brand</span>
+            <span aria-hidden>-</span>
             <span className="tnum">{article.date}</span>
-            <span aria-hidden>·</span>
-            <span>{article.readMinutes} min de lectura</span>
+            <span aria-hidden className="h-1 w-1 rounded-full bg-body-muted/50" />
+            <span className="t-meta font-bold text-blue-ink">{article.cat.toUpperCase()}</span>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <span className="t-meta font-semibold text-body-muted">Compártelo:</span>
-            <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
-              <ShareIcon platform="facebook" size={34} />
-            </a>
-            <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
-              <ShareIcon platform="linkedin" size={34} />
-            </a>
-            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
-              <ShareIcon platform="whatsapp" size={34} />
-            </a>
-            <button type="button" onClick={shareInstagram} aria-label="Compartir en Instagram">
-              <ShareIcon platform="instagram" size={34} />
-            </button>
-            <button
-              type="button"
-              onClick={copyLink}
-              aria-label="Copiar enlace"
-              className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-ink/15 text-body-ink"
-            >
-              <Icon name="link" size={15} />
-            </button>
-            {copied ? <span className="t-meta text-orange-ink">¡Copiado!</span> : null}
+          <div className="mt-5 border-t border-ink/10" />
+
+          <div className="flex flex-wrap items-center justify-between gap-4 py-4">
+            <span className="t-body-sm tnum text-body-muted">{article.date}</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
+                <ShareIcon platform="facebook" size={36} />
+              </a>
+              <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
+                <ShareIcon platform="linkedin" size={36} />
+              </a>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
+                <ShareIcon platform="whatsapp" size={36} />
+              </a>
+              <button type="button" onClick={shareInstagram} aria-label="Compartir en Instagram">
+                <ShareIcon platform="instagram" size={36} />
+              </button>
+              <button
+                type="button"
+                onClick={copyLink}
+                aria-label="Copiar enlace"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-body-ink"
+              >
+                <Icon name="link" size={15} />
+              </button>
+              {copied ? <span className="t-meta text-orange-ink">¡Copiado!</span> : null}
+            </div>
           </div>
 
-          <div className="relative mt-7 overflow-hidden rounded-[14px] bg-mist" style={{ aspectRatio: "16/9" }}>
-            <Image
-              src={article.img}
-              alt={article.title}
-              fill
-              sizes="(max-width: 720px) 100vw, 720px"
-              quality={92}
-              className="object-cover"
-              priority
-            />
-          </div>
+          <div className="border-t border-ink/10" />
 
-          <p className="mt-7 t-lead text-navy">{article.excerpt}</p>
+          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_320px] lg:items-start">
+            <div className="min-w-0">
+              <div className="relative overflow-hidden rounded-[14px] bg-mist" style={{ aspectRatio: "16/9" }}>
+                <Image
+                  src={article.img}
+                  alt={article.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 740px"
+                  quality={92}
+                  className="object-cover"
+                  priority
+                />
+              </div>
 
-          <div className="mt-6 flex flex-col gap-5 t-body text-body-ink">
-            {article.body.map((paragraph) =>
-              paragraph.length < 110 ? (
-                <p
-                  key={paragraph.slice(0, 40)}
-                  className="border-l-[3px] border-orange py-1 pl-5 t-title-sm font-semibold italic text-navy"
+              <p className="mt-7 t-lead text-navy">{article.excerpt}</p>
+
+              <div className="mt-6 flex flex-col gap-5 t-body text-body-ink">
+                {article.body.map((paragraph) =>
+                  paragraph.length < 110 ? (
+                    <p
+                      key={paragraph.slice(0, 40)}
+                      className="border-l-[3px] border-orange py-1 pl-5 t-title-sm font-semibold italic text-navy"
+                    >
+                      {paragraph}
+                    </p>
+                  ) : (
+                    <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                  )
+                )}
+              </div>
+
+              <div className="mt-9 flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={toggleLike}
+                  className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 t-body-sm font-semibold text-body-ink transition-colors hover:border-orange/40"
                 >
-                  {paragraph}
-                </p>
-              ) : (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-              )
-            )}
-          </div>
+                  <Icon
+                    name="heart"
+                    size={18}
+                    className={liked ? "text-orange [&>path]:fill-orange" : "text-body-muted"}
+                  />
+                  Me gusta
+                  <span className="tnum text-body-muted">{likeCount ?? "···"}</span>
+                </button>
+                <span className="inline-flex items-center gap-2 t-body-sm text-body-muted">
+                  <Icon name="comment" size={16} />
+                  {comments ? comments.length : "···"} comentarios
+                </span>
+              </div>
 
-          <div className="mt-9 flex items-center gap-4">
-            <button
-              type="button"
-              onClick={toggleLike}
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 t-body-sm font-semibold text-body-ink transition-colors hover:border-orange/40"
-            >
-              <Icon
-                name="heart"
-                size={18}
-                className={liked ? "text-orange [&>path]:fill-orange" : "text-body-muted"}
-              />
-              Me gusta
-              <span className="tnum text-body-muted">{likeCount ?? "···"}</span>
-            </button>
-            <span className="inline-flex items-center gap-2 t-body-sm text-body-muted">
-              <Icon name="comment" size={16} />
-              {comments ? comments.length : "···"} comentarios
-            </span>
-          </div>
+              <div className="mt-12 rounded-[20px] border border-ink/10 bg-white p-7 sm:p-9">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                  <Image
+                    src="/brand/panel/samuel.jpg"
+                    alt="Samuel García"
+                    width={76}
+                    height={76}
+                    className="h-[76px] w-[76px] shrink-0 rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="t-title-sm text-navy">Samuel García</div>
+                    <p className="mt-1 t-body-sm text-body-muted">
+                      Consultor en branding y estrategia de marca. Fundador de Brand Lab — ayudo a empresas y
+                      emprendedores a construir marcas con propósito, diferenciación y significado.
+                    </p>
+                    <p className="mt-3 t-body-sm font-extrabold italic text-orange-ink">We don&apos;t sell, we mean! — Samu</p>
+                    <div className="mt-4 flex flex-wrap items-center gap-4">
+                      <a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <ShareIcon platform="instagram" size={34} />
+                      </a>
+                      <a href={contact.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <ShareIcon platform="facebook" size={34} />
+                      </a>
+                      <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <ShareIcon platform="linkedin" size={34} />
+                      </a>
+                      <a
+                        href={`mailto:${contact.email}`}
+                        className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 t-meta font-semibold text-body-ink"
+                      >
+                        <Icon name="mail" size={14} />
+                        Escríbeme
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <div className="mt-12 rounded-[20px] border border-ink/10 bg-white p-7 sm:p-9">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-              <Image
-                src="/brand/panel/samuel.jpg"
-                alt="Samuel García"
-                width={76}
-                height={76}
-                className="h-[76px] w-[76px] shrink-0 rounded-full object-cover"
-              />
-              <div>
-                <div className="t-title-sm text-navy">Samuel García</div>
-                <p className="mt-1 t-body-sm text-body-muted">
-                  Consultor en branding y estrategia de marca. Fundador de Brand Lab — ayudo a empresas y
-                  emprendedores a construir marcas con propósito, diferenciación y significado.
-                </p>
-                <p className="mt-3 t-body-sm font-extrabold italic text-orange-ink">We don&apos;t sell, we mean! — Samu</p>
-                <div className="mt-4 flex flex-wrap items-center gap-4">
-                  <a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <ShareIcon platform="instagram" size={34} />
-                  </a>
-                  <a href={contact.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <ShareIcon platform="facebook" size={34} />
-                  </a>
-                  <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <ShareIcon platform="linkedin" size={34} />
-                  </a>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 t-meta font-semibold text-body-ink"
+              <div className="mt-14">
+                <h2 className="t-title-sm text-navy">
+                  {comments ? comments.length : "···"} comentarios
+                </h2>
+
+                <form onSubmit={submitComment} className="mt-5 rounded-[16px] border border-ink/10 bg-white p-5">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <input
+                      value={commentName}
+                      onChange={(event) => setCommentName(event.target.value)}
+                      placeholder="Tu nombre"
+                      maxLength={60}
+                      className="fld w-full"
+                      aria-label="Tu nombre"
+                    />
+                  </div>
+                  <textarea
+                    value={commentMessage}
+                    onChange={(event) => setCommentMessage(event.target.value)}
+                    placeholder="Escribe tu comentario…"
+                    maxLength={600}
+                    rows={3}
+                    className="fld mt-3 w-full resize-none"
+                    aria-label="Tu comentario"
+                  />
+                  {commentError ? <p className="mt-2 t-meta text-orange-ink">{commentError}</p> : null}
+                  <button
+                    type="submit"
+                    disabled={submittingComment}
+                    className="btn btn-sm btn-navy mt-3"
                   >
-                    <Icon name="mail" size={14} />
-                    Escríbeme
-                  </a>
+                    {submittingComment ? "Publicando…" : "Comentar"}
+                  </button>
+                </form>
+
+                <div className="mt-6 flex flex-col gap-5">
+                  {comments === null ? (
+                    <p className="t-body-sm text-body-muted">Cargando comentarios…</p>
+                  ) : comments.length === 0 ? (
+                    <p className="t-body-sm text-body-muted">Sé la primera persona en comentar.</p>
+                  ) : (
+                    comments.map((comment) => (
+                      <div key={`${comment.ts}-${comment.name}`} className="border-t border-ink/10 pt-5 first:border-t-0 first:pt-0">
+                        <div className="flex items-center gap-2">
+                          <span className="t-body-sm font-bold text-navy">{comment.name}</span>
+                          <span className="t-meta text-body-muted">{relativeDate(comment.ts)}</span>
+                        </div>
+                        <p className="mt-1 t-body-sm text-body-ink">{comment.message}</p>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>
-          </div>
 
-          {moreArticles.length > 0 ? (
-            <div className="mt-14 border-t border-ink/10 pt-8">
-              <h2 className="t-title-sm text-navy">Más artículos</h2>
-              <div className="mt-5 flex flex-col gap-5">
-                {moreArticles.map((item) => (
-                  <a
-                    key={item.slug}
-                    href={`/blog/${item.slug}`}
-                    className="group block rounded-[14px] border border-ink/10 bg-white p-5 transition-colors hover:border-orange/40"
-                  >
-                    <div className="t-meta tnum text-body-muted">{item.date}</div>
-                    <div className="mt-1 t-body-sm font-bold text-navy transition-colors group-hover:text-orange-ink">
-                      {item.title}
-                    </div>
-                    <p className="mt-1 t-body-sm text-body-muted">{item.excerpt}</p>
-                  </a>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          <div className="mt-14">
-            <h2 className="t-title-sm text-navy">
-              {comments ? comments.length : "···"} comentarios
-            </h2>
-
-            <form onSubmit={submitComment} className="mt-5 rounded-[16px] border border-ink/10 bg-white p-5">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <input
-                  value={commentName}
-                  onChange={(event) => setCommentName(event.target.value)}
-                  placeholder="Tu nombre"
-                  maxLength={60}
-                  className="fld w-full"
-                  aria-label="Tu nombre"
-                />
-              </div>
-              <textarea
-                value={commentMessage}
-                onChange={(event) => setCommentMessage(event.target.value)}
-                placeholder="Escribe tu comentario…"
-                maxLength={600}
-                rows={3}
-                className="fld mt-3 w-full resize-none"
-                aria-label="Tu comentario"
-              />
-              {commentError ? <p className="mt-2 t-meta text-orange-ink">{commentError}</p> : null}
-              <button
-                type="submit"
-                disabled={submittingComment}
-                className="btn btn-sm btn-navy mt-3"
-              >
-                {submittingComment ? "Publicando…" : "Comentar"}
-              </button>
-            </form>
-
-            <div className="mt-6 flex flex-col gap-5">
-              {comments === null ? (
-                <p className="t-body-sm text-body-muted">Cargando comentarios…</p>
-              ) : comments.length === 0 ? (
-                <p className="t-body-sm text-body-muted">Sé la primera persona en comentar.</p>
-              ) : (
-                comments.map((comment) => (
-                  <div key={`${comment.ts}-${comment.name}`} className="border-t border-ink/10 pt-5 first:border-t-0 first:pt-0">
-                    <div className="flex items-center gap-2">
-                      <span className="t-body-sm font-bold text-navy">{comment.name}</span>
-                      <span className="t-meta text-body-muted">{relativeDate(comment.ts)}</span>
-                    </div>
-                    <p className="mt-1 t-body-sm text-body-ink">{comment.message}</p>
-                  </div>
-                ))
-              )}
-            </div>
+            {moreArticles.length > 0 ? (
+              <aside className="lg:sticky lg:top-24">
+                <h2 className="t-title-sm text-navy">Últimas Noticias</h2>
+                <div className="mt-5 flex flex-col gap-5">
+                  {moreArticles.map((item) => (
+                    <a key={item.slug} href={`/blog/${item.slug}`} className="group flex items-start gap-3">
+                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-[10px] bg-mist">
+                        <Image src={item.img} alt={item.title} fill sizes="64px" className="object-cover" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="t-body-sm font-bold text-navy transition-colors group-hover:text-orange-ink">
+                          {item.title}
+                        </div>
+                        <p className="mt-1 t-meta text-body-muted">{item.excerpt}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </aside>
+            ) : null}
           </div>
         </article>
       </main>
 
       <SiteFooter
-        maxWidth={780}
+        maxWidth={1100}
         trailing={
           <a className="navlink inline-flex min-h-[44px] items-center gap-2" href="/">
             <Icon name="arrow-left" size={14} />
