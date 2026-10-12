@@ -24,6 +24,14 @@ function splitLeadIn(text: string): [string, string] {
   return [match[1], ` ${match[2]}`];
 }
 
+/** Renders `**term**` markup as bold — used to surface each post's SEO focus terms in the running text. */
+function renderInline(text: string) {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, index) =>
+    index % 2 === 1 ? <strong key={index} className="text-navy">{part}</strong> : part
+  );
+}
+
 function relativeDate(ts: number) {
   const diffMs = Date.now() - ts;
   const minutes = Math.floor(diffMs / 60000);
@@ -175,15 +183,23 @@ export function ArticleClient({ article }: { article: Article }) {
           <div className="mt-4 flex flex-wrap items-center gap-2 t-body-sm text-body-muted">
             <span className="font-semibold text-navy">Blog Brand</span>
             <span aria-hidden>-</span>
-            <span className="tnum">{article.date}</span>
+            <time className="tnum" dateTime={article.dateISO}>{article.date}</time>
             <span aria-hidden className="h-1 w-1 rounded-full bg-body-muted/50" />
             <span className="t-meta font-bold text-blue-ink">{article.cat.toUpperCase()}</span>
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {article.keywords.map((keyword) => (
+              <span key={keyword} className="rounded-full border border-blue-ink/25 px-3 py-1 t-meta text-blue-ink">
+                {keyword}
+              </span>
+            ))}
           </div>
 
           <div className="mt-5 border-t border-ink/10" />
 
           <div className="flex flex-wrap items-center justify-between gap-4 py-4">
-            <span className="t-body-sm tnum text-body-muted">{article.date}</span>
+            <time className="t-body-sm tnum text-body-muted" dateTime={article.dateISO}>{article.date}</time>
             <div className="flex flex-wrap items-center gap-3">
               <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
                 <ShareIcon platform="facebook" size={36} />
@@ -225,7 +241,7 @@ export function ArticleClient({ article }: { article: Article }) {
                 />
               </div>
 
-              <p className="mt-7 t-lead text-navy">{article.excerpt}</p>
+              <p className="mt-7 t-lead text-navy">{renderInline(article.excerpt)}</p>
 
               <div className="mt-6 flex flex-col gap-5 t-body text-body-ink">
                 {article.body.map((block, index) => {
@@ -240,7 +256,7 @@ export function ArticleClient({ article }: { article: Article }) {
                   if (block.type === "quote") {
                     return (
                       <p key={key} className="border-l-[3px] border-orange py-1 pl-5 t-title-sm font-semibold italic text-navy">
-                        {block.text}
+                        {renderInline(block.text)}
                       </p>
                     );
                   }
@@ -255,7 +271,7 @@ export function ArticleClient({ article }: { article: Article }) {
                               <span aria-hidden className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
                               <span>
                                 <strong className="text-navy">{lead}</strong>
-                                {rest}
+                                {renderInline(rest)}
                               </span>
                             </li>
                           );
@@ -291,7 +307,7 @@ export function ArticleClient({ article }: { article: Article }) {
                       </div>
                     );
                   }
-                  return <p key={key}>{block.text}</p>;
+                  return <p key={key}>{renderInline(block.text)}</p>;
                 })}
               </div>
 
@@ -421,7 +437,7 @@ export function ArticleClient({ article }: { article: Article }) {
                         <div className="t-body-sm font-bold text-navy transition-colors group-hover:text-orange-ink">
                           {item.title}
                         </div>
-                        <p className="mt-1 t-meta text-body-muted">{item.excerpt}</p>
+                        <p className="mt-1 t-meta text-body-muted">{renderInline(item.excerpt)}</p>
                       </div>
                     </a>
                   ))}

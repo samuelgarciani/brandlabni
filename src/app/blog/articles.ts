@@ -12,6 +12,8 @@ export type Article = {
   dateISO: string;
   readMinutes: number;
   cat: string;
+  /** SEO focus terms for this post — used in meta keywords, JSON-LD and the visible tag pills. */
+  keywords: string[];
   title: string;
   excerpt: string;
   body: ContentBlock[];
@@ -26,9 +28,10 @@ export const articles: Article[] = [
     dateISO: "2026-10-11",
     readMinutes: 7,
     cat: "Tendencias",
+    keywords: ["branding", "marca personal", "inteligencia artificial", "autenticidad de marca", "identidad de marca", "marketing digital"],
     title: "Tu marca necesita cara: lo que Apple nos recordó en la era de la IA",
     excerpt:
-      "Apple mostró sus manos esculpiendo stop-motion justo cuando todos asumían que era IA. Lo que los datos dicen sobre autenticidad, confianza y por qué ponerle cara a tu marca importa más que nunca.",
+      "Apple mostró sus manos esculpiendo stop-motion justo cuando todos asumían que era IA. Lo que los datos dicen sobre **autenticidad de marca**, **confianza** y por qué ponerle cara a tu marca importa más que nunca.",
     body: [
       { type: "h2", text: "Cuando todo empieza a verse igual" },
       {
@@ -82,7 +85,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "Apple tiene acceso a la mejor tecnología del mundo y aun así decidió enseñar las manos, el tiempo y el oficio detrás de su publicidad. Esa decisión comunica algo poderoso: en un mercado saturado de contenido sintético, mostrar el proceso humano se convierte en una prueba de autenticidad y en un argumento de marca por sí mismo.",
+        text: "Apple tiene acceso a la mejor tecnología del mundo y aun así decidió enseñar las manos, el tiempo y el oficio detrás de su publicidad. Esa decisión comunica algo poderoso: en un mercado saturado de contenido sintético, mostrar el proceso humano se convierte en una prueba de **autenticidad de marca** y en un argumento de marca por sí mismo.",
       },
       { type: "h2", text: "Lo que dicen los datos sobre confianza y autenticidad" },
       {
@@ -99,7 +102,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "Cuando juntamos las tres piezas, el mensaje es claro: la tecnología acelera la producción, pero la confianza se sigue construyendo con verdad, con rostros reales y con historias que solo tú puedes contar.",
+        text: "Cuando juntamos las tres piezas, el mensaje es claro: la tecnología acelera la producción, pero la **confianza de marca** se sigue construyendo con verdad, con rostros reales y con historias que solo tú puedes contar.",
       },
       { type: "h2", text: "Cuando las grandes marcas usan la IA sin filtro" },
       {
@@ -155,55 +158,16 @@ export const articles: Article[] = [
     ],
   },
   {
-    slug: "el-banco-me-dijo-que-me-queria",
-    img: "/brand/blog/cover-banco.jpg",
-    date: "6 de octubre de 2026",
-    dateISO: "2026-10-06",
-    readMinutes: 3,
-    cat: "Vivencias de marca",
-    title: "El banco me dijo que me quería, y no me pudo ayudar cuando más lo necesité",
-    excerpt: "Una marca fuerte no compite por precio, compite por significado.",
-    body: [
-      {
-        type: "p",
-        text: "Vos sabés cuando alguien te promete algo bonito y después la vida real te demuestra lo contrario, ¿verdad? Eso me pasó con mi banco.",
-      },
-      {
-        type: "p",
-        text: "En su publicidad se llenan la boca hablando de cercanía, de que están 'en pro de la gente'. Bonito discurso. Pero durante semanas alguien estuvo intentando entrar a mi cuenta una y otra vez, y cada intento fallido terminaba bloqueándome a mí: no podía hacer transacciones. Lo único que necesitaba era cambiar mi usuario para cortarle el acceso a quien fuera que estuviera insistiendo. Simple, ¿no? Pues no me pudieron ayudar. Bonita en la valla publicitaria, ausente justo cuando de verdad la necesitaba.",
-      },
-      {
-        type: "p",
-        text: "Esto no es un problema de mal servicio nada más. El branding no es un departamento, es el alma de la empresa completa. No es tarea exclusiva de marketing, es la forma en que una organización entera —desde quien contesta el teléfono hasta quien diseña los protocolos de seguridad— cumple, o traiciona, lo que promete ser. Cuando una marca dice una cosa y su gente vive otra, no hace falta que el cliente sea experto en branding para sentir la trampa. Lo siente en la piel.",
-      },
-      {
-        type: "p",
-        text: "Casi la misma semana viví lo opuesto. Dejé una barbería a la que fui fiel por años. No fue por el precio, fue porque perdí el valor: la plática se volvió mecánica, el detalle desapareció. Me cambié a otra, más cara, sí, pero ahí la propuesta superaba por mucho lo que cobraban. No lo dudé: pagué de más con gusto, porque sentí que valía más.",
-      },
-      {
-        type: "p",
-        text: "Ahí está la prueba más honesta de que una marca fuerte no compite por precio, compite por significado. Cuando tu esencia, tus valores y tu experiencia caminan juntos, el precio deja de ser el argumento. Se vuelve un detalle.",
-      },
-      {
-        type: "p",
-        text: "Si alguna vez sentiste que tu negocio compite solo bajando precios, o que tu propia marca promete una cosa y entrega otra, quiero que sepas algo: no estás solo, y esto no se arregla poniéndole un logo nuevo a la fachada. Se arregla construyendo desde adentro.",
-      },
-      {
-        type: "p",
-        text: "Contame: ¿te ha pasado algo parecido, con una marca a la que le creíste y te falló, o con una que te ganó por su forma de tratarte, aunque costara más? En serio quiero leer tu historia.",
-      },
-    ],
-  },
-  {
     slug: "publicar-mas-no-te-hace-inolvidable",
     img: "/brand/blog/cover-publicar-mas.jpg",
     date: "1 de octubre de 2026",
     dateISO: "2026-10-01",
     readMinutes: 8,
     cat: "Estrategia de marca",
+    keywords: ["estrategia de marca", "branding", "Kantar BrandZ", "marketing de contenidos", "identidad de marca", "posicionamiento de marca"],
     title: "Publicar más no te hace inolvidable",
     excerpt:
-      "Publicar todos los días no es lo mismo que ser recordado. Lo que el ranking Kantar BrandZ 2026 enseña sobre identidad, significado y por qué la frecuencia sin claridad solo construye confusión.",
+      "Publicar todos los días no es lo mismo que ser recordado. Lo que el ranking Kantar BrandZ 2026 enseña sobre **identidad de marca**, **significado de marca** y por qué la frecuencia sin claridad solo construye confusión.",
     body: [
       { type: "h2", text: "Publicas todos los días y nadie te recuerda" },
       {
@@ -216,7 +180,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "La constancia es valiosa, y en Brand Lab la recomendamos siempre. El problema aparece cuando se publica con constancia algo que todavía no tiene una identidad clara, porque entonces lo único que se repite es la confusión.",
+        text: "La constancia es valiosa, y en Brand Lab la recomendamos siempre. El problema aparece cuando se publica con constancia algo que todavía no tiene una **identidad de marca** clara, porque entonces lo único que se repite es la confusión.",
       },
       {
         type: "p",
@@ -346,9 +310,10 @@ export const articles: Article[] = [
     dateISO: "2026-09-29",
     readMinutes: 4,
     cat: "Valor de marca",
+    keywords: ["valor de marca", "branding", "Kantar BrandZ", "coherencia de marca", "marcas más valiosas del mundo"],
     title: "Tres marcas cruzaron el billón de dólares. Ninguna vendiendo más barato",
     excerpt:
-      "El valor de marca no se factura, se acumula una decisión de confianza a la vez. No hay atajo para eso: solo tiempo y coherencia.",
+      "El **valor de marca** no se factura, se acumula una decisión de confianza a la vez. No hay atajo para eso: solo tiempo y **coherencia de marca**.",
     body: [
       {
         type: "p",
@@ -378,19 +343,61 @@ export const articles: Article[] = [
     ],
   },
   {
+    slug: "el-banco-me-dijo-que-me-queria",
+    img: "/brand/blog/cover-banco.jpg",
+    date: "25 de septiembre de 2026",
+    dateISO: "2026-09-25",
+    readMinutes: 3,
+    cat: "Vivencias de marca",
+    keywords: ["branding", "experiencia de cliente", "confianza de marca", "marketing", "significado de marca"],
+    title: "El banco me dijo que me quería, y no me pudo ayudar cuando más lo necesité",
+    excerpt: "Una marca fuerte no compite por precio, compite por **significado de marca**.",
+    body: [
+      {
+        type: "p",
+        text: "Vos sabés cuando alguien te promete algo bonito y después la vida real te demuestra lo contrario, ¿verdad? Eso me pasó con mi banco.",
+      },
+      {
+        type: "p",
+        text: "En su publicidad se llenan la boca hablando de cercanía, de que están 'en pro de la gente'. Bonito discurso. Pero durante semanas alguien estuvo intentando entrar a mi cuenta una y otra vez, y cada intento fallido terminaba bloqueándome a mí: no podía hacer transacciones. Lo único que necesitaba era cambiar mi usuario para cortarle el acceso a quien fuera que estuviera insistiendo. Simple, ¿no? Pues no me pudieron ayudar. Bonita en la valla publicitaria, ausente justo cuando de verdad la necesitaba.",
+      },
+      {
+        type: "p",
+        text: "Esto no es un problema de mal servicio nada más. El **branding** no es un departamento, es el alma de la empresa completa. No es tarea exclusiva de marketing, es la forma en que una organización entera —desde quien contesta el teléfono hasta quien diseña los protocolos de seguridad— cumple, o traiciona, lo que promete ser. Cuando una marca dice una cosa y su gente vive otra, no hace falta que el cliente sea experto en branding para sentir la trampa. Lo siente en la piel.",
+      },
+      {
+        type: "p",
+        text: "Casi la misma semana viví lo opuesto. Dejé una barbería a la que fui fiel por años. No fue por el precio, fue porque perdí el valor: la plática se volvió mecánica, el detalle desapareció. Me cambié a otra, más cara, sí, pero ahí la propuesta superaba por mucho lo que cobraban. No lo dudé: pagué de más con gusto, porque sentí que valía más.",
+      },
+      {
+        type: "p",
+        text: "Ahí está la prueba más honesta de que una marca fuerte no compite por precio, compite por significado. Cuando tu esencia, tus valores y tu experiencia caminan juntos, el precio deja de ser el argumento. Se vuelve un detalle.",
+      },
+      {
+        type: "p",
+        text: "Si alguna vez sentiste que tu negocio compite solo bajando precios, o que tu propia marca promete una cosa y entrega otra, quiero que sepas algo: no estás solo, y esto no se arregla poniéndole un logo nuevo a la fachada. Se arregla construyendo desde adentro.",
+      },
+      {
+        type: "p",
+        text: "Contame: ¿te ha pasado algo parecido, con una marca a la que le creíste y te falló, o con una que te ganó por su forma de tratarte, aunque costara más? En serio quiero leer tu historia.",
+      },
+    ],
+  },
+  {
     slug: "los-cmos-europeos-ya-eligieron",
     img: "/brand/blog/cover-mckinsey.jpg",
     date: "22 de septiembre de 2026",
     dateISO: "2026-09-22",
     readMinutes: 4,
     cat: "Tendencias",
+    keywords: ["branding", "marketing", "inteligencia artificial", "estrategia de marca", "CMO"],
     title: "Los CMOs europeos ya eligieron: el branding le ganó a la IA",
     excerpt:
-      "500 líderes de marketing pusieron la construcción de marca por encima de la inteligencia artificial. Cuando todo es incierto, la marca es donde la gente busca certeza.",
+      "500 líderes de marketing pusieron la **construcción de marca** por encima de la inteligencia artificial. Cuando todo es incierto, la marca es donde la gente busca certeza.",
     body: [
       {
         type: "p",
-        text: "McKinsey acaba de encuestar a 500 líderes de marketing en catorce industrias de Europa para su reporte State of Marketing Europe 2026. Les preguntó cuál era su prioridad número uno para este año. La respuesta no fue la inteligencia artificial generativa ni la agéntica —esa quedó en el puesto 17 de 20—. La respuesta fue el branding.",
+        text: "McKinsey acaba de encuestar a 500 líderes de marketing en catorce industrias de Europa para su reporte State of Marketing Europe 2026. Les preguntó cuál era su prioridad número uno para este año. La respuesta no fue la inteligencia artificial generativa ni la agéntica —esa quedó en el puesto 17 de 20—. La respuesta fue el **branding**.",
       },
       {
         type: "p",
@@ -425,9 +432,10 @@ export const articles: Article[] = [
     dateISO: "2026-09-15",
     readMinutes: 4,
     cat: "Influencia",
+    keywords: ["patrocinio de marca", "branding", "marketing deportivo", "FIFA Mundial 2026", "influencia de marca"],
     title: "$2,800 millones no compraron un logo. Compraron un lugar en la memoria",
     excerpt:
-      "La relevancia vence a la visibilidad. El presupuesto compra el escenario; la estrategia decide qué recuerdo dejar en él.",
+      "La **relevancia de marca** vence a la visibilidad. El presupuesto compra el escenario; la estrategia decide qué recuerdo dejar en él.",
     body: [
       {
         type: "p",
@@ -463,9 +471,10 @@ export const articles: Article[] = [
     dateISO: "2026-09-08",
     readMinutes: 3,
     cat: "Estrategia de marca",
+    keywords: ["branding", "colaboraciones de marca", "marketing de influencers", "estrategia de marca"],
     title: "Lo que Gap entendió de Hailey Bieber que casi ninguna marca entiende",
     excerpt:
-      "Prestar un rostro es una decisión de medios; prestar criterio es una decisión estratégica — y solo una construye marca a largo plazo.",
+      "Prestar un rostro es una decisión de medios; prestar criterio es una **decisión estratégica de marca** — y solo una construye marca a largo plazo.",
     body: [
       {
         type: "p",
@@ -497,4 +506,9 @@ export const articles: Article[] = [
 
 export function getArticle(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);
+}
+
+/** Strips the `**bold**` markup used in body/excerpt text, for contexts that render plain text only (meta descriptions, JSON-LD, OG tags). */
+export function plainText(text: string): string {
+  return text.replace(/\*\*(.+?)\*\*/g, "$1");
 }

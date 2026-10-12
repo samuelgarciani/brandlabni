@@ -14,6 +14,14 @@ const navLinks = [
   { label: "Volver al sitio", href: "/", back: true },
 ];
 
+/** Renders `**term**` markup as bold — matches each post's SEO focus terms highlighted in its excerpt. */
+function renderInline(text: string) {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, index) =>
+    index % 2 === 1 ? <strong key={index} className="text-navy">{part}</strong> : part
+  );
+}
+
 function PostStats({ slug }: { slug: string }) {
   const [stats, setStats] = useState<{ likes: number; comments: number } | null>(null);
 
@@ -124,14 +132,14 @@ export function BlogClient() {
                       <div className="leading-tight">
                         <div className="t-meta font-bold text-navy">Samuel García</div>
                         <div className="t-meta tnum text-body-muted">
-                          {article.date} · {article.readMinutes} min
+                          <time dateTime={article.dateISO}>{article.date}</time> · {article.readMinutes} min
                         </div>
                       </div>
                     </div>
                     <h3 className="mt-3 t-title-sm font-extrabold text-navy transition-colors group-hover:text-orange-ink">
                       {article.title}
                     </h3>
-                    <p className="mt-2 flex-1 t-body-sm text-body-muted">{article.excerpt}</p>
+                    <p className="mt-2 flex-1 t-body-sm text-body-muted">{renderInline(article.excerpt)}</p>
                     <PostStats slug={article.slug} />
                   </div>
                 </a>
