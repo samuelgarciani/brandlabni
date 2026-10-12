@@ -133,27 +133,48 @@ export function ArticleClient({ article }: { article: Article }) {
     }
   };
 
-  // Instagram has no public web endpoint for posting straight to a Story or DM —
-  // that composer only exists inside Instagram's own app. The native OS share
-  // sheet is the closest a website can get: once the person picks Instagram from
-  // it, Instagram itself offers the Story/DM choice. Falls back to copying the
-  // link when the sheet isn't available (desktop) or the person cancels it.
-  const shareInstagram = async () => {
+  const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${article.title} ${url}`)}`;
+
+  // On a phone, the native OS share sheet hands off straight to the Facebook/
+  // LinkedIn/Instagram app the person already has installed and logged into —
+  // which is what gives Facebook its Feed/Story choice and skips LinkedIn's
+  // "log in" web page entirely. Desktop browsers don't implement navigator.share,
+  // so they fall back to the direct link (or, for Instagram, to copying the URL —
+  // it has no public web endpoint for posting straight to a Story or DM at all).
+  // If the person cancels the native sheet, we leave it at that instead of still
+  // forcing the fallback open behind them.
+  const shareVia = async (fallbackUrl?: string) => {
     const nav = navigator as Navigator & { share?: (data: ShareData) => Promise<void> };
     if (nav.share) {
       try {
         await nav.share({ title: article.title, url });
-        return;
       } catch {
-        // User cancelled or share failed — fall back to copy.
+        // Cancelled or failed — respect it, no further action.
       }
+      return;
     }
-    await copyLink();
+    if (fallbackUrl) {
+      window.open(fallbackUrl, "_blank", "noopener,noreferrer");
+    } else {
+      await copyLink();
+    }
   };
 
-  const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-  const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${article.title} ${url}`)}`;
+  const shareFacebook = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    shareVia(facebookHref);
+  };
+
+  const shareLinkedin = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    shareVia(linkedinHref);
+  };
+
+  const shareInstagram = () => {
+    shareVia();
+  };
 
   return (
     <div className="overflow-x-hidden bg-paper text-body-ink">
@@ -187,10 +208,10 @@ export function ArticleClient({ article }: { article: Article }) {
           <div className="flex flex-wrap items-center justify-between gap-4 py-4">
             <time className="t-body-sm tnum text-body-muted" dateTime={article.dateISO}>{article.date}</time>
             <div className="flex flex-wrap items-center gap-3">
-              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook">
+              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
                 <ShareIcon platform="facebook" size={36} />
               </a>
-              <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
+              <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn" onClick={shareLinkedin}>
                 <ShareIcon platform="linkedin" size={36} />
               </a>
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir por WhatsApp">
