@@ -188,14 +188,6 @@ export function ArticleClient({ article }: { article: Article }) {
             <span className="t-meta font-bold text-blue-ink">{article.cat.toUpperCase()}</span>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            {article.keywords.map((keyword) => (
-              <span key={keyword} className="rounded-full border border-blue-ink/25 px-3 py-1 t-meta text-blue-ink">
-                {keyword}
-              </span>
-            ))}
-          </div>
-
           <div className="mt-5 border-t border-ink/10" />
 
           <div className="flex flex-wrap items-center justify-between gap-4 py-4">
