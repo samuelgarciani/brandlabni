@@ -133,6 +133,11 @@ export function ArticleClient({ article }: { article: Article }) {
     }
   };
 
+  // Instagram has no public web endpoint for posting straight to a Story or DM —
+  // that composer only exists inside Instagram's own app. The native OS share
+  // sheet is the closest a website can get: once the person picks Instagram from
+  // it, Instagram itself offers the Story/DM choice. Falls back to copying the
+  // link when the sheet isn't available (desktop) or the person cancels it.
   const shareInstagram = async () => {
     const nav = navigator as Navigator & { share?: (data: ShareData) => Promise<void> };
     if (nav.share) {
@@ -144,17 +149,6 @@ export function ArticleClient({ article }: { article: Article }) {
       }
     }
     await copyLink();
-  };
-
-  // On phones, navigator.share opens the OS share sheet so the link goes straight
-  // into the Facebook/Messenger/Instagram app instead of the web sharer in a browser tab.
-  // Desktop browsers rarely implement it, so the anchor's facebookHref fallback still fires.
-  const shareFacebook = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const nav = navigator as Navigator & { share?: (data: ShareData) => Promise<void> };
-    if (nav.share) {
-      event.preventDefault();
-      nav.share({ title: article.title, url }).catch(() => {});
-    }
   };
 
   const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
@@ -193,7 +187,7 @@ export function ArticleClient({ article }: { article: Article }) {
           <div className="flex flex-wrap items-center justify-between gap-4 py-4">
             <time className="t-body-sm tnum text-body-muted" dateTime={article.dateISO}>{article.date}</time>
             <div className="flex flex-wrap items-center gap-3">
-              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook" onClick={shareFacebook}>
+              <a href={facebookHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en Facebook">
                 <ShareIcon platform="facebook" size={36} />
               </a>
               <a href={linkedinHref} target="_blank" rel="noopener noreferrer" aria-label="Compartir en LinkedIn">
@@ -272,30 +266,53 @@ export function ArticleClient({ article }: { article: Article }) {
                     );
                   }
                   if (block.type === "table") {
+                    // A wide table just clips silently on a phone — no scrollbar hint, columns
+                    // look missing rather than scrollable. Below `sm` it renders as a stack of
+                    // cards instead (rank + name up front, the rest as label/value pairs); the
+                    // real table only takes over once there's room for it.
                     return (
-                      <div key={key} className="overflow-x-auto rounded-[12px] border border-ink/10">
-                        <table className="w-full text-left t-body-sm tnum">
-                          <thead>
-                            <tr className="bg-bone">
-                              {block.headers.map((header) => (
-                                <th key={header} className="whitespace-nowrap px-4 py-3 font-bold text-navy">
-                                  {header}
-                                </th>
-                              ))}
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {block.rows.map((row) => (
-                              <tr key={row[0]} className="border-t border-ink/10">
-                                {row.map((cell, cellIndex) => (
-                                  <td key={cellIndex} className="whitespace-nowrap px-4 py-3 text-body-ink">
-                                    {cell}
-                                  </td>
+                      <div key={key}>
+                        <div className="flex flex-col gap-3 sm:hidden">
+                          {block.rows.map((row) => (
+                            <div key={row[0]} className="rounded-[12px] border border-ink/10 bg-bone px-4 py-3">
+                              <div className="flex items-baseline gap-2">
+                                <span className="t-meta tnum text-body-muted">#{row[0]}</span>
+                                <span className="t-body-sm font-bold text-navy">{row[1]}</span>
+                              </div>
+                              <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
+                                {block.headers.slice(2).map((header, headerIndex) => (
+                                  <span key={header} className="t-meta tnum text-body-muted">
+                                    {header}: <strong className="text-navy">{row[headerIndex + 2]}</strong>
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="hidden overflow-x-auto rounded-[12px] border border-ink/10 sm:block">
+                          <table className="w-full text-left t-body-sm tnum">
+                            <thead>
+                              <tr className="bg-bone">
+                                {block.headers.map((header) => (
+                                  <th key={header} className="whitespace-nowrap px-4 py-3 font-bold text-navy">
+                                    {header}
+                                  </th>
                                 ))}
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {block.rows.map((row) => (
+                                <tr key={row[0]} className="border-t border-ink/10">
+                                  {row.map((cell, cellIndex) => (
+                                    <td key={cellIndex} className="whitespace-nowrap px-4 py-3 text-body-ink">
+                                      {cell}
+                                    </td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     );
                   }
