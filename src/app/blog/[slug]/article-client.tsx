@@ -17,6 +17,13 @@ const navLinks = [
   { label: "Volver al sitio", href: "/", back: true },
 ];
 
+/** Splits a list item's short lead-in ("Label. " / "Label? ") from its body so the lead can render bold. */
+function splitLeadIn(text: string): [string, string] {
+  const match = text.match(/^(.{1,80}?[.?])\s([\s\S]*)$/);
+  if (!match) return [text, ""];
+  return [match[1], ` ${match[2]}`];
+}
+
 function relativeDate(ts: number) {
   const diffMs = Date.now() - ts;
   const minutes = Math.floor(diffMs / 60000);
@@ -221,18 +228,71 @@ export function ArticleClient({ article }: { article: Article }) {
               <p className="mt-7 t-lead text-navy">{article.excerpt}</p>
 
               <div className="mt-6 flex flex-col gap-5 t-body text-body-ink">
-                {article.body.map((paragraph) =>
-                  paragraph.length < 110 ? (
-                    <p
-                      key={paragraph.slice(0, 40)}
-                      className="border-l-[3px] border-orange py-1 pl-5 t-title-sm font-semibold italic text-navy"
-                    >
-                      {paragraph}
-                    </p>
-                  ) : (
-                    <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-                  )
-                )}
+                {article.body.map((block, index) => {
+                  const key = `${block.type}-${index}`;
+                  if (block.type === "h2") {
+                    return (
+                      <h2 key={key} className="mt-4 t-title-sm text-navy">
+                        {block.text}
+                      </h2>
+                    );
+                  }
+                  if (block.type === "quote") {
+                    return (
+                      <p key={key} className="border-l-[3px] border-orange py-1 pl-5 t-title-sm font-semibold italic text-navy">
+                        {block.text}
+                      </p>
+                    );
+                  }
+                  if (block.type === "list") {
+                    const ListTag = block.ordered ? "ol" : "ul";
+                    return (
+                      <ListTag key={key} className="flex flex-col gap-3 pl-1">
+                        {block.items.map((item) => {
+                          const [lead, rest] = splitLeadIn(item);
+                          return (
+                            <li key={item.slice(0, 40)} className="flex gap-3">
+                              <span aria-hidden className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
+                              <span>
+                                <strong className="text-navy">{lead}</strong>
+                                {rest}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ListTag>
+                    );
+                  }
+                  if (block.type === "table") {
+                    return (
+                      <div key={key} className="overflow-x-auto rounded-[12px] border border-ink/10">
+                        <table className="w-full text-left t-body-sm tnum">
+                          <thead>
+                            <tr className="bg-bone">
+                              {block.headers.map((header) => (
+                                <th key={header} className="whitespace-nowrap px-4 py-3 font-bold text-navy">
+                                  {header}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {block.rows.map((row) => (
+                              <tr key={row[0]} className="border-t border-ink/10">
+                                {row.map((cell, cellIndex) => (
+                                  <td key={cellIndex} className="whitespace-nowrap px-4 py-3 text-body-ink">
+                                    {cell}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                  }
+                  return <p key={key}>{block.text}</p>;
+                })}
               </div>
 
               <div className="mt-9 flex items-center gap-4">
