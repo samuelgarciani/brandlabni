@@ -168,7 +168,7 @@ export function PatrocinioClient() {
             fill
             sizes="100vw"
             preload
-            className="object-cover object-left-center"
+            className="object-cover object-left"
           />
           <div className="absolute inset-0 bg-[linear-gradient(270deg,rgba(13,58,86,.98)_0%,rgba(13,58,86,.9)_40%,rgba(13,58,86,.35)_60%,rgba(13,58,86,0)_74%)]" />
           <div className="relative z-10 mx-auto flex min-h-[560px] max-w-[1100px] flex-col items-end justify-center gutter py-[70px] text-right">

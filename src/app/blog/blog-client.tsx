@@ -65,7 +65,7 @@ export function BlogClient() {
             sizes="100vw"
             quality={90}
             preload
-            className="object-cover object-right-center"
+            className="object-cover object-right"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(233,236,239,.98)_0%,rgba(233,236,239,.86)_40%,rgba(233,236,239,.2)_66%,rgba(233,236,239,0)_80%)]" />
           <div className="relative z-10 mx-auto flex min-h-[420px] max-w-[1100px] flex-col justify-center gutter py-[50px] sm:min-h-[520px] sm:py-[70px]">
