@@ -3,7 +3,7 @@ export type ContentBlock =
   | { type: "h2"; text: string }
   | { type: "quote"; text: string }
   | { type: "list"; items: string[]; ordered?: boolean }
-  | { type: "table"; headers: string[]; rows: string[][] };
+  | { type: "table"; headers: string[]; rows: string[][]; primaryColumns?: number };
 
 export type Article = {
   slug: string;
@@ -21,6 +21,189 @@ export type Article = {
 
 /** Newest first — the feed relies on this order. */
 export const articles: Article[] = [
+  {
+    slug: "rebranding-cuando-cambiar-y-cuando-no",
+    img: "/brand/blog/cover-rebranding.jpg",
+    date: "16 de octubre de 2026",
+    dateISO: "2026-10-16",
+    readMinutes: 9,
+    cat: "Estrategia de marca",
+    keywords: ["rebranding", "branding", "estrategia de marca", "identidad de marca", "refresh de marca"],
+    title: "Rebranding: cuándo cambiar y cuándo no",
+    excerpt:
+      "Cambiar el logo puede renovar una marca o hacerle perder lo que la gente ya quería. Cinco casos reales — Avianca, Jaguar, GAP, Coca-Cola y Zepol — y las preguntas que vale la pena hacerse antes de cualquier **rebranding**.",
+    body: [
+      {
+        type: "p",
+        text: "Cambiar el logo es una de las decisiones que más emocionan a un dueño de negocio, y también una de las más riesgosas. Una nueva imagen puede darle aire fresco a una empresa, pero también puede hacer que sus clientes sientan que perdieron algo que querían.",
+      },
+      {
+        type: "p",
+        text: "En este artículo repaso cinco casos conocidos: Avianca, Jaguar, GAP, Coca-Cola y Zepol. Algunos salieron bien y otros tuvieron que dar marcha atrás. Todos ayudan a responder la pregunta que vale la pena hacerse antes de cualquier **rebranding**: ¿por qué quiero cambiar?",
+      },
+      { type: "h2", text: "Refresh o rebranding: qué es cada uno" },
+      {
+        type: "p",
+        text: "Antes de entrar a los casos, conviene separar dos términos que muchas veces se usan como si fueran lo mismo. Un **refresh** actualiza la forma en que la marca se ve y se aplica, y conserva todo lo que la gente ya reconoce. Un **rebranding** cambia lo que la marca representa y cómo se presenta, y puede tocar el nombre, el logo, el mensaje y hasta el público al que se dirige.",
+      },
+      {
+        type: "table",
+        headers: ["", "Refresh", "Rebranding"],
+        rows: [
+          ["Qué cambia", "Tipografía, colores, empaques, fotografía, aplicaciones", "Significado, mensaje y, a menudo, nombre o logo"],
+          ["Qué se conserva", "Los símbolos que la gente reconoce", "Lo que siga siendo valioso para el cliente"],
+          ["Cuándo conviene", "La marca está bien posicionada pero se ve desactualizada o inconsistente", "Cambió el negocio: la oferta, el público o el mercado"],
+          ["Riesgo", "Bajo, si se respetan los códigos de la marca", "Alto, porque se mueve la memoria de los clientes"],
+          ["Casos en este artículo", "Coca-Cola", "Avianca, Jaguar, Zepol"],
+        ],
+      },
+      {
+        type: "p",
+        text: "GAP queda en un punto intermedio: cambió el logo sin que hubiera cambiado el negocio, y por eso la gente no entendió el motivo. En mi experiencia, la mayoría de las pymes necesita un refresh mucho más seguido que un rebranding.",
+      },
+      { type: "h2", text: "Avianca: «el cielo es de todos»" },
+      {
+        type: "p",
+        text: "El 18 de octubre de 2023, Avianca presentó su nueva marca con una frase que lo resume todo: «el cielo es de todos». Para que esa idea se viera, quitó la A mayúscula de su nombre y empezó a escribirlo en minúsculas. Según sus directivos, esa avianca en minúscula representa a una aerolínea que dejó de ser para pocos.",
+      },
+      {
+        type: "p",
+        text: "Detrás del lema había una historia dura. Su CEO, Adrian Neuhauser, contó que durante la pandemia los aviones pasaron más de 180 días en tierra y que la aerolínea estuvo en riesgo real de desaparecer. La transformación que vino después tomó cerca de dos años, y para el primer semestre de 2023 la empresa ya reportaba una ganancia neta de 10,88 millones de dólares, frente a una pérdida de 292,6 millones en el mismo periodo del año anterior (El País Colombia).",
+      },
+      {
+        type: "p",
+        text: "Lo que hace fuerte este caso es que la frase y la letra cuentan la misma idea. El lema dice que volar es para todos y la minúscula lo muestra sin necesidad de explicarlo. Además, el cambio llegó después de que el negocio se transformó, así que la nueva marca tenía algo real que la respaldaba.",
+      },
+      { type: "h2", text: "Jaguar: romper con todo, incluso con quienes te querían" },
+      {
+        type: "p",
+        text: "El 19 de noviembre de 2024, Jaguar presentó una identidad completamente nueva bajo la idea \"copy nothing\". Cambió su logotipo por uno que mezcla mayúsculas y minúsculas (\"JaGUar\"), estrenó un monograma con la J y la r, borró el historial de sus redes sociales y lanzó un anuncio de 30 segundos con modelos y colores intensos en el que no aparecía ningún auto (Top Gear).",
+      },
+      {
+        type: "p",
+        text: "La razón de fondo era real: Jaguar quería convertirse en una marca de lujo 100 % eléctrica, con autos de alrededor de 100.000 libras, y había detenido la producción de nuevos modelos por primera vez desde 1948. Su director, Rawdon Glover, lo explicó así: si jugaban como todos los demás, iban a quedar ahogados en el ruido.",
+      },
+      {
+        type: "p",
+        text: "La reacción fue mayoritariamente negativa. Elon Musk preguntó en X si Jaguar todavía vendía autos, y el publicista Rory Sutherland advirtió que la marca no podía sobrevivir con fans que no compran sus carros. En mayo de 2025, Jaguar Land Rover inició una revisión de su agencia publicitaria, aunque aseguró que la decisión no tenía relación con las críticas (Business Now). A inicios de 2026 se confirmó que Gerry McGovern, director creativo detrás de la nueva dirección, dejaría la compañía antes del relanzamiento (AM Online).",
+      },
+      {
+        type: "quote",
+        text: "Jaguar comunicó una ruptura antes de tener el producto que la explicara, y dejó a sus clientes de siempre sin nada a qué aferrarse.",
+      },
+      { type: "h2", text: "GAP: el logo que duró seis días" },
+      {
+        type: "p",
+        text: "El 6 de octubre de 2010, GAP reemplazó el recuadro azul que había usado durante unos 20 años por un logotipo nuevo, con letras negras y un pequeño cuadro azul en la esquina. La empresa lo describió como una expresión más contemporánea y moderna.",
+      },
+      {
+        type: "p",
+        text: "La respuesta fue inmediata. En las primeras 24 horas, un solo blog acumuló cerca de 2.000 comentarios negativos, una cuenta de protesta en Twitter llegó a 5.000 seguidores y un sitio para \"hacer tu propio logo de GAP\" recibió casi 14.000 parodias. La marca intentó presentar el cambio como una invitación a que la gente propusiera diseños, pero el 12 de octubre volvió al logo original. Marka Hansen, entonces presidenta de GAP en Norteamérica, reconoció que no lo habían hecho de la manera correcta (The Branding Journal).",
+      },
+      {
+        type: "p",
+        text: "GAP subestimó cuánto de su **identidad de marca** vivía en aquel recuadro azul. Para muchos clientes, ese símbolo era parte de su propia historia con la marca, y nadie les explicó por qué debía cambiar. Cuando la gente no entiende el motivo de un cambio, lo vive como una pérdida.",
+      },
+      { type: "h2", text: "Coca-Cola: renovarse para parecerse más a sí misma" },
+      {
+        type: "p",
+        text: "En julio de 2026, Coca-Cola presentó una renovación de su identidad visual para más de 200 mercados, liderada por la agencia JKR. Lo más interesante es lo que no tocó: mantuvo el rojo y el blanco, su letra Spencerian, la cinta ondulada (Dynamic Ribbon) que usa desde 1969 y el sello cuadrado conocido como Arden Square (The Brand Hopper).",
+      },
+      {
+        type: "p",
+        text: "Lo que hizo fue darle más protagonismo a esos elementos y sumar uno nuevo: \"Better With\", una tipografía propia creada por Brody Associates. También rediseñó sus empaques, devolvió el nombre vertical a las latas y lanzó un Brand Center, una plataforma donde sus equipos y agencias encuentran los colores, tipografías y piezas aprobadas (Latinspots).",
+      },
+      {
+        type: "p",
+        text: "Arnab Roy, presidente de Coca-Cola Global Category, explicó que el objetivo era ser más claros y consistentes en cómo se presentan, en cualquier lugar donde la gente se encuentre con la marca. Para una pyme, este caso es oro: a veces la mejor renovación consiste en ordenar y potenciar lo que ya tienes, para que todo lo que publicas, empacas o entregas se vea como la misma marca.",
+      },
+      { type: "h2", text: "Zepol: renovarse sin soltar la confianza" },
+      {
+        type: "p",
+        text: "El caso más cercano a nosotros está pasando ahora mismo. Laboratorios Zepol, la empresa costarricense con 76 años de historia que muchos en Nicaragua conocemos por su ungüento, ahora opera como ZepoLab. Su marca principal se escribe Zpol, aunque se sigue pronunciando \"Zepol\", y la compañía asegura que las fórmulas y sus estándares de calidad se mantienen sin cambios (Vida y Éxito).",
+      },
+      {
+        type: "p",
+        text: "Lo interesante es todo lo que hay detrás. Zepol competía sobre todo en la categoría de resfriados, con ungüentos e inhaladores, y sus ventas tenían altas y bajas. El cambio tomó varios años e incluyó aprobación de la junta directiva, revisión de la capacidad de producción y la creación del Zepol Innovation Lab, un equipo que prueba con consumidores aspectos como el aroma, el uso y el diseño gráfico. Ahora la empresa trabaja en más de 50 productos, entre ellos bebidas de hidratación, caramelos funcionales y productos para el bienestar muscular (El Financiero).",
+      },
+      {
+        type: "quote",
+        text: "La fortaleza de hoy no garantiza por sí sola la relevancia de mañana.",
+      },
+      {
+        type: "p",
+        text: "Además, el cambio se está haciendo de forma gradual, producto por producto, entre 2026 y 2027, para que la gente se acostumbre sin sentir que perdió algo. Zepol cambió la forma de escribir su nombre y conservó lo que lo hace confiable.",
+      },
+      { type: "h2", text: "Lo que estos cinco casos nos enseñan" },
+      {
+        type: "p",
+        text: "Si los ponemos uno al lado del otro, aparece un patrón: los cambios que funcionaron tenían una razón clara y cuidaron lo que la gente ya quería, y los que fracasaron cambiaron algo valioso sin explicar por qué.",
+      },
+      {
+        type: "table",
+        headers: ["Marca", "Año", "Tipo de cambio", "Qué cambió", "Qué lo impulsó", "Cómo terminó"],
+        rows: [
+          ["Coca-Cola", "2026", "Refresh", "Más protagonismo a sus símbolos y nueva tipografía \"Better With\"", "Verse clara y consistente en más de 200 mercados", "En marcha"],
+          ["Zepol", "2026", "Rebranding", "Nombre escrito como Zpol, empresa ZepoLab", "Nuevas categorías y expansión regional", "En marcha, de forma gradual"],
+          ["Jaguar", "2024", "Rebranding", "Logo, monograma y comunicación completa", "Paso a lujo 100 % eléctrico", "Fuerte rechazo; resultado aún abierto"],
+          ["Avianca", "2023", "Rebranding", "A minúscula y lema «el cielo es de todos»", "Transformación tras casi desaparecer", "Se mantiene"],
+          ["GAP", "2010", "Cambio de logo", "Logo", "Buscar una imagen más moderna", "Revertido a los 6 días"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Antes de tocar tu logo, te recomiendo responder con honestidad estas preguntas:",
+      },
+      {
+        type: "list",
+        ordered: true,
+        items: [
+          "¿Qué cambió en mi negocio que mi marca actual ya no logra contar?",
+          "¿Qué parte de mi marca quieren y reconocen mis clientes, y cómo la voy a proteger?",
+          "¿Puedo explicar el cambio en una frase que mis clientes entiendan y sientan suya?",
+          "¿Tengo algo nuevo que mostrar (un producto, un servicio, una experiencia) que respalde la nueva imagen?",
+          "¿Voy a hacer el cambio de golpe o de forma gradual, como Zepol?",
+        ],
+      },
+      {
+        type: "p",
+        text: "Si la única respuesta a la primera pregunta es \"ya me aburrí del logo\", probablemente lo que necesitas es revisar tu estrategia antes que tu diseño.",
+      },
+      { type: "h2", text: "Qué hacer y qué no hacer si tienes una pyme" },
+      { type: "p", text: "Lo que sí te recomiendo:" },
+      {
+        type: "list",
+        items: [
+          "Empieza por un diagnóstico: pregunta a tus clientes qué reconocen y valoran de tu marca antes de tocar cualquier cosa.",
+          "Si tu negocio no ha cambiado, considera primero un refresh: ordena colores, tipografías y aplicaciones, como hizo Coca-Cola.",
+          "Si tu negocio sí cambió (nuevos servicios, otro público, otro mercado), define primero qué quieres representar y después diseña.",
+          "Resume el cambio en una frase que tus clientes entiendan, como hizo Avianca con «el cielo es de todos».",
+          "Haz el cambio por etapas y cuéntale a tu gente lo que está pasando, como está haciendo Zepol.",
+          "Crea una guía sencilla para que todos usen la marca de la misma forma, desde las redes hasta la factura.",
+        ],
+      },
+      { type: "p", text: "Lo que te recomiendo evitar:" },
+      {
+        type: "list",
+        items: [
+          "Cambiar el logo solo porque te aburriste de verlo, como le pasó a GAP.",
+          "Borrar de golpe los símbolos que tus clientes reconocen.",
+          "Presentar una imagen nueva antes de tener el producto o la experiencia que la respalde, que fue el gran riesgo de Jaguar.",
+          "Pensar que un logo nuevo va a resolver problemas de ventas, servicio o precio.",
+          "Dejar que cada proveedor o colaborador aplique la marca \"a su manera\".",
+        ],
+      },
+      { type: "h2", text: "Una marca cambia bien cuando la gente entiende por qué" },
+      {
+        type: "p",
+        text: "Cambiar de imagen puede ser una de las mejores decisiones para tu empresa, siempre que llegue en el momento correcto y por las razones correctas. Las marcas que la gente quiere tienen algo de propiedad compartida, y cuando decides renovarlas también estás tocando la memoria y la confianza de tus clientes.",
+      },
+      {
+        type: "p",
+        text: "Si estás pensando en un rebranding y quieres saber si es el momento, escríbeme. En Brand Lab acompañamos a las empresas a descubrir qué representa realmente su marca antes de decidir qué cambiar. Y si este artículo te sirvió, sígueme en Instagram como @brandlab_bysamuel para seguir conversando de marcas con significado.",
+      },
+    ],
+  },
   {
     slug: "tu-marca-necesita-cara-en-la-era-de-la-ia",
     img: "/brand/blog/cover-tu-marca-cara.jpg",
@@ -222,6 +405,7 @@ export const articles: Article[] = [
       },
       {
         type: "table",
+        primaryColumns: 2,
         headers: ["Puesto", "Marca", "Valor (millones de USD)", "Variación anual"],
         rows: [
           ["1", "Google", "1,484,895", "+57%"],

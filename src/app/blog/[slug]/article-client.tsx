@@ -276,21 +276,26 @@ export function ArticleClient({ article }: { article: Article }) {
                   if (block.type === "table") {
                     // A wide table just clips silently on a phone — no scrollbar hint, columns
                     // look missing rather than scrollable. Below `sm` it renders as a stack of
-                    // cards instead (rank + name up front, the rest as label/value pairs); the
-                    // real table only takes over once there's room for it.
+                    // cards instead (the lead column(s) as the card's title, the rest as
+                    // label/value pairs); the real table only takes over once there's room.
+                    const primaryCols = block.primaryColumns ?? 1;
                     return (
                       <div key={key}>
                         <div className="flex flex-col gap-3 sm:hidden">
                           {block.rows.map((row) => (
-                            <div key={row[0]} className="rounded-[12px] border border-ink/10 bg-bone px-4 py-3">
-                              <div className="flex items-baseline gap-2">
-                                <span className="t-meta tnum text-body-muted">#{row[0]}</span>
-                                <span className="t-body-sm font-bold text-navy">{row[1]}</span>
-                              </div>
-                              <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
-                                {block.headers.slice(2).map((header, headerIndex) => (
-                                  <span key={header} className="t-meta tnum text-body-muted">
-                                    {header}: <strong className="text-navy">{row[headerIndex + 2]}</strong>
+                            <div key={row.join("|")} className="rounded-[12px] border border-ink/10 bg-bone px-4 py-3">
+                              {primaryCols === 2 ? (
+                                <div className="flex items-baseline gap-2">
+                                  <span className="t-meta tnum text-body-muted">#{row[0]}</span>
+                                  <span className="t-body-sm font-bold text-navy">{row[1]}</span>
+                                </div>
+                              ) : (
+                                <div className="t-body-sm font-bold text-navy">{row[0]}</div>
+                              )}
+                              <div className="mt-2 flex flex-col gap-1">
+                                {block.headers.slice(primaryCols).map((header, headerIndex) => (
+                                  <span key={header} className="t-meta text-body-muted">
+                                    {header}: <strong className="tnum text-navy">{row[headerIndex + primaryCols]}</strong>
                                   </span>
                                 ))}
                               </div>
@@ -298,11 +303,11 @@ export function ArticleClient({ article }: { article: Article }) {
                           ))}
                         </div>
                         <div className="hidden overflow-x-auto rounded-[12px] border border-ink/10 sm:block">
-                          <table className="w-full text-left t-body-sm tnum">
+                          <table className="w-full text-left t-body-sm">
                             <thead>
                               <tr className="bg-bone">
                                 {block.headers.map((header) => (
-                                  <th key={header} className="whitespace-nowrap px-4 py-3 font-bold text-navy">
+                                  <th key={header} className="px-4 py-3 font-bold text-navy">
                                     {header}
                                   </th>
                                 ))}
@@ -310,9 +315,9 @@ export function ArticleClient({ article }: { article: Article }) {
                             </thead>
                             <tbody>
                               {block.rows.map((row) => (
-                                <tr key={row[0]} className="border-t border-ink/10">
+                                <tr key={row.join("|")} className="border-t border-ink/10">
                                   {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex} className="whitespace-nowrap px-4 py-3 text-body-ink">
+                                    <td key={cellIndex} className="px-4 py-3 align-top text-body-ink">
                                       {cell}
                                     </td>
                                   ))}
